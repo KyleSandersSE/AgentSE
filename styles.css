@@ -1,0 +1,564 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Header - Schneider Electric Colors */
+.header {
+    background: linear-gradient(135deg, #3DCD58 0%, #009846 100%);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.header-stats {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: rgba(255,255,255,0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+}
+
+.stat-item.automation {
+    color: #3DCD58;
+    font-weight: bold;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 350px;
+    min-width: 250px;
+    max-width: 800px;
+    background: white;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+/* Resize Handle */
+.resize-handle {
+    width: 10px;
+    background: linear-gradient(90deg, transparent 0%, #ddd 40%, #ddd 60%, transparent 100%);
+    cursor: col-resize;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.resize-handle:hover {
+    background: linear-gradient(90deg, transparent 0%, #3DCD58 40%, #3DCD58 60%, transparent 100%);
+}
+
+.resize-handle::after {
+    content: '⋮';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #999;
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+.sidebar-section {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #009846;
+}
+
+.sidebar-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #3DCD58;
+}
+
+/* Search Box */
+.search-box {
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #3DCD58;
+}
+
+.search-box button {
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.search-box button#searchBtn {
+    background: #3DCD58;
+    color: white;
+}
+
+.search-box button.secondary {
+    background: #ddd;
+    color: #333;
+}
+
+.search-box button:hover {
+    opacity: 0.9;
+}
+
+/* Filter Groups */
+.filter-group {
+    margin-bottom: 1rem;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.filter-group select,
+.filter-group input[type="range"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.filter-group input[type="range"] {
+    cursor: pointer;
+}
+
+/* Toggle Label */
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    background: #f9f9f9;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    transition: all 0.3s;
+}
+
+.toggle-label:hover {
+    background: #f0f0f0;
+}
+
+.toggle-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.toggle-label input[type="checkbox"]:checked + span {
+    color: #3DCD58;
+    font-weight: bold;
+}
+
+/* Buttons - Schneider Electric Green */
+.primary-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #3DCD58 0%, #009846 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(61, 205, 88, 0.4);
+}
+
+.secondary-btn {
+    padding: 0.5rem 1rem;
+    background: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.secondary-btn:hover {
+    background: #e0e0e0;
+    border-color: #3DCD58;
+    color: #009846;
+}
+
+/* Legend */
+.legend {
+    background: #f9f9f9;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.legend-marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #333;
+}
+
+.legend-marker.automation-marker {
+    background: #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
+}
+
+.legend-marker.regular-marker {
+    background: #2196F3;
+}
+
+/* Project Details - Schneider Electric Accent */
+.project-details {
+    background: #f0fff4;
+    border-left: 4px solid #3DCD58;
+}
+
+.detail-row {
+    margin-bottom: 0.75rem;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #666;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.detail-value {
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.detail-value.large {
+    font-size: 1.1rem;
+    color: #009846;
+    font-weight: bold;
+}
+
+.detail-value.automation-badge {
+    display: inline-block;
+    background: #4CAF50;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.automation-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.automation-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #3DCD58 0%, #009846 100%);
+    color: white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(61, 205, 88, 0.3);
+}
+
+/* BDM Features */
+.bdm-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.star:hover,
+.star.filled {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.star:hover {
+    transform: scale(1.2);
+}
+
+.probability-high {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.probability-medium {
+    color: #FF9800;
+    font-weight: bold;
+}
+
+.probability-low {
+    color: #F44336;
+    font-weight: bold;
+}
+
+.detail-scope {
+    max-height: 150px;
+    overflow-y: auto;
+    background: white;
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #555;
+}
+
+.detail-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #3DCD58;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
+}
+
+.close-details {
+    width: 100%;
+    padding: 0.5rem;
+    background: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.close-details:hover {
+    background: #ccc;
+}
+
+/* Map Wrapper */
+.map-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+/* Map Loading */
+.map-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.map-loading.hidden {
+    display: none;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3DCD58;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.map-loading p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #3DCD58;
+}
+
+/* Custom Marker Styles */
+.leaflet-marker-icon.automation-icon {
+    background-color: #4CAF50 !important;
+    border: 3px solid white !important;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.7) !important;
+}
+
+/* Popup Styles */
+.leaflet-popup-content-wrapper {
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.popup-content h4 {
+    color: #009846;
+    margin-bottom: 0.5rem;
+}
+
+.popup-content p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.popup-automation-badge {
+    display: inline-block;
+    background: #4CAF50;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 300px;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .header-stats {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        max-height: 40vh;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .header-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Scrollbar Styles */
+.sidebar::-webkit-scrollbar,
+.detail-scope::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.detail-scope::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.detail-scope::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.detail-scope::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+

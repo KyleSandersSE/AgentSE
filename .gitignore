@@ -1,0 +1,31 @@
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Excel files (keep only CSV)
+*.xlsx
+*.xls
+
+# Large data files (optional - comment out if you want to include them)
+# *.csv
+
+# Node modules (if ever used)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+

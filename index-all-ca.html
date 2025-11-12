@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All California Industries - Projects Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏭 All California Industries - Projects Map</h1>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Total Projects:</span>
+                    <span class="stat-value" id="totalProjects">0</span>
+                </div>
+                <div class="stat-item automation">
+                    <span class="stat-label">⚙️ Automation Opportunities:</span>
+                    <span class="stat-value" id="automationProjects">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Value:</span>
+                    <span class="stat-value" id="totalValue">$0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Industries Selected:</span>
+                    <span class="stat-value" id="selectedIndustries">12</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <!-- Industry Filter Section -->
+                <div class="sidebar-section">
+                    <h2>🏭 Industry Selection</h2>
+                    
+                    <div style="margin-bottom: 10px; display: flex; gap: 8px;">
+                        <button id="selectAllIndustries" class="secondary-btn" style="flex: 1;">Select All</button>
+                        <button id="deselectAllIndustries" class="secondary-btn" style="flex: 1;">Deselect All</button>
+                    </div>
+                    
+                    <div class="industry-list" id="industryList">
+                        <!-- Industry checkboxes will be populated dynamically -->
+                    </div>
+                    
+                    <button id="toggleIndustryBreakdown" class="secondary-btn" style="margin-top: 10px; width: 100%;">
+                        Show Industry Breakdown
+                    </button>
+                    
+                    <div id="industryBreakdown" style="display: none; margin-top: 15px; background: #f9f9f9; padding: 15px; border-radius: 8px; max-height: 300px; overflow-y: auto;">
+                        <h4 style="margin-bottom: 10px; color: #009846;">📊 Industry Breakdown</h4>
+                        <div id="industryBreakdownContent">
+                            <!-- Will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h2>🔍 Search & Filter</h2>
+                    
+                    <!-- Search Bar -->
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search by project name or owner...">
+                        <button id="searchBtn">Search</button>
+                        <button id="clearSearchBtn" class="secondary">Clear</button>
+                    </div>
+
+                    <!-- Automation Filter -->
+                    <div class="filter-group">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="automationToggle">
+                            <span>Show Only Automation Opportunities ⚙️</span>
+                        </label>
+                    </div>
+
+                    <!-- Status Filter -->
+                    <div class="filter-group">
+                        <label>Project Status:</label>
+                        <select id="statusFilter">
+                            <option value="all">All Statuses</option>
+                        </select>
+                    </div>
+
+                    <!-- Type Filter -->
+                    <div class="filter-group">
+                        <label>Project Type:</label>
+                        <select id="typeFilter">
+                            <option value="all">All Types</option>
+                        </select>
+                    </div>
+
+                    <!-- Probability Filter -->
+                    <div class="filter-group">
+                        <label>Probability:</label>
+                        <select id="probabilityFilter">
+                            <option value="all">All Levels</option>
+                            <option value="high">High (70-80%)</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low (0-69%)</option>
+                        </select>
+                    </div>
+
+                    <!-- Value Range Filter -->
+                    <div class="filter-group">
+                        <label>Min Project Value: $<span id="minValueLabel">0</span></label>
+                        <input type="range" id="minValueSlider" min="0" max="50000000" step="100000" value="0">
+                    </div>
+
+                    <!-- Sort Options -->
+                    <div class="filter-group">
+                        <label>Sort By:</label>
+                        <select id="sortBy">
+                            <option value="none">No Sorting</option>
+                            <option value="value">Highest Value First</option>
+                            <option value="probability">Highest Probability First</option>
+                            <option value="prioritization">Prioritization Score</option>
+                        </select>
+                    </div>
+
+                    <button id="applyFilters" class="primary-btn">Apply Filters</button>
+                    
+                    <button id="exportFiltered" class="secondary-btn" style="margin-top: 10px; width: 100%;">
+                        📥 Export Filtered Results
+                    </button>
+                </div>
+
+                <!-- Legend -->
+                <div class="sidebar-section legend">
+                    <h3>Map Legend</h3>
+                    <div class="legend-item">
+                        <span class="legend-marker automation-marker"></span>
+                        <span>Automation Opportunity</span>
+                    </div>
+                    <div id="industryLegend" style="margin-top: 10px;">
+                        <!-- Industry colors will be populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Project Details Panel -->
+                <div class="sidebar-section project-details" id="projectDetails" style="display: none;">
+                    <h3>Project Details</h3>
+                    <div id="projectDetailsContent">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Resize Handle -->
+            <div class="resize-handle" id="resizeHandle"></div>
+
+            <!-- Map Container -->
+            <div class="map-wrapper">
+                <div id="map"></div>
+                <div class="map-loading" id="mapLoading">
+                    <div class="spinner"></div>
+                    <p>Loading projects...</p>
+                    <div id="manualLoadSection" style="display: none; margin-top: 20px;">
+                        <p style="color: #3DCD58; font-weight: bold;">Unable to auto-load CSV due to browser security.</p>
+                        <p style="margin: 10px 0;">Please select the CleanedCAData.csv file:</p>
+                        <input type="file" id="csvFileInput" accept=".csv" style="margin: 10px 0;">
+                        <button id="loadCsvBtn" style="padding: 10px 20px; background: #3DCD58; color: white; border: none; border-radius: 5px; cursor: pointer;">Load Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Leaflet MarkerCluster JS -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+    
+    <!-- Custom App JS -->
+    <script src="app-all-ca.js"></script>
+</body>
+</html>
+
