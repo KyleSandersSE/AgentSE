@@ -1,0 +1,2232 @@
+{
+  "1007630": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1008107": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1008117": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1011034": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1011081": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1011248": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1011262": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1011314": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1013072": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1013741": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1013795": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1014284": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1015223": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1015573": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1015832": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1016510": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1017098": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1017327": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1019057": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1019314": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1021743": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1025264": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1025483": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1025805": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1025808": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1026009": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1026893": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1027268": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1028075": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1029177": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1031675": {
+    "stage": "qualified/contacted",
+    "interactions": [
+      {
+        "date": "2025-11-12",
+        "type": "Call",
+        "rep": "",
+        "details": "Initial contact",
+        "nextSteps": ""
+      }
+    ],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1036795": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1038195": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1039520": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1039530": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1044911": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1045651": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1045659": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1045726": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1051543": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1052694": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1055929": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1056180": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1056243": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1057205": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1059489": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1061031": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1070906": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1074974": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1077231": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1077268": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1077359": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1077361": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1082325": {
+    "stage": "qualified/contacted",
+    "interactions": [
+      {
+        "date": "2025-11-17",
+        "type": "Call",
+        "rep": "Kyle Sanders",
+        "details": "11",
+        "nextSteps": "1"
+      },
+      {
+        "date": "2025-11-17",
+        "type": "Call",
+        "rep": "sakjsa",
+        "details": "ajla",
+        "nextSteps": "asa"
+      }
+    ],
+    "priority": 5,
+    "notes": "aa",
+    "followUpDate": "2025-11-18"
+  },
+  "1083125": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1084248": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1087148": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1500049": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1501849": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1502285": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1503205": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1503292": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1503356": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1504578": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1506731": {
+    "stage": "qualified/contacted",
+    "interactions": [
+      {
+        "date": "2025-11-17",
+        "type": "Call",
+        "rep": "Kyle",
+        "details": "Samsn",
+        "nextSteps": "asa",
+        "followUpDate": ""
+      }
+    ]
+  },
+  "1506741": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1508185": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1508877": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1509924": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1510584": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1512053": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1512463": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1512674": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1512937": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1514451": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1515342": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1516435": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1517378": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1517520": {
+    "stage": "leads",
+    "interactions": []
+  },
+  "1517885": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "1518254": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3009764": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3010434": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3010823": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3010825": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3022642": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3067351": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3088008": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3100419": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3103390": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3107911": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3119649": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3124276": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3126215": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3145561": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3145728": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3146416": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3146429": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3146436": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3146438": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3151469": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3161682": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3182938": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3183241": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3183806": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3184017": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3184020": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3186313": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3188816": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3189095": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3189142": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3189214": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3189226": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3189228": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3189555": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3192357": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3192717": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3199384": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3201042": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3219857": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3231734": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3239234": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3242387": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3247266": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3248036": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3248055": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3248266": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3248469": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3248550": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3248567": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3248577": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3253402": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3253428": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3253439": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3259209": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3260795": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3261044": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3262432": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3263568": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3263628": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3263968": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3265090": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3266280": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3266296": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3268425": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3268845": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3274192": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3274197": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3298767": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3299637": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3307549": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3312728": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3314208": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3341271": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3350041": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3353918": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3356733": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3359648": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3364962": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3390665": {
+    "stage": "qualified/contacted",
+    "interactions": [
+      {
+        "date": "2025-11-12",
+        "type": "Call",
+        "rep": "",
+        "details": "aasda",
+        "nextSteps": ""
+      }
+    ],
+    "priority": 0,
+    "notes": "aasda",
+    "followUpDate": ""
+  },
+  "3391492": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3398583": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3402759": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3402913": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3404243": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3416292": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3424724": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3424979": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3431529": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3434020": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3436290": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3440691": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3441830": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3442272": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3459361": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3472296": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3488091": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3502578": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3503085": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3505083": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3510481": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3511137": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3512512": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3517966": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3525987": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3527923": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3534948": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3536789": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3537923": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3539785": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3540849": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3545311": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3545517": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3545827": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3545836": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3545930": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3545933": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3548678": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3549341": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3550277": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3553489": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3554176": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3554346": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3555553": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3556635": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3557012": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3557195": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3557419": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3557583": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3557727": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3559077": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3559246": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3560616": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3561013": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3562017": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3567600": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3569075": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3570318": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3572220": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3572522": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3573169": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3574082": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3574317": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3577113": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3577114": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3578802": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3579445": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3579460": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3580130": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3580134": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3580152": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3580655": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3581188": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3581635": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3581939": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3585028": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3585042": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3585465": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3586157": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3586163": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3586170": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3587820": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3588000": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3588344": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3588930": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3589099": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3590240": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3590584": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3592689": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3596931": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3598191": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3600435": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3600589": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3600864": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3602792": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3603637": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3603859": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3604058": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3605268": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3605418": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3605579": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3606587": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3606981": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3607763": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3609365": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3609750": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3610708": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3611804": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3612025": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3612430": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3612932": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3613753": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3615410": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3616266": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3617515": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3617530": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3617917": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3618374": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3620913": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3621141": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3622818": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3626455": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3630491": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3631223": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3631404": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3632083": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3635168": {
+    "stage": "qualified/contacted",
+    "interactions": [
+      {
+        "date": "2025-11-11",
+        "type": "Call",
+        "rep": "",
+        "details": "Not a good opportuntiy\n",
+        "nextSteps": ""
+      }
+    ],
+    "priority": 0,
+    "notes": "Not a good opportuntiy\n",
+    "followUpDate": "2025-11-11"
+  },
+  "3635785": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3635901": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3635938": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3636052": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3636630": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3638803": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3639037": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3639231": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3643847": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3646720": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3646728": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3646901": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3648137": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3649226": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3650320": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3650832": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3650843": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3652358": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3652579": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3652687": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3652694": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3652702": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3652708": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3654070": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3654767": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3654779": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3654940": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3657154": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3657174": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3657787": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3658469": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3658656": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3661341": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3663440": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  },
+  "3664622": {
+    "stage": "leads",
+    "interactions": [],
+    "priority": 0,
+    "notes": "",
+    "followUpDate": ""
+  }
+}

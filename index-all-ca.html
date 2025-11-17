@@ -40,6 +40,12 @@
             </div>
         </header>
 
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" id="mapTab" data-view="map">🗺️ Map View</button>
+            <button class="tab-btn" id="kanbanTab" data-view="kanban">📋 Kanban Board</button>
+        </div>
+
         <!-- Main Content -->
         <div class="main-content">
             <!-- Sidebar -->
@@ -103,6 +109,14 @@
                         </select>
                     </div>
 
+                    <!-- State Filter -->
+                    <div class="filter-group">
+                        <label>State:</label>
+                        <select id="stateFilter">
+                            <option value="all">All States</option>
+                        </select>
+                    </div>
+
                     <!-- Probability Filter -->
                     <div class="filter-group">
                         <label>Probability:</label>
@@ -136,6 +150,20 @@
                     <button id="exportFiltered" class="secondary-btn" style="margin-top: 10px; width: 100%;">
                         📥 Export Filtered Results
                     </button>
+                    
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #ddd;">
+                        <h3 style="font-size: 1rem; margin-bottom: 10px; color: #009846;">💾 Save & Load BDM Data</h3>
+                        <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
+                            BDM data auto-saves to browser storage. Export to save a backup file.
+                        </p>
+                        <button id="exportBDMData" class="secondary-btn" style="width: 100%; margin-bottom: 8px;">
+                            💾 Export BDM Data (JSON)
+                        </button>
+                        <button id="importBDMData" class="secondary-btn" style="width: 100%;">
+                            📂 Load BDM Data from File
+                        </button>
+                        <input type="file" id="bdmDataFileInput" accept=".json" style="display: none;">
+                    </div>
                 </div>
 
                 <!-- Legend -->
@@ -163,7 +191,7 @@
             <div class="resize-handle" id="resizeHandle"></div>
 
             <!-- Map Container -->
-            <div class="map-wrapper">
+            <div class="map-wrapper" id="mapView">
                 <div id="map"></div>
                 <div class="map-loading" id="mapLoading">
                     <div class="spinner"></div>
@@ -173,6 +201,40 @@
                         <p style="margin: 10px 0;">Please select the CleanedCAData.csv file:</p>
                         <input type="file" id="csvFileInput" accept=".csv" style="margin: 10px 0;">
                         <button id="loadCsvBtn" style="padding: 10px 20px; background: #3DCD58; color: white; border: none; border-radius: 5px; cursor: pointer;">Load Data</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kanban Board Container -->
+            <div class="kanban-wrapper" id="kanbanView" style="display: none;">
+                <div class="kanban-board" id="kanbanBoard">
+                    <div class="kanban-column" data-stage="leads">
+                        <div class="kanban-column-header">
+                            <h3>Leads</h3>
+                            <span class="kanban-count" id="count-leads">0</span>
+                        </div>
+                        <div class="kanban-column-content" id="column-leads"></div>
+                    </div>
+                    <div class="kanban-column" data-stage="qualified/contacted">
+                        <div class="kanban-column-header">
+                            <h3>Qualified/Contacted</h3>
+                            <span class="kanban-count" id="count-qualified/contacted">0</span>
+                        </div>
+                        <div class="kanban-column-content" id="column-qualified/contacted"></div>
+                    </div>
+                    <div class="kanban-column" data-stage="followup">
+                        <div class="kanban-column-header">
+                            <h3>Follow-up Next Steps</h3>
+                            <span class="kanban-count" id="count-followup">0</span>
+                        </div>
+                        <div class="kanban-column-content" id="column-followup"></div>
+                    </div>
+                    <div class="kanban-column" data-stage="won">
+                        <div class="kanban-column-header">
+                            <h3>Won</h3>
+                            <span class="kanban-count" id="count-won">0</span>
+                        </div>
+                        <div class="kanban-column-content" id="column-won"></div>
                     </div>
                 </div>
             </div>

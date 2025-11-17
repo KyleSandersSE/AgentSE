@@ -44,11 +44,67 @@ let bdmData = {};
 // Debounce timer for filters
 let filterDebounceTimer = null;
 
+// Current view (map or kanban)
+let currentView = 'map';
+
+// Kanban stages
+const kanbanStages = ['leads', 'qualified/contacted', 'followup', 'won'];
+
 // Load BDM data from localStorage
 function loadBDMData() {
     const stored = localStorage.getItem('allCAIndustriesBDMData');
     if (stored) {
         bdmData = JSON.parse(stored);
+        // Migrate old data format to new format
+        migrateBDMData();
+    }
+}
+
+// Migrate old BDM data format to new format
+function migrateBDMData() {
+    let migrated = false;
+    for (const projectId in bdmData) {
+        const data = bdmData[projectId];
+        // Check if old format (has contacted boolean)
+        if (data.hasOwnProperty('contacted') && !data.hasOwnProperty('stage')) {
+            // Convert old format to new format
+            const newData = {
+                stage: data.contacted ? (data.status === 'won' ? 'won' : 'qualified/contacted') : 'leads',
+                interactions: []
+            };
+            
+            // Convert lastContact to interaction if it exists
+            if (data.lastContact) {
+                newData.interactions.push({
+                    date: data.lastContact.split('T')[0],
+                    type: 'Call',
+                    rep: '',
+                    details: data.notes || 'Initial contact',
+                    nextSteps: ''
+                });
+            }
+            
+            // Convert activities to interactions if they exist
+            if (data.activities && Array.isArray(data.activities)) {
+                data.activities.forEach(activity => {
+                    newData.interactions.push({
+                        date: activity.date || new Date().toISOString().split('T')[0],
+                        type: activity.type || 'Other',
+                        rep: activity.rep || '',
+                        details: activity.details || '',
+                        nextSteps: activity.nextSteps || ''
+                    });
+                });
+            }
+            
+            bdmData[projectId] = newData;
+            migrated = true;
+        }
+    }
+    
+    if (migrated) {
+        saveBDMData();
+        console.log('Migrated BDM data to new format');
     }
 }
 
@@ -61,13 +117,8 @@ function saveBDMData() {
 function getBDMData(projectId) {
     if (!bdmData[projectId]) {
         bdmData[projectId] = {
-            contacted: false,
-            status: 'new',
-            priority: 0,
-            notes: '',
-            followUpDate: '',
-            lastContact: null,
-            activities: []
+            stage: 'leads',
+            interactions: []
         };
     }
     return bdmData[projectId];
@@ -140,6 +191,7 @@ function loadCSVData() {
                     renderMarkers();
                     updateStatistics();
                     updateIndustryBreakdown();
+                    setupKanbanDragDrop();
                     hideLoading();
                 },
                 error: function(error) {
@@ -206,6 +258,7 @@ function handleManualFileLoad() {
                 renderMarkers();
                 updateStatistics();
                 updateIndustryBreakdown();
+                setupKanbanDragDrop();
                 hideLoading();
             },
             error: function(error) {
@@ -425,6 +478,16 @@ function populateFilters() {
         typeFilter.appendChild(option);
     });
     
+    // Get unique states
+    const states = [...new Set(allProjects.map(p => p.PLANT_ST).filter(s => s))].sort();
+    const stateFilter = document.getElementById('stateFilter');
+    states.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state;
+        option.textContent = state;
+        stateFilter.appendChild(option);
+    });
+    
     // Set max value for slider
     const maxValue = Math.max(...allProjects.map(p => p.value));
     const minValueSlider = document.getElementById('minValueSlider');
@@ -572,67 +635,114 @@ function showProjectDetails(project) {
     const projectId = project.PLANT_ID || project.PROJ_NAME;
     const bdm = getBDMData(projectId);
     
-    // Generate star rating
-    let starsHtml = '<div class="star-rating" style="margin: 10px 0;">';
-    for (let i = 1; i <= 5; i++) {
-        const filled = i <= bdm.priority;
-        starsHtml += `<span class="star ${filled ? 'filled' : ''}" onclick="setProjectPriority('${projectId}', ${i})">★</span>`;
-    }
-    starsHtml += '</div>';
-    
-    // Status dropdown
-    const statusOptions = ['new', 'contacted', 'proposal', 'negotiation', 'won', 'lost'];
-    const statusLabels = {
-        'new': '🆕 New Lead',
-        'contacted': '📞 Contacted',
-        'proposal': '📄 Proposal Sent',
-        'negotiation': '🤝 In Negotiation',
-        'won': '✅ Won',
-        'lost': '❌ Lost'
+    // Kanban stage dropdown
+    const stageLabels = {
+        'leads': '📋 Leads',
+        'qualified/contacted': '✅ Qualified/Contacted',
+        'followup': '📞 Follow-up Next Steps',
+        'won': '🏆 Won'
     };
+    
+    // Interaction history table
+    let interactionHistoryHtml = '';
+    if (bdm.interactions && bdm.interactions.length > 0) {
+        interactionHistoryHtml = `
+            <div style="margin-top: 15px;">
+                <h5 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; color: #009846;">Interaction History</h5>
+                <table class="interaction-table" style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                    <thead>
+                        <tr style="background: #f0f0f0;">
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Date</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Type</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">SE Rep</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Details</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Next Steps</th>
+                            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Follow-up Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${bdm.interactions.map((interaction, idx) => `
+                            <tr style="background: ${idx % 2 === 0 ? '#fff' : '#f9f9f9'};">
+                                <td style="padding: 6px; border: 1px solid #ddd;">${new Date(interaction.date).toLocaleDateString()}</td>
+                                <td style="padding: 6px; border: 1px solid #ddd;">${interaction.type || 'N/A'}</td>
+                                <td style="padding: 6px; border: 1px solid #ddd;">${interaction.rep || ''}</td>
+                                <td style="padding: 6px; border: 1px solid #ddd;">${interaction.details || ''}</td>
+                                <td style="padding: 6px; border: 1px solid #ddd;">${interaction.nextSteps || ''}</td>
+                                <td style="padding: 6px; border: 1px solid #ddd;">${interaction.followUpDate ? new Date(interaction.followUpDate).toLocaleDateString() : ''}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+        `;
+    }
+    
+    // Add new interaction form
+    const addInteractionHtml = `
+        <div style="margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 5px;">
+            <h5 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; color: #009846;">Add New Interaction</h5>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                <div>
+                    <label style="font-size: 0.75rem; display: block; margin-bottom: 3px;">Date:</label>
+                    <input type="date" id="newInteractionDate" value="${new Date().toISOString().split('T')[0]}" 
+                           style="width: 100%; padding: 6px; border-radius: 3px; border: 1px solid #ddd; font-size: 0.8rem;">
+                </div>
+                <div>
+                    <label style="font-size: 0.75rem; display: block; margin-bottom: 3px;">Type:</label>
+                    <select id="newInteractionType" style="width: 100%; padding: 6px; border-radius: 3px; border: 1px solid #ddd; font-size: 0.8rem;">
+                        <option value="Call">Call</option>
+                        <option value="Email">Email</option>
+                        <option value="VM">VM</option>
+                        <option value="Meeting">Meeting</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <label style="font-size: 0.75rem; display: block; margin-bottom: 3px;">SE Rep:</label>
+                <input type="text" id="newInteractionRep" placeholder="Your name" 
+                       style="width: 100%; padding: 6px; border-radius: 3px; border: 1px solid #ddd; font-size: 0.8rem;">
+            </div>
+            <div style="margin-bottom: 8px;">
+                <label style="font-size: 0.75rem; display: block; margin-bottom: 3px;">Details:</label>
+                <textarea id="newInteractionDetails" placeholder="Enter interaction details..." 
+                          style="width: 100%; padding: 6px; border-radius: 3px; border: 1px solid #ddd; font-size: 0.8rem; min-height: 60px; resize: vertical;"></textarea>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                <div>
+                    <label style="font-size: 0.75rem; display: block; margin-bottom: 3px;">Next Steps:</label>
+                    <input type="text" id="newInteractionNextSteps" placeholder="e.g., Email, Follow-up call" 
+                           style="width: 100%; padding: 6px; border-radius: 3px; border: 1px solid #ddd; font-size: 0.8rem;">
+                </div>
+                <div>
+                    <label style="font-size: 0.75rem; display: block; margin-bottom: 3px;">Follow-up Date:</label>
+                    <input type="date" id="newInteractionFollowUpDate" 
+                           style="width: 100%; padding: 6px; border-radius: 3px; border: 1px solid #ddd; font-size: 0.8rem;"
+                           onkeypress="if(event.key === 'Enter') addInteraction('${projectId}')">
+                </div>
+            </div>
+            <button onclick="addInteraction('${projectId}')" 
+                    style="width: 100%; padding: 8px; background: #3DCD58; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">
+                Add Interaction (or press Enter in Follow-up Date)
+            </button>
+        </div>
+    `;
     
     detailsContent.innerHTML = `
         <!-- BDM Tracking Section -->
         <div class="bdm-section" style="background: #f0fff4; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #3DCD58;">
             <h4 style="margin: 0 0 10px 0; color: #009846; font-size: 1rem;">📊 BDM Tracking</h4>
             
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                <label style="display: flex; align-items: center; cursor: pointer; font-weight: 600;">
-                    <input type="checkbox" id="contactedCheck" ${bdm.contacted ? 'checked' : ''} 
-                           onchange="toggleContacted('${projectId}')" 
-                           style="width: 18px; height: 18px; cursor: pointer; margin-right: 8px;">
-                    Contacted
-                </label>
-                ${bdm.lastContact ? `<span style="font-size: 0.85rem; color: #666;">Last: ${new Date(bdm.lastContact).toLocaleDateString()}</span>` : ''}
-            </div>
-            
-            <div style="margin-bottom: 10px;">
-                <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 5px;">Lead Status:</label>
-                <select id="leadStatus" onchange="updateLeadStatus('${projectId}', this.value)" 
+            <div style="margin-bottom: 15px;">
+                <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 5px;">Kanban Stage:</label>
+                <select id="kanbanStage" onchange="updateKanbanStage('${projectId}', this.value)" 
                         style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
-                    ${statusOptions.map(opt => `<option value="${opt}" ${bdm.status === opt ? 'selected' : ''}>${statusLabels[opt]}</option>`).join('')}
+                    ${kanbanStages.map(stage => `<option value="${stage}" ${bdm.stage === stage ? 'selected' : ''}>${stageLabels[stage]}</option>`).join('')}
                 </select>
             </div>
             
-            <div style="margin-bottom: 10px;">
-                <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 5px;">Priority Rating:</label>
-                ${starsHtml}
-            </div>
-            
-            <div style="margin-bottom: 10px;">
-                <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 5px;">Follow-up Date:</label>
-                <input type="date" id="followUpDate" value="${bdm.followUpDate || ''}" 
-                       onchange="updateFollowUpDate('${projectId}', this.value)"
-                       style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
-            </div>
-            
-            <div>
-                <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 5px;">Notes:</label>
-                <textarea id="projectNotes" 
-                          onblur="updateProjectNotes('${projectId}', this.value)"
-                          placeholder="Add your notes here..."
-                          style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ddd; min-height: 80px; font-family: inherit; resize: vertical;">${bdm.notes || ''}</textarea>
-            </div>
+            ${interactionHistoryHtml}
+            ${addInteractionHtml}
         </div>
         
         <div class="detail-row">
@@ -745,6 +855,7 @@ function applyFilters() {
     const automationOnly = document.getElementById('automationToggle').checked;
     const statusFilter = document.getElementById('statusFilter').value;
     const typeFilter = document.getElementById('typeFilter').value;
+    const stateFilter = document.getElementById('stateFilter').value;
     const probabilityFilter = document.getElementById('probabilityFilter').value;
     const minValue = parseFloat(document.getElementById('minValueSlider').value);
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
@@ -761,6 +872,9 @@ function applyFilters() {
         
         // Type filter
         if (typeFilter !== 'all' && project.PROJECT_TYPE !== typeFilter) return false;
+        
+        // State filter
+        if (stateFilter !== 'all' && project.PLANT_ST !== stateFilter) return false;
         
         // Probability filter
         if (probabilityFilter !== 'all' && project.probabilityLevel !== probabilityFilter) return false;
@@ -780,7 +894,12 @@ function applyFilters() {
         return true;
     });
     
-    renderMarkers();
+    if (currentView === 'map') {
+        renderMarkers();
+    } else {
+        renderKanbanBoard();
+    }
+    
     updateStatistics();
     updateIndustryBreakdown();
     
@@ -847,19 +966,23 @@ function exportFilteredResults() {
         return;
     }
     
-    // Prepare CSV data
+    // Prepare CSV data - one row per project per interaction
     const headers = [
         'Project Name', 'Owner', 'Industry', 'Value', 'Probability', 'Prioritization Score',
         'Project Type', 'Status', 'Current Phase', 'Completion Date', 'City', 'State',
         'Automation Opportunity', 'Automation Tags', 'Scope',
-        'BDM Contacted', 'BDM Status', 'BDM Priority', 'BDM Follow-up Date', 'BDM Notes'
+        'BDM Stage',
+        'Interaction Date', 'Interaction Type', 'SE Rep', 'Interaction Details', 'Next Steps', 'Follow-up Date'
     ];
     
-    const rows = filteredProjects.map(project => {
+    const rows = [];
+    
+    filteredProjects.forEach(project => {
         const projectId = project.PLANT_ID || project.PROJ_NAME;
         const bdm = getBDMData(projectId);
         
-        return [
+        // Base project data
+        const baseRow = [
             project.PROJ_NAME || '',
             project.OWNER_NAME || '',
             project.industry || '',
@@ -875,12 +998,26 @@ function exportFilteredResults() {
             project.hasAutomation ? 'Yes' : 'No',
             project.automationTags ? project.automationTags.join('; ') : '',
             (project.SCOPE || '').replace(/"/g, '""'),
-            bdm.contacted ? 'Yes' : 'No',
-            bdm.status || '',
-            bdm.priority || 0,
-            bdm.followUpDate || '',
-            (bdm.notes || '').replace(/"/g, '""')
+            bdm.stage || 'leads'
         ];
+        
+        // If no interactions, export one row with empty interaction fields
+        if (!bdm.interactions || bdm.interactions.length === 0) {
+            rows.push([...baseRow, '', '', '', '', '', '']);
+        } else {
+            // Export one row per interaction
+            bdm.interactions.forEach(interaction => {
+                rows.push([
+                    ...baseRow,
+                    interaction.date || '',
+                    interaction.type || '',
+                    interaction.rep || '',
+                    (interaction.details || '').replace(/"/g, '""'),
+                    (interaction.nextSteps || '').replace(/"/g, '""'),
+                    interaction.followUpDate || ''
+                ]);
+            });
+        }
     });
     
     // Convert to CSV
@@ -905,7 +1042,7 @@ function exportFilteredResults() {
     link.click();
     document.body.removeChild(link);
     
-    console.log(`Exported ${filteredProjects.length} projects to CSV`);
+    console.log(`Exported ${rows.length} rows (${filteredProjects.length} projects) to CSV`);
 }
 
 // Format currency
@@ -974,6 +1111,20 @@ function setupEventListeners() {
     // Export button
     document.getElementById('exportFiltered').addEventListener('click', exportFilteredResults);
     
+    // Export BDM data button
+    document.getElementById('exportBDMData').addEventListener('click', exportBDMDataToFile);
+    
+    // Import BDM data button
+    document.getElementById('importBDMData').addEventListener('click', function() {
+        document.getElementById('bdmDataFileInput').click();
+    });
+    
+    document.getElementById('bdmDataFileInput').addEventListener('change', handleBDMDataImport);
+    
+    // Tab switching
+    document.getElementById('mapTab').addEventListener('click', () => switchView('map'));
+    document.getElementById('kanbanTab').addEventListener('click', () => switchView('kanban'));
+    
     console.log('Event listeners setup complete');
 }
 
@@ -1013,45 +1164,325 @@ function setupResizableSidebar() {
     });
 }
 
-// BDM tracking functions (make globally available)
-window.toggleContacted = function(projectId) {
-    const bdm = getBDMData(projectId);
-    bdm.contacted = !bdm.contacted;
-    if (bdm.contacted && !bdm.lastContact) {
-        bdm.lastContact = new Date().toISOString();
+// Switch between map and kanban views
+function switchView(view) {
+    currentView = view;
+    const mapView = document.getElementById('mapView');
+    const kanbanView = document.getElementById('kanbanView');
+    const mapTab = document.getElementById('mapTab');
+    const kanbanTab = document.getElementById('kanbanTab');
+    
+    if (view === 'map') {
+        mapView.style.display = 'flex';
+        kanbanView.style.display = 'none';
+        mapTab.classList.add('active');
+        kanbanTab.classList.remove('active');
+        renderMarkers();
+    } else {
+        mapView.style.display = 'none';
+        kanbanView.style.display = 'block';
+        mapTab.classList.remove('active');
+        kanbanTab.classList.add('active');
+        renderKanbanBoard();
     }
-    updateBDMData(projectId, bdm);
-    
-    // Refresh the display
-    const project = allProjects.find(p => (p.PLANT_ID || p.PROJ_NAME) === projectId);
-    if (project) showProjectDetails(project);
-};
+}
 
-window.updateLeadStatus = function(projectId, status) {
-    updateBDMData(projectId, { status: status });
-};
-
-window.setProjectPriority = function(projectId, priority) {
-    updateBDMData(projectId, { priority: priority });
-    
-    // Refresh stars
-    const stars = document.querySelectorAll('.star');
-    stars.forEach((star, index) => {
-        if (index < priority) {
-            star.classList.add('filled');
-        } else {
-            star.classList.remove('filled');
+// Render Kanban board
+function renderKanbanBoard() {
+    // Clear all columns
+    kanbanStages.forEach(stage => {
+        const column = document.getElementById(`column-${stage}`);
+        if (column) {
+            column.innerHTML = '';
         }
     });
+    
+    // Group projects by stage
+    const projectsByStage = {};
+    kanbanStages.forEach(stage => {
+        projectsByStage[stage] = [];
+    });
+    
+    filteredProjects.forEach(project => {
+        const projectId = project.PLANT_ID || project.PROJ_NAME;
+        const bdm = getBDMData(projectId);
+        const stage = bdm.stage || 'leads';
+        if (projectsByStage[stage]) {
+            projectsByStage[stage].push(project);
+        }
+    });
+    
+    // Render cards in each column
+    kanbanStages.forEach(stage => {
+        const column = document.getElementById(`column-${stage}`);
+        const countElement = document.getElementById(`count-${stage}`);
+        const projects = projectsByStage[stage] || [];
+        
+        if (countElement) {
+            countElement.textContent = projects.length;
+        }
+        
+        if (column) {
+            projects.forEach(project => {
+                const card = createKanbanCard(project);
+                column.appendChild(card);
+            });
+        }
+    });
+}
+
+// Create Kanban card
+function createKanbanCard(project) {
+    const projectId = project.PLANT_ID || project.PROJ_NAME;
+    const bdm = getBDMData(projectId);
+    const industryColor = industryColors[project.industry] || '#999';
+    
+    const card = document.createElement('div');
+    card.className = 'kanban-card';
+    card.draggable = true;
+    card.dataset.projectId = projectId;
+    
+    const automationBadge = project.hasAutomation ? 
+        '<span style="background: #3DCD58; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-left: 5px;">⚙️</span>' : '';
+    
+    const automationTags = project.automationTags && project.automationTags.length > 0 ?
+        `<div style="margin-top: 5px; display: flex; flex-wrap: wrap; gap: 3px;">
+            ${project.automationTags.slice(0, 3).map(tag => 
+                `<span style="background: #3DCD58; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem;">${tag}</span>`
+            ).join('')}
+        </div>` : '';
+    
+    card.innerHTML = `
+        <div style="border-left: 4px solid ${industryColor}; padding-left: 8px;">
+            <div style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; color: #333;">
+                ${(project.PROJ_NAME || 'Unnamed Project').substring(0, 50)}${(project.PROJ_NAME || '').length > 50 ? '...' : ''}
+            </div>
+            <div style="font-size: 0.75rem; color: #666; margin-bottom: 3px;">
+                ${project.OWNER_NAME || 'N/A'}
+            </div>
+            <div style="font-size: 0.8rem; font-weight: bold; color: #009846; margin-bottom: 3px;">
+                ${formatCurrency(project.value)}
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 3px;">
+                <span style="background: ${industryColor}; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem;">
+                    ${project.industry || 'N/A'}
+                </span>
+                ${automationBadge}
+            </div>
+            ${automationTags}
+            ${bdm.interactions && bdm.interactions.length > 0 ? 
+                `<div style="margin-top: 5px; font-size: 0.7rem; color: #666;">
+                    📞 ${bdm.interactions.length} interaction${bdm.interactions.length > 1 ? 's' : ''}
+                </div>` : ''}
+        </div>
+    `;
+    
+    // Drag event handlers
+    card.addEventListener('dragstart', handleDragStart);
+    card.addEventListener('dragend', handleDragEnd);
+    
+    // Click to navigate to map
+    card.addEventListener('click', function() {
+        switchView('map');
+        const projectObj = allProjects.find(p => (p.PLANT_ID || p.PROJ_NAME) === projectId);
+        if (projectObj) {
+            const lat = parseFloat(projectObj.LATITUDE);
+            const lng = parseFloat(projectObj.LONGITUDE);
+            if (!isNaN(lat) && !isNaN(lng)) {
+                map.setView([lat, lng], 12);
+                setTimeout(() => {
+                    showProjectDetails(projectObj);
+                }, 500);
+            }
+        }
+    });
+    
+    return card;
+}
+
+// Drag and drop handlers
+let draggedCard = null;
+
+function handleDragStart(e) {
+    draggedCard = this;
+    this.style.opacity = '0.5';
+    e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragEnd(e) {
+    this.style.opacity = '1';
+    draggedCard = null;
+}
+
+// Setup drag and drop on columns
+function setupKanbanDragDrop() {
+    kanbanStages.forEach(stage => {
+        const column = document.getElementById(`column-${stage}`);
+        if (column) {
+            column.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                this.style.backgroundColor = '#e8f5e9';
+            });
+            
+            column.addEventListener('dragleave', function(e) {
+                this.style.backgroundColor = '';
+            });
+            
+            column.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.backgroundColor = '';
+                
+                if (draggedCard) {
+                    const projectId = draggedCard.dataset.projectId;
+                    updateBDMData(projectId, { stage: stage });
+                    
+                    // Remove from old column and add to new
+                    draggedCard.remove();
+                    this.appendChild(draggedCard);
+                    
+                    // Update counts
+                    renderKanbanBoard();
+                }
+            });
+        }
+    });
+}
+
+// BDM tracking functions (make globally available)
+window.updateKanbanStage = function(projectId, stage) {
+    updateBDMData(projectId, { stage: stage });
+    
+    // Refresh Kanban board if in kanban view
+    if (currentView === 'kanban') {
+        renderKanbanBoard();
+    }
+    
+    // Refresh project details
+    const project = allProjects.find(p => (p.PLANT_ID || p.PROJ_NAME) === projectId);
+    if (project) {
+        showProjectDetails(project);
+    }
 };
 
-window.updateFollowUpDate = function(projectId, date) {
-    updateBDMData(projectId, { followUpDate: date });
+window.addInteraction = function(projectId) {
+    const date = document.getElementById('newInteractionDate').value;
+    const type = document.getElementById('newInteractionType').value;
+    const rep = document.getElementById('newInteractionRep').value;
+    const details = document.getElementById('newInteractionDetails').value;
+    const nextSteps = document.getElementById('newInteractionNextSteps').value;
+    const followUpDate = document.getElementById('newInteractionFollowUpDate').value;
+    
+    if (!date || !details) {
+        alert('Please fill in at least Date and Details');
+        return;
+    }
+    
+    const bdm = getBDMData(projectId);
+    if (!bdm.interactions) {
+        bdm.interactions = [];
+    }
+    
+    bdm.interactions.push({
+        date: date,
+        type: type,
+        rep: rep,
+        details: details,
+        nextSteps: nextSteps,
+        followUpDate: followUpDate || ''
+    });
+    
+    // Sort interactions by date (newest first)
+    bdm.interactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    updateBDMData(projectId, bdm);
+    
+    // Clear form
+    document.getElementById('newInteractionDate').value = new Date().toISOString().split('T')[0];
+    document.getElementById('newInteractionType').value = 'Call';
+    document.getElementById('newInteractionRep').value = '';
+    document.getElementById('newInteractionDetails').value = '';
+    document.getElementById('newInteractionNextSteps').value = '';
+    document.getElementById('newInteractionFollowUpDate').value = '';
+    
+    // Refresh project details
+    const project = allProjects.find(p => (p.PLANT_ID || p.PROJ_NAME) === projectId);
+    if (project) {
+        showProjectDetails(project);
+    }
+    
+    // Refresh Kanban if in kanban view
+    if (currentView === 'kanban') {
+        renderKanbanBoard();
+    }
 };
 
-window.updateProjectNotes = function(projectId, notes) {
-    updateBDMData(projectId, { notes: notes });
-};
+// Export BDM data to JSON file
+function exportBDMDataToFile() {
+    const dataStr = JSON.stringify(bdmData, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `BDM_Data_${new Date().toISOString().split('T')[0]}.json`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    console.log('BDM data exported to JSON file');
+    alert('BDM data exported successfully! Save this file in the same folder as your HTML file to load it next time.');
+}
+
+// Import BDM data from JSON file
+function handleBDMDataImport(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const importedData = JSON.parse(e.target.result);
+            
+            // Merge with existing data (imported data takes precedence)
+            bdmData = { ...bdmData, ...importedData };
+            saveBDMData();
+            
+            // Refresh views
+            if (currentView === 'map') {
+                renderMarkers();
+            } else {
+                renderKanbanBoard();
+            }
+            
+            alert('BDM data loaded successfully! ' + Object.keys(importedData).length + ' projects updated.');
+            console.log('BDM data imported from file');
+        } catch (error) {
+            alert('Error loading BDM data file. Please make sure it\'s a valid JSON file.');
+            console.error('Error parsing BDM data:', error);
+        }
+    };
+    
+    reader.onerror = function() {
+        alert('Error reading file. Please try again.');
+    };
+    
+    reader.readAsText(file);
+    
+    // Reset file input
+    event.target.value = '';
+}
+
+// Auto-save indicator (optional - can add visual feedback)
+let autoSaveTimer = null;
+function scheduleAutoSave() {
+    clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(() => {
+        const dataStr = JSON.stringify(bdmData);
+        localStorage.setItem('allCAIndustriesBDMData', dataStr);
+        console.log('Auto-saved BDM data to browser storage');
+    }, 2000); // Auto-save 2 seconds after last change
+}
 
 // Make closeProjectDetails available globally
 window.closeProjectDetails = closeProjectDetails;
