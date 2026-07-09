@@ -1124,6 +1124,7 @@ function setupEventListeners() {
     // Tab switching
     document.getElementById('mapTab').addEventListener('click', () => switchView('map'));
     document.getElementById('kanbanTab').addEventListener('click', () => switchView('kanban'));
+    document.getElementById('voiceTab').addEventListener('click', () => switchView('voice'));
     
     console.log('Event listeners setup complete');
 }
@@ -1164,26 +1165,43 @@ function setupResizableSidebar() {
     });
 }
 
-// Switch between map and kanban views
+// Switch between map, kanban, and voice-log views
 function switchView(view) {
     currentView = view;
-    const mapView = document.getElementById('mapView');
-    const kanbanView = document.getElementById('kanbanView');
-    const mapTab = document.getElementById('mapTab');
-    const kanbanTab = document.getElementById('kanbanTab');
-    
+    const views = {
+        map: document.getElementById('mapView'),
+        kanban: document.getElementById('kanbanView'),
+        voice: document.getElementById('voiceView')
+    };
+    const tabs = {
+        map: document.getElementById('mapTab'),
+        kanban: document.getElementById('kanbanTab'),
+        voice: document.getElementById('voiceTab')
+    };
+
+    Object.keys(views).forEach(key => {
+        if (views[key]) {
+            views[key].style.display = 'none';
+        }
+        if (tabs[key]) {
+            tabs[key].classList.remove('active');
+        }
+    });
+
     if (view === 'map') {
-        mapView.style.display = 'flex';
-        kanbanView.style.display = 'none';
-        mapTab.classList.add('active');
-        kanbanTab.classList.remove('active');
+        views.map.style.display = 'flex';
+        tabs.map.classList.add('active');
         renderMarkers();
-    } else {
-        mapView.style.display = 'none';
-        kanbanView.style.display = 'block';
-        mapTab.classList.remove('active');
-        kanbanTab.classList.add('active');
+    } else if (view === 'kanban') {
+        views.kanban.style.display = 'block';
+        tabs.kanban.classList.add('active');
         renderKanbanBoard();
+    } else if (view === 'voice') {
+        views.voice.style.display = 'block';
+        tabs.voice.classList.add('active');
+        if (window.renderVoiceLog) {
+            window.renderVoiceLog();
+        }
     }
 }
 
@@ -1211,24 +1229,81 @@ function renderKanbanBoard() {
             projectsByStage[stage].push(project);
         }
     });
-    
+
+    // Group manual accounts (created via Voice Log) by stage
+    const manualByStage = {};
+    kanbanStages.forEach(stage => {
+        manualByStage[stage] = [];
+    });
+    Object.keys(bdmData).forEach(id => {
+        const rec = bdmData[id];
+        if (rec && rec.isManual) {
+            const stage = rec.stage || 'leads';
+            if (manualByStage[stage]) {
+                manualByStage[stage].push({ id: id, rec: rec });
+            }
+        }
+    });
+
     // Render cards in each column
     kanbanStages.forEach(stage => {
         const column = document.getElementById(`column-${stage}`);
         const countElement = document.getElementById(`count-${stage}`);
         const projects = projectsByStage[stage] || [];
-        
+        const manuals = manualByStage[stage] || [];
+
         if (countElement) {
-            countElement.textContent = projects.length;
+            countElement.textContent = projects.length + manuals.length;
         }
-        
+
         if (column) {
             projects.forEach(project => {
                 const card = createKanbanCard(project);
                 column.appendChild(card);
             });
+            manuals.forEach(m => {
+                const card = createManualKanbanCard(m.id, m.rec);
+                column.appendChild(card);
+            });
         }
     });
+}
+
+// Create a Kanban card for a manual account (added via Voice Log — no map location)
+function createManualKanbanCard(accountId, rec) {
+    const card = document.createElement('div');
+    card.className = 'kanban-card';
+    card.draggable = true;
+    card.dataset.projectId = accountId; // same drop handler updates stage via this id
+
+    const interactions = Array.isArray(rec.interactions) ? rec.interactions : [];
+    const lastContact = interactions.length > 0 ? (interactions[0].contactName || '') : '';
+
+    card.innerHTML = `
+        <div style="border-left: 4px solid #6C5CE7; padding-left: 8px;">
+            <div style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; color: #333;">
+                ${(rec.accountName || 'Unnamed Account')}
+            </div>
+            <div style="font-size: 0.75rem; color: #666; margin-bottom: 3px;">
+                ${lastContact || '—'}
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 3px;">
+                <span style="background: #6C5CE7; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem;">
+                    🎙️ Voice Log lead
+                </span>
+            </div>
+            ${interactions.length > 0 ?
+                `<div style="margin-top: 5px; font-size: 0.7rem; color: #666;">
+                    📞 ${interactions.length} interaction${interactions.length > 1 ? 's' : ''}
+                </div>` : ''}
+        </div>
+    `;
+
+    card.addEventListener('dragstart', handleDragStart);
+    card.addEventListener('dragend', handleDragEnd);
+    // No map navigation — manual accounts have no coordinates
+
+    return card;
 }
 
 // Create Kanban card

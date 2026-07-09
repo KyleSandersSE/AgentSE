@@ -44,6 +44,7 @@
         <div class="tab-navigation">
             <button class="tab-btn active" id="mapTab" data-view="map">🗺️ Map View</button>
             <button class="tab-btn" id="kanbanTab" data-view="kanban">📋 Kanban Board</button>
+            <button class="tab-btn" id="voiceTab" data-view="voice">🎙️ Voice Log</button>
         </div>
 
         <!-- Main Content -->
@@ -238,6 +239,83 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Voice Log Container -->
+            <div class="voice-wrapper" id="voiceView" style="display: none;">
+                <!-- KPI Scorecard Strip -->
+                <div class="kpi-strip" id="kpiStrip">
+                    <!-- KPI tiles rendered dynamically -->
+                </div>
+
+                <div class="voice-columns">
+                    <!-- Left: Voice Dump + Review -->
+                    <div class="voice-panel">
+                        <h2>🎙️ Voice Dump</h2>
+                        <p class="voice-hint">
+                            Dictate your call recap (Wispr Flow or any voice-to-text). Include whatever you have:
+                            company, contact, phone, what happened, next step. Then hit Parse.
+                        </p>
+                        <textarea id="voiceDumpInput" rows="6"
+                            placeholder="e.g. Tyson Foods, Luis Abarca, PLC programmer, 509-543-4258, answered, referred me to John Hill his maintenance manager, plant has 2027 refrigeration upgrade, meeting Tuesday 7/14"></textarea>
+                        <div class="voice-actions">
+                            <button id="parseDumpBtn" class="primary-btn">⚡ Parse</button>
+                            <span id="parseStatus" class="parse-status"></span>
+                        </div>
+
+                        <!-- Review & Confirm Card (hidden until a parse completes) -->
+                        <div id="reviewCard" class="review-card" style="display: none;">
+                            <!-- Rendered dynamically -->
+                        </div>
+
+                        <!-- Settings -->
+                        <details class="voice-settings">
+                            <summary>⚙️ Settings</summary>
+                            <div class="settings-body">
+                                <label>Anthropic API key (for AI parsing — optional, falls back to offline parser)</label>
+                                <input type="password" id="settingsApiKey" placeholder="sk-ant-..." autocomplete="off">
+                                <p class="settings-note">Stored only in this browser's local storage. Don't use on a shared computer.</p>
+                                <label>Your name (SE Rep)</label>
+                                <input type="text" id="settingsRepName" placeholder="Kyle Sanders">
+                                <label>Daily targets (dials / conversations / touches)</label>
+                                <div class="targets-row">
+                                    <input type="number" id="settingsTargetDials" min="1" value="20">
+                                    <input type="number" id="settingsTargetConvos" min="1" value="3">
+                                    <input type="number" id="settingsTargetTouches" min="1" value="12">
+                                </div>
+                                <button id="saveSettingsBtn" class="secondary-btn">Save Settings</button>
+                                <span id="settingsStatus" class="parse-status"></span>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Right: Follow-up Queue + Salesforce Export -->
+                    <div class="voice-panel">
+                        <h2>📅 Today's Queue</h2>
+                        <p class="voice-hint">Follow-ups due today or overdue.</p>
+                        <div id="followUpQueue" class="followup-queue">
+                            <!-- Rendered dynamically -->
+                        </div>
+
+                        <div class="sf-export-block">
+                            <h2>📤 Salesforce Export</h2>
+                            <p class="voice-hint">Exports logged activity as a Task-import CSV for the Salesforce Data Import Wizard.</p>
+                            <div class="sf-export-row">
+                                <label>From <input type="date" id="sfExportStart"></label>
+                                <label>To <input type="date" id="sfExportEnd"></label>
+                            </div>
+                            <button id="exportSalesforceBtn" class="secondary-btn">📤 Export Salesforce CSV</button>
+                        </div>
+
+                        <div class="dataset-block">
+                            <h2>📚 Datasets</h2>
+                            <p class="voice-hint">Add another IIR lead-list CSV — rows merge in (duplicates skipped by PLANT_ID).</p>
+                            <input type="file" id="addDatasetInput" accept=".csv" style="display: none;">
+                            <button id="addDatasetBtn" class="secondary-btn">➕ Add Dataset (CSV)</button>
+                            <span id="datasetStatus" class="parse-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -252,6 +330,9 @@
     
     <!-- Custom App JS -->
     <script src="app-all-ca.js"></script>
+
+    <!-- Voice Log module (depends on globals from app-all-ca.js — keep after it) -->
+    <script src="voice-log.js"></script>
 </body>
 </html>
 
