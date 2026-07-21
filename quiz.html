@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discovery Quiz — Consultative Sales Copilot</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🧭 Discovery Quiz <span class="subtitle">Consultative Sales Copilot · EcoStruxure Automation Expert</span></h1>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Questions Logged:</span>
+                    <span class="stat-value" id="statAnswered">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Deep Dives:</span>
+                    <span class="stat-value" id="statDives">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Top Priority:</span>
+                    <span class="stat-value" id="statTop">—</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- Quiz stage -->
+            <main class="stage-wrapper">
+                <div id="stage"></div>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h2>📊 Live Priority Map</h2>
+                    <div id="priorityMap"></div>
+                </div>
+
+                <div class="sidebar-section" id="diveSuggestions" style="display:none"></div>
+
+                <div class="sidebar-section" id="manualDives" style="display:none">
+                    <details>
+                        <summary><strong>🧰 All deep dives</strong></summary>
+                        <div class="manual-dive-list"></div>
+                    </details>
+                </div>
+
+                <div class="sidebar-section">
+                    <h2>📝 Meeting Notes</h2>
+                    <textarea id="sessionNotes" rows="5" placeholder="Names, quotes, numbers, follow-ups… included in the export."></textarea>
+                </div>
+
+                <div class="sidebar-section">
+                    <h2>🕘 Conversation Log</h2>
+                    <div id="historyLog"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="quiz-data.js"></script>
+    <script src="quiz.js"></script>
+</body>
+</html>
