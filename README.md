@@ -2,6 +2,25 @@
 
 An interactive web application for visualizing and analyzing Food & Beverage industry projects across California with a focus on automation opportunities for business development.
 
+## 🧭 Discovery Quiz — Consultative Sales Copilot (`quiz.html`)
+
+A BuzzFeed-style discovery quiz **you** fill out live during a customer meeting to guide consultative selling of EcoStruxure Automation Expert. Works for any end user — Food & Beverage, Water/Wastewater, CPG, Life Sciences, etc.
+
+**How it works:**
+1. **Setup** — log the account, industry, current platform, and attendees.
+2. **Core flow** — ~8 discovery questions. Each answer you log scores points against seven priority pillars (Cybersecurity, Open Automation, Energy, Modernization, Software-Defined, Workforce, TCO). Every question card includes a private "talk track" telling you why you're asking.
+3. **Live Priority Map** — sidebar bars re-rank in real time as the customer's interests emerge.
+4. **Deep dives** — when a pillar "lights up" (4+ points), the sidebar suggests a deeper question bank for it; you can also launch any deep dive manually.
+5. **Pivot cards** — at set points the quiz tells you to hand the customer the wheel: *"Where would you like to go next — the future of automation, open automation & the three pillars, or what we have today?"* Their choice scores the map and shows which section of your PowerPoint to jump to.
+6. **Ranking close** — at the end, reorder the scored priorities *with* the customer ("Can we rank these together?") and confirm.
+7. **Summary sheet** — confirmed ranking, recommended next steps for the top 3 priorities, deck-section pointers, full conversation log, and your meeting notes. Copy as Markdown, download `.md`, or print.
+
+Sessions auto-save to the browser (localStorage) so an accidental refresh mid-meeting resumes where you left off.
+
+**Customize it:** all content lives in `quiz-data.js` — questions, option weights, deep-dive banks, pivot cards, next-step playbooks, and `SLIDE_MAP` (update it with your actual deck section names/slide numbers). No code changes needed to tune the question bank.
+
+**Files:** `quiz.html`, `quiz.css`, `quiz-data.js` (content — edit this), `quiz.js` (flow engine). Open `quiz.html` directly in a browser or serve the folder like the map app below.
+
 ## 🎯 Features
 
 - **Interactive Map View**: Visualize 360+ projects across California on an interactive map
