@@ -38,6 +38,7 @@ const INDUSTRIES = [
     'Life Sciences',
     'Metals, Minerals & Mining',
     'Chemicals',
+    'Rubber & Elastomer Manufacturing',
     'Other'
 ];
 
