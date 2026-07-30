@@ -9,18 +9,19 @@
 const pptxgen = require("pptxgenjs");
 
 /* ------------------------------------------------------------------ palette */
-const NAVY   = "0E2A38"; // deep water — dark slides
-const NAVY_2 = "163B4D"; // raised card on dark
-const TEAL   = "1C7293"; // primary supporting
-const TEAL_L = "7FB1C6"; // muted teal for dark-slide body text
-const AMBER  = "E8A33D"; // the one sharp accent
-const INK    = "12242E"; // body text on light
-const MUTED  = "5B7386"; // captions
+const NAVY   = "000000"; // pure black — every slide background
+const NAVY_2 = "1B1B1B"; // raised card, tier A
+const TEAL   = "00A19C"; // Siemens-flavored teal — supporting accent
+const TEAL_L = "6FD9D4"; // light teal for secondary text on cards
+const GREEN  = "3DCD58"; // Schneider Electric green — dominant accent
+const RED    = "E2231A"; // Rockwell Automation red — targeted accent
+const INK    = "FFFFFF"; // primary body text (white, on black)
+const MUTED  = "9AA3AA"; // captions — legible gray on black
 const PAPER  = "FFFFFF";
-const TINT   = "EDF3F6"; // card fill on light
+const TINT   = "161616"; // card fill, tier B
 
-const HEAD = "Cambria";  // serif headers
-const BODY = "Calibri";  // sans body
+const HEAD = "Telegraf"; // display + body — deck typeface
+const BODY = "Telegraf";
 
 const W = 13.33, H = 7.5;
 const M = 0.7;                 // slide margin
@@ -62,7 +63,7 @@ function chip(s, text, x, y, w, fillColor, textColor) {
 /** Eyebrow chip + title block, used on every content slide. */
 function head(s, eyebrow, title, dark = false, opts = {}) {
   if (eyebrow) {
-    chip(s, eyebrow, M, 0.52, opts.eyebrowW || 2.3, dark ? AMBER : TEAL, dark ? NAVY : PAPER);
+    chip(s, eyebrow, M, 0.52, opts.eyebrowW || 2.3, dark ? GREEN : TEAL, dark ? NAVY : PAPER);
   }
   s.addText(title, {
     x: M, y: eyebrow ? 1.12 : 0.7, w: opts.titleW || CW, h: opts.titleH || 1.05,
@@ -83,7 +84,7 @@ function card(s, x, y, w, h, dark = false) {
 function stat(s, x, y, w, number, label, dark = false, numColor) {
   s.addText(number, {
     x, y, w, h: 1.15, align: "center", valign: "bottom", margin: 0,
-    fontFace: HEAD, fontSize: 60, bold: true, color: numColor || (dark ? AMBER : TEAL),
+    fontFace: HEAD, fontSize: 60, bold: true, color: numColor || (dark ? GREEN : TEAL),
   });
   s.addText(label, {
     x, y: y + 1.22, w, h: 0.95, align: "center", valign: "top", margin: 0,
@@ -96,7 +97,7 @@ function foot(s, dark = false) {
   pageNo++;
   s.addText(String(pageNo), {
     x: 12.28, y: 7.08, w: 0.55, h: 0.32, align: "right", margin: 0,
-    fontFace: BODY, fontSize: 11, color: dark ? "3E6072" : "AEC1CC",
+    fontFace: BODY, fontSize: 11, color: "3A3A3A",
   });
 }
 
@@ -106,16 +107,16 @@ function foot(s, dark = false) {
 {
   const s = slideDark();
   s.addShape(pres.ShapeType.rect, {
-    x: 0, y: 4.62, w: W, h: 2.88, fill: { color: "0B2230" }, line: { width: 0 },
+    x: 0, y: 4.62, w: W, h: 2.88, fill: { color: "0A0A0A" }, line: { width: 0 },
   });
-  chip(s, "TRI-STATE SEMINAR 2026", M, 0.95, 3.5, AMBER, NAVY);
+  chip(s, "TRI-STATE SEMINAR 2026", M, 0.95, 3.5, GREEN, NAVY);
   s.addText("The Shift to\nSoftware-Defined Automation", {
     x: M, y: 1.7, w: 11.4, h: 1.9, margin: 0,
     fontFace: HEAD, fontSize: 46, bold: true, color: PAPER, lineSpacing: 52,
   });
   s.addText("in Water & Wastewater", {
     x: M, y: 3.72, w: 11.4, h: 0.7, margin: 0,
-    fontFace: HEAD, fontSize: 34, italic: true, color: AMBER,
+    fontFace: HEAD, fontSize: 34, italic: true, color: GREEN,
   });
   s.addText("Kyle Sanders  ·  Business Development Manager, Schneider Electric", {
     x: M, y: 5.05, w: 11.4, h: 0.45, margin: 0,
@@ -181,7 +182,7 @@ TIMING CHECKPOINT: off this slide by 0:03.`);
   });
   s.addText("Not who wrote it. Not who paid for it. Who can move it.", {
     x: M, y: 5.0, w: 11.6, h: 0.7, margin: 0,
-    fontFace: BODY, fontSize: 25, italic: true, color: AMBER,
+    fontFace: BODY, fontSize: 25, italic: true, color: GREEN,
   });
   s.addNotes(
 `THE HOOK. Ask the question, then stop talking. Count to three. Let it sit.
@@ -240,7 +241,7 @@ TIMING CHECKPOINT: off this slide by 0:05.`);
 /* ---- 5. ACT I divider ----------------------------------------------- */
 {
   const s = slideDark();
-  chip(s, "ACT I", M, 2.35, 1.5, AMBER, NAVY);
+  chip(s, "ACT I", M, 2.35, 1.5, GREEN, NAVY);
   s.addText("How we got here", {
     x: M, y: 3.0, w: 11.6, h: 1.1, margin: 0,
     fontFace: HEAD, fontSize: 52, bold: true, color: PAPER,
@@ -262,18 +263,18 @@ TIMING CHECKPOINT: off this slide by 0:05:30.`);
   head(s, "1968", "Before the PLC, logic was copper", false, { eyebrowW: 1.4 });
 
   s.addText("A machine's control logic wasn't written. It was wired — hundreds of electromechanical relays, hard-wired into a panel.", {
-    x: M, y: 2.4, w: 6.5, h: 1.5, margin: 0,
-    fontFace: BODY, fontSize: 22, color: INK, valign: "top", lineSpacing: 30,
+    x: M, y: 2.4, w: 6.5, h: 1.55, margin: 0,
+    fontFace: BODY, fontSize: 20, color: INK, valign: "top", lineSpacing: 27,
   });
   s.addText([
     { text: "Change the process", options: { bold: true, color: INK } },
     { text: " and you didn't change a program. You sent electricians back into the panel to physically rewire it — for weeks.", options: { color: INK } },
   ], {
-    x: M, y: 3.95, w: 6.5, h: 1.7, margin: 0,
-    fontFace: BODY, fontSize: 22, valign: "top", lineSpacing: 30,
+    x: M, y: 3.95, w: 6.5, h: 1.85, margin: 0,
+    fontFace: BODY, fontSize: 21, valign: "top", lineSpacing: 28,
   });
   s.addText("General Motors was doing this every single model year, across every plant.", {
-    x: M, y: 5.8, w: 6.5, h: 1.0, margin: 0,
+    x: M, y: 5.95, w: 6.5, h: 1.0, margin: 0,
     fontFace: BODY, fontSize: 20, italic: true, color: TEAL, valign: "top", lineSpacing: 28,
   });
 
@@ -360,7 +361,7 @@ TIMING CHECKPOINT: off this slide by 0:09.`);
     card(s, x, 3.85, 3.72, 3.05);
     s.addText(t, {
       x: x + 0.3, y: 4.08, w: 3.12, h: 0.78, margin: 0,
-      fontFace: HEAD, fontSize: 20, bold: true, color: i === 2 ? AMBER : TEAL, valign: "top",
+      fontFace: HEAD, fontSize: 20, bold: true, color: i === 2 ? GREEN : TEAL, valign: "top",
     });
     s.addText(b, {
       x: x + 0.3, y: 4.88, w: 3.12, h: 1.9, margin: 0,
@@ -392,19 +393,19 @@ TIMING CHECKPOINT: off this slide by 0:11.`);
     { text: "This is the layer most of you actually live in.", options: { bold: true, color: INK, breakLine: true } },
     { text: "Alarms. Trends. Historian. The monthly compliance report. Situational awareness across a system too big to walk.", options: { color: INK } },
   ], {
-    x: M, y: 4.2, w: 7.1, h: 1.6, margin: 0,
-    fontFace: BODY, fontSize: 21, valign: "top", lineSpacing: 29,
+    x: M, y: 4.15, w: 7.1, h: 1.85, margin: 0,
+    fontFace: BODY, fontSize: 19, valign: "top", lineSpacing: 26,
   });
   s.addText("It was, genuinely, a leap. And it is still doing that job in your plant today.", {
-    x: M, y: 5.9, w: 7.1, h: 0.9, margin: 0,
+    x: M, y: 6.05, w: 7.1, h: 0.9, margin: 0,
     fontFace: BODY, fontSize: 19, italic: true, color: TEAL, valign: "top", lineSpacing: 26,
   });
 
   const lx = M + 7.65, lw = 4.28;
   const layers = [
-    ["SUPERVISORY", "SCADA / HMI — 1989", AMBER, NAVY],
+    ["SUPERVISORY", "SCADA / HMI — 1989", GREEN, NAVY],
     ["CONTROL", "PLC / DCS — 1968, 1975", TEAL, PAPER],
-    ["FIELD", "Pumps, valves, instruments", "9BB4C1", INK],
+    ["FIELD", "Pumps, valves, instruments", RED, PAPER],
   ];
   let ly = 2.5;
   layers.forEach(([lab, sub, fill, txt]) => {
@@ -448,9 +449,10 @@ TIMING CHECKPOINT: off this slide by 0:13.`);
     ["1989", "SCADA", "\"See everything,\nfrom one screen,\nfrom anywhere.\""],
   ];
   let x = M;
-  eras.forEach(([yr, name, promise]) => {
+  const eraAccent = [ [GREEN, NAVY], [TEAL, PAPER], [RED, PAPER] ];
+  eras.forEach(([yr, name, promise], i) => {
     card(s, x, 2.5, 3.72, 3.15, true);
-    chip(s, yr, x + 0.3, 2.78, 1.15, AMBER, NAVY);
+    chip(s, yr, x + 0.3, 2.78, 1.15, eraAccent[i][0], eraAccent[i][1]);
     s.addText(name, {
       x: x + 0.3, y: 3.35, w: 3.1, h: 0.5, margin: 0,
       fontFace: HEAD, fontSize: 25, bold: true, color: PAPER,
@@ -463,7 +465,7 @@ TIMING CHECKPOINT: off this slide by 0:13.`);
   });
   s.addText("Every one of those promises was kept. That is not the problem.", {
     x: M, y: 6.05, w: BOTW, h: 0.7, margin: 0,
-    fontFace: BODY, fontSize: 24, italic: true, color: AMBER,
+    fontFace: BODY, fontSize: 24, italic: true, color: GREEN,
   });
   s.addNotes(
 `Deliver the bottom line and then pause: "Every one of those promises was kept. That is not the problem."
@@ -479,7 +481,7 @@ TIMING CHECKPOINT: off this slide by 0:14.`);
 /* ---- 11. ACT II divider --------------------------------------------- */
 {
   const s = slideDark();
-  chip(s, "ACT II", M, 2.35, 1.65, AMBER, NAVY);
+  chip(s, "ACT II", M, 2.35, 1.65, GREEN, NAVY);
   s.addText("The seam we never cut", {
     x: M, y: 3.0, w: 11.6, h: 1.1, margin: 0,
     fontFace: HEAD, fontSize: 52, bold: true, color: PAPER,
@@ -519,7 +521,7 @@ TIMING CHECKPOINT: off this slide by 0:14:30.`);
 
   card(s, M + 6.23, 4.85, 5.7, 2.25);
   s.addText([
-    { text: "You don't own it in practice.\n", options: { bold: true, color: AMBER, breakLine: true } },
+    { text: "You don't own it in practice.\n", options: { bold: true, color: GREEN, breakLine: true } },
     { text: "You can't move it, price it against an alternative, or outlive the hardware it was written for.", options: { color: INK } },
   ], {
     x: M + 6.63, y: 5.1, w: 4.95, h: 1.9, margin: 0,
@@ -547,18 +549,20 @@ TIMING CHECKPOINT: off this slide by 0:17.`);
     ["And then it became the business model.", "Once the stack only worked end-to-end, the next controller, the next license, and the next migration were all decided by the vendor's calendar, not yours."],
   ];
   let y = 2.35;
+  const badgeAccent = [TEAL, RED, GREEN];
   rows.forEach(([t, b], i) => {
+    const bc = badgeAccent[i];
     s.addShape(pres.ShapeType.roundRect, {
       x: M, y: y + 0.05, w: 0.62, h: 0.62, rectRadius: 0.12,
-      fill: { color: i === 2 ? AMBER : TEAL }, line: { color: i === 2 ? AMBER : TEAL, width: 1 },
+      fill: { color: bc }, line: { color: bc, width: 1 },
     });
     s.addText(String(i + 1), {
       x: M, y: y + 0.05, w: 0.62, h: 0.62, align: "center", valign: "middle", margin: 0,
-      fontFace: HEAD, fontSize: 22, bold: true, color: i === 2 ? NAVY : PAPER,
+      fontFace: HEAD, fontSize: 22, bold: true, color: i === 0 ? NAVY : PAPER,
     });
     s.addText(t, {
       x: M + 1.0, y, w: 10.6, h: 0.5, margin: 0,
-      fontFace: HEAD, fontSize: 24, bold: true, color: i === 2 ? AMBER : PAPER,
+      fontFace: HEAD, fontSize: 24, bold: true, color: bc,
     });
     s.addText(b, {
       x: M + 1.0, y: y + 0.52, w: 10.6, h: 0.95, margin: 0,
@@ -567,8 +571,8 @@ TIMING CHECKPOINT: off this slide by 0:17.`);
     y += 1.45;
   });
   s.addText("Schneider Electric. Rockwell. Siemens. Emerson. Honeywell. All of us. Including us.", {
-    x: M, y: 6.85, w: BOTW, h: 0.5, margin: 0,
-    fontFace: BODY, fontSize: 20, italic: true, color: PAPER,
+    x: M, y: 6.8, w: BOTW, h: 0.6, margin: 0,
+    fontFace: BODY, fontSize: 18, italic: true, color: PAPER,
   });
   s.addNotes(
 `This is the slide that separates you from every vendor talk this audience has sat through. Do not soften it and do not over-apologize — state it and move.
@@ -600,7 +604,7 @@ TIMING CHECKPOINT: off this slide by 0:19.`);
     card(s, x, y, 5.8, 1.95);
     s.addShape(pres.ShapeType.roundRect, {
       x: x + 0.35, y: y + 0.38, w: 0.6, h: 0.6, rectRadius: 0.3,
-      fill: { color: AMBER }, line: { color: AMBER, width: 1 },
+      fill: { color: GREEN }, line: { color: GREEN, width: 1 },
     });
     s.addText(String(i + 1), {
       x: x + 0.35, y: y + 0.38, w: 0.6, h: 0.6, align: "center", valign: "middle", margin: 0,
@@ -617,7 +621,7 @@ TIMING CHECKPOINT: off this slide by 0:19.`);
   });
   s.addText("Any one of these is survivable. They are arriving together.", {
     x: M, y: 6.75, w: BOTW, h: 0.5, margin: 0,
-    fontFace: BODY, fontSize: 20, italic: true, color: AMBER,
+    fontFace: BODY, fontSize: 20, italic: true, color: GREEN,
   });
   s.addNotes(
 `Roadmap slide — 45 seconds, don't explain all four here. Just name them and land the closing line.
@@ -643,11 +647,11 @@ TIMING CHECKPOINT: off this slide by 0:20.`);
   });
   s.addText([
     { text: "And the second cost is worse: ", options: { color: INK } },
-    { text: "every migration re-engineers logic that was already correct.", options: { bold: true, color: AMBER } },
+    { text: "every migration re-engineers logic that was already correct.", options: { bold: true, color: GREEN } },
     { text: " You pay twice for the same thinking, and you re-introduce risk into a plant that was running fine.", options: { color: INK } },
   ], {
-    x: M, y: 5.25, w: 7.0, h: 1.6, margin: 0,
-    fontFace: BODY, fontSize: 20, valign: "top", lineSpacing: 27,
+    x: M, y: 5.25, w: 7.0, h: 1.55, margin: 0,
+    fontFace: BODY, fontSize: 17, valign: "top", lineSpacing: 22,
   });
 
   card(s, M + 7.55, 2.35, 4.38, 4.3);
@@ -706,7 +710,7 @@ TIMING CHECKPOINT: off this slide by 0:22.`);
   card(s, M + 6.23, 3.55, 5.7, 2.4);
   s.addText("70%+", {
     x: M + 6.63, y: 3.72, w: 4.95, h: 0.85, margin: 0,
-    fontFace: HEAD, fontSize: 46, bold: true, color: AMBER,
+    fontFace: HEAD, fontSize: 46, bold: true, color: GREEN,
   });
   s.addText("of drinking-water systems EPA inspected were out of compliance with Safe Drinking Water Act §1433 cybersecurity requirements.", {
     x: M + 6.63, y: 4.58, w: 4.95, h: 1.3, margin: 0,
@@ -748,8 +752,8 @@ TIMING CHECKPOINT: off this slide by 0:24.`);
     fontFace: BODY, fontSize: 21, color: INK, valign: "top", lineSpacing: 29,
   });
   s.addText("There is no AI strategy that survives contact with a system that can't hand over its own data.", {
-    x: M, y: 6.0, w: 6.9, h: 1.0, margin: 0,
-    fontFace: BODY, fontSize: 20, italic: true, bold: true, color: AMBER, valign: "top", lineSpacing: 27,
+    x: M, y: 5.95, w: 6.9, h: 1.15, margin: 0,
+    fontFace: BODY, fontSize: 20, italic: true, bold: true, color: GREEN, valign: "top", lineSpacing: 27,
   });
 
   card(s, M + 7.45, 2.35, 4.48, 4.35);
@@ -791,7 +795,7 @@ TIMING CHECKPOINT: off this slide by 0:26.`);
   });
 
   stat(s, M, 3.5, 3.72, "21%", "of utility employees eligible to\nretire within five years");
-  stat(s, M + 4.11, 3.5, 3.72, "9%", "average vacancy rate — before\nthose retirements land", false, AMBER);
+  stat(s, M + 4.11, 3.5, 3.72, "9%", "average vacancy rate — before\nthose retirements land", false, GREEN);
   stat(s, M + 8.21, 3.5, 3.72, "~10k", "operator openings per year\nthrough 2034, nationally");
 
   s.addText("Meanwhile, the engineers you can actually hire grew up with version control, containers, and Python — not with a proprietary IDE and a ladder-logic printout in a binder.", {
@@ -816,14 +820,14 @@ TIMING CHECKPOINT: off this slide by 0:28.`);
 /* ---- 19. Audience beat ---------------------------------------------- */
 {
   const s = slideDark();
-  chip(s, "A QUESTION FOR YOU", M, 1.5, 3.6, AMBER, NAVY);
+  chip(s, "A QUESTION FOR YOU", M, 1.5, 3.6, GREEN, NAVY);
   s.addText("If your control logic could outlive\nthree generations of hardware —", {
     x: M, y: 2.35, w: 11.6, h: 1.8, margin: 0,
     fontFace: HEAD, fontSize: 40, bold: true, color: PAPER, lineSpacing: 50,
   });
   s.addText("what would change about how you plan a capital project?", {
     x: M, y: 4.35, w: 11.6, h: 1.45, margin: 0,
-    fontFace: HEAD, fontSize: 40, bold: true, color: AMBER, lineSpacing: 50,
+    fontFace: HEAD, fontSize: 40, bold: true, color: GREEN, lineSpacing: 50,
   });
   s.addText("Hold that. We'll come back to it.", {
     x: M, y: 6.0, w: 11.6, h: 0.6, margin: 0,
@@ -843,7 +847,7 @@ TIMING CHECKPOINT: off this slide by 0:29.`);
 /* ---- 20. ACT III divider -------------------------------------------- */
 {
   const s = slideDark();
-  chip(s, "ACT III", M, 2.35, 1.8, AMBER, NAVY);
+  chip(s, "ACT III", M, 2.35, 1.8, GREEN, NAVY);
   s.addText("What actually changes", {
     x: M, y: 3.0, w: 11.6, h: 1.1, margin: 0,
     fontFace: HEAD, fontSize: 52, bold: true, color: PAPER,
@@ -866,7 +870,7 @@ TIMING CHECKPOINT: off this slide by 0:29:30.`);
   head(s, "THE IDEA", "Cut the seam between logic and hardware", false, { eyebrowW: 1.8 });
 
   card(s, M, 2.4, 5.7, 4.0);
-  chip(s, "TODAY", M + 0.4, 2.72, 1.5, "9BB4C1", INK);
+  chip(s, "TODAY", M + 0.4, 2.72, 1.5, RED, PAPER);
   s.addText("The logic lives inside the controller.", {
     x: M + 0.4, y: 3.4, w: 4.95, h: 0.95, margin: 0,
     fontFace: HEAD, fontSize: 24, bold: true, color: INK, valign: "top", lineSpacing: 32,
@@ -889,7 +893,7 @@ TIMING CHECKPOINT: off this slide by 0:29:30.`);
 
   s.addText("That's it. That's the whole technical idea in this talk.", {
     x: M, y: 6.65, w: BOTW, h: 0.5, margin: 0,
-    fontFace: BODY, fontSize: 20, italic: true, color: AMBER,
+    fontFace: BODY, fontSize: 20, italic: true, color: GREEN,
   });
   s.addNotes(
 `Resist every urge to add technical detail here. Containers, runtimes, virtualization — none of it belongs on this slide. If someone wants that, it's a Q&A conversation.
@@ -927,7 +931,7 @@ TIMING CHECKPOINT: off this slide by 0:31.`);
 
   card(s, M + 6.23, 4.65, 5.7, 2.3);
   s.addText([
-    { text: "Your plant, today\n", options: { bold: true, color: AMBER, breakLine: true } },
+    { text: "Your plant, today\n", options: { bold: true, color: GREEN, breakLine: true } },
     { text: "Your control logic is a feature of the controller. Buy a different controller, rebuild the logic, retrain the staff.", options: { color: INK } },
   ], {
     x: M + 6.63, y: 4.9, w: 4.95, h: 2.0, margin: 0,
@@ -964,7 +968,7 @@ TIMING CHECKPOINT: off this slide by 0:32:30.`);
   });
   s.addText("Software-defined automation does that for control logic. Same plant, same pumps, same people — the thing that changes hands is who owns the application.", {
     x: M + 0.45, y: 5.55, w: 11.0, h: 1.35, margin: 0,
-    fontFace: BODY, fontSize: 22, bold: true, color: AMBER, valign: "top", lineSpacing: 30,
+    fontFace: BODY, fontSize: 22, bold: true, color: GREEN, valign: "top", lineSpacing: 30,
   });
   s.addNotes(
 `This is the analogy that will stay with them after lunch — CarPlay explains the feeling, portability explains the STAKE.
@@ -1003,7 +1007,7 @@ TIMING CHECKPOINT: off this slide by 0:34.`);
   });
   s.addText("Notice none of these are features. They're all consequences of one decision.", {
     x: M, y: 6.7, w: BOTW, h: 0.5, margin: 0,
-    fontFace: BODY, fontSize: 20, italic: true, color: AMBER,
+    fontFace: BODY, fontSize: 20, italic: true, color: GREEN,
   });
   s.addNotes(
 `Keep every one of these in operator language. No product names, no acronyms.
@@ -1032,7 +1036,7 @@ TIMING CHECKPOINT: off this slide by 0:36.`);
   card(s, M, 3.25, 5.7, 3.25, true);
   s.addText("Software-defined", {
     x: M + 0.4, y: 3.5, w: 4.95, h: 0.5, margin: 0,
-    fontFace: HEAD, fontSize: 25, bold: true, color: PAPER,
+    fontFace: HEAD, fontSize: 25, bold: true, color: TEAL,
   });
   s.addText("The vendor's stack, virtualized. It runs in a container now — but it's still their runtime, their tools, their hardware roadmap.", {
     x: M + 0.4, y: 4.08, w: 4.95, h: 1.55, margin: 0,
@@ -1040,13 +1044,13 @@ TIMING CHECKPOINT: off this slide by 0:36.`);
   });
   s.addText("You changed where the lock-in lives. You didn't remove it.", {
     x: M + 0.4, y: 5.65, w: 4.95, h: 0.75, margin: 0,
-    fontFace: BODY, fontSize: 18, bold: true, italic: true, color: PAPER, valign: "top", lineSpacing: 24,
+    fontFace: BODY, fontSize: 18, bold: true, italic: true, color: RED, valign: "top", lineSpacing: 24,
   });
 
   card(s, M + 6.23, 3.25, 5.7, 3.25, true);
   s.addText("Open software-defined", {
     x: M + 6.63, y: 3.5, w: 4.95, h: 0.5, margin: 0,
-    fontFace: HEAD, fontSize: 25, bold: true, color: AMBER,
+    fontFace: HEAD, fontSize: 25, bold: true, color: GREEN,
   });
   s.addText("A shared runtime any vendor can implement, built on a public standard. Your application is portable across manufacturers.", {
     x: M + 6.63, y: 4.08, w: 4.95, h: 1.55, margin: 0,
@@ -1054,7 +1058,7 @@ TIMING CHECKPOINT: off this slide by 0:36.`);
   });
   s.addText("The lock-in is actually gone — including ours.", {
     x: M + 6.63, y: 5.65, w: 4.95, h: 0.75, margin: 0,
-    fontFace: BODY, fontSize: 18, bold: true, italic: true, color: AMBER, valign: "top", lineSpacing: 24,
+    fontFace: BODY, fontSize: 18, bold: true, italic: true, color: GREEN, valign: "top", lineSpacing: 24,
   });
   s.addNotes(
 `The most valuable ninety seconds in the talk for this audience. It is also the slide that proves you meant the disclosure on slide 2.
@@ -1104,7 +1108,7 @@ TIMING CHECKPOINT: off this slide by 0:37:30.`);
   });
   s.addText("That matters more than any vendor's roadmap: when the buyers write the standard, portability stops being a favor.", {
     x: M, y: 6.6, w: BOTW, h: 0.72, margin: 0,
-    fontFace: BODY, fontSize: 19, italic: true, color: AMBER, valign: "top",
+    fontFace: BODY, fontSize: 19, italic: true, color: GREEN, valign: "top",
   });
   s.addNotes(
 `Keep this factual and fast — it's the evidence slide, not a persuasion slide. 75 seconds.
@@ -1130,7 +1134,7 @@ TIMING CHECKPOINT: off this slide by 0:39.`);
   });
 
   stat(s, M, 3.7, 3.72, "70%", "gain in engineering\nefficiency", true);
-  stat(s, M + 4.11, 3.7, 3.72, "80%", "faster recovery when\nsomething goes down", true, AMBER);
+  stat(s, M + 4.11, 3.7, 3.72, "80%", "faster recovery when\nsomething goes down", true, GREEN);
   stat(s, M + 8.21, 3.7, 3.72, "5 hrs", "of daily manual data\ncollection → minutes", true);
 
   s.addText("Post-Harvey, the recovery number is the one Conroe talks about. Note that none of these required replacing the plant.", {
@@ -1139,7 +1143,7 @@ TIMING CHECKPOINT: off this slide by 0:39.`);
   });
   s.addText("Source: City of Conroe / Schneider Electric, announced WEFTEC 2025", {
     x: M, y: 7.08, w: BOTW, h: 0.3, margin: 0,
-    fontFace: BODY, fontSize: 11, color: "3E6072",
+    fontFace: BODY, fontSize: 11, color: "3A3A3A",
   });
   s.addNotes(
 `Payoff slide — this is where the five-hours-a-day from Bill Three gets resolved. Call that back explicitly: "Remember the five hours a day with a clipboard? Minutes."
@@ -1181,7 +1185,7 @@ TIMING CHECKPOINT: off this slide by 0:41.`);
   });
   s.addText("Different regulators, different climates, different vendors on site. Same architectural move.", {
     x: M, y: 6.72, w: BOTW, h: 0.42, margin: 0,
-    fontFace: BODY, fontSize: 17, italic: true, color: AMBER, valign: "top",
+    fontFace: BODY, fontSize: 17, italic: true, color: GREEN, valign: "top",
   });
   s.addText("Source: Frost & Sullivan, Modernising Water and Wastewater Operations, 2025", {
     x: M, y: 7.14, w: BOTW, h: 0.28, margin: 0,
@@ -1222,7 +1226,7 @@ TIMING CHECKPOINT: off this slide by 0:42.`);
   });
   s.addText("Nothing on this slide is science fiction. All four are happening somewhere today.", {
     x: M, y: 6.95, w: BOTW, h: 0.45, margin: 0,
-    fontFace: BODY, fontSize: 19, italic: true, color: AMBER, valign: "top",
+    fontFace: BODY, fontSize: 19, italic: true, color: GREEN, valign: "top",
   });
   s.addNotes(
 `Slow down and narrate this. It's the emotional payoff of the whole talk — the room needs to SEE themselves in it, not evaluate it.
@@ -1272,7 +1276,7 @@ TIMING CHECKPOINT: off this slide by 0:44.`);
   });
   s.addText("If this leads you to a competitor's open platform, the talk still worked.", {
     x: M, y: 6.88, w: BOTW, h: 0.42, margin: 0,
-    fontFace: BODY, fontSize: 18, italic: true, color: AMBER, valign: "top",
+    fontFace: BODY, fontSize: 18, italic: true, color: GREEN, valign: "top",
   });
   s.addNotes(
 `Under two minutes. Tri-State's rules are explicit that this is not a sales slot, and more importantly the room will punish a pitch here after you've spent forty minutes earning trust.
@@ -1304,7 +1308,7 @@ TIMING CHECKPOINT: off this slide by 0:46.`);
     card(s, x, 2.4, 3.72, 4.2);
     s.addShape(pres.ShapeType.roundRect, {
       x: x + 0.35, y: 2.7, w: 0.62, h: 0.62, rectRadius: 0.14,
-      fill: { color: AMBER }, line: { color: AMBER, width: 1 },
+      fill: { color: GREEN }, line: { color: GREEN, width: 1 },
     });
     s.addText(n, {
       x: x + 0.35, y: 2.7, w: 0.62, h: 0.62, align: "center", valign: "middle", margin: 0,
@@ -1351,7 +1355,7 @@ TIMING CHECKPOINT: off this slide by 0:47:30.`);
   actions.forEach(([t, b], i) => {
     s.addShape(pres.ShapeType.roundRect, {
       x: M, y: y + 0.04, w: 0.62, h: 0.62, rectRadius: 0.31,
-      fill: { color: AMBER }, line: { color: AMBER, width: 1 },
+      fill: { color: GREEN }, line: { color: GREEN, width: 1 },
     });
     s.addText(String(i + 1), {
       x: M, y: y + 0.04, w: 0.62, h: 0.62, align: "center", valign: "middle", margin: 0,
@@ -1369,7 +1373,7 @@ TIMING CHECKPOINT: off this slide by 0:47:30.`);
   });
   s.addText("None of this requires a budget cycle. All of it changes the next one.", {
     x: M, y: 7.03, w: BOTW, h: 0.38, margin: 0,
-    fontFace: BODY, fontSize: 19, italic: true, color: AMBER, valign: "top",
+    fontFace: BODY, fontSize: 19, italic: true, color: GREEN, valign: "top",
   });
   s.addNotes(
 `Deliver these as instructions, not suggestions. Short sentences.
@@ -1388,7 +1392,7 @@ TIMING CHECKPOINT: off this slide by 0:49.`);
 {
   const s = slideDark();
   s.addShape(pres.ShapeType.rect, {
-    x: 0, y: 4.85, w: W, h: 2.65, fill: { color: "0B2230" }, line: { width: 0 },
+    x: 0, y: 4.85, w: W, h: 2.65, fill: { color: "0A0A0A" }, line: { width: 0 },
   });
   s.addText("In 1968 we decided logic\nshouldn't be welded to copper.", {
     x: M, y: 1.15, w: 11.6, h: 1.7, margin: 0,
@@ -1396,7 +1400,7 @@ TIMING CHECKPOINT: off this slide by 0:49.`);
   });
   s.addText("We were right. We just stopped halfway.", {
     x: M, y: 3.15, w: 11.6, h: 1.2, margin: 0,
-    fontFace: HEAD, fontSize: 40, bold: true, color: AMBER, lineSpacing: 50,
+    fontFace: HEAD, fontSize: 40, bold: true, color: GREEN, lineSpacing: 50,
   });
   s.addText("Questions", {
     x: M, y: 5.2, w: 5.5, h: 0.75, margin: 0,

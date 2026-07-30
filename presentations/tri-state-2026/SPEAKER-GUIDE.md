@@ -65,6 +65,42 @@ appear only in passing. No container/runtime/virtualization vocabulary anywhere 
 
 ---
 
+## Visual design
+
+Black background throughout (no light/dark "sandwich" — full commitment to a dark,
+premium look), Telegraf typeface, and a deliberate accent palette:
+
+- **Schneider Electric green** (`3DCD58`) — the dominant accent. Carries almost every
+  stat, chip, and emphasis line in the deck.
+- **Siemens-flavored teal** (`00A19C`) — the supporting color for headers and labels,
+  same role the original teal played.
+- **Rockwell Automation red** (`E2231A`) — used sparingly and on purpose, only where
+  the story is naming multiple vendors or marking the "locked-in" side of a contrast:
+  the SCADA/control/field stack diagram (slide 9), the three-era pattern chips
+  (slide 10), the "why it happened" badges (slide 13, which literally names Schneider,
+  Rockwell, and Siemens in its closing line), the "today" vs. "software-defined" chips
+  (slide 21), and the trap/resolution lines on the open-vs-closed slide (slide 25).
+
+That's intentional, not decorative: the talk's argument is "all of us built this,
+including us," so the palette itself shows more than one vendor's color instead of
+reading as a green house ad.
+
+**Font risk — read before you load the conference laptop.** Telegraf is not a
+standard Office font and will not be installed on the Tri-State laptop. Unless you
+handle this, PowerPoint will silently substitute a default font and slides may reflow.
+Two ways to fix it, in order of reliability:
+
+1. **Install Telegraf on the conference laptop** during your 15-minutes-early setup
+   window, if the laptop allows local font installs (check with AV staff first).
+2. **Embed the font in the file** from your own machine before you leave: open the
+   deck in PowerPoint → File → Options → Save → check "Embed fonts in the file" and
+   "Embed all characters" → save. This bakes Telegraf into the `.pptx` itself, so it
+   renders correctly on any machine even without the font installed system-wide.
+
+Do one of these before the conference — don't find out on stage.
+
+---
+
 ## Two things to verify before you present
 
 1. **"530+ active projects" (slide 30).** That's the most recent figure I could source
