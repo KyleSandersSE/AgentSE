@@ -285,7 +285,11 @@ TIMING CHECKPOINT: off this slide by 0:05:30.`);
     fontFace: BODY, fontSize: 18, color: INK, valign: "top", lineSpacing: 25,
   });
   s.addNotes(
-`Paint the picture physically. A relay panel the size of the back wall of this room. Hundreds of relays. A schematic that only two people in the building can read.
+`OPENING FRAME FOR ACT I — say some version of this before you get into the relay panel: "I'm not a controls engineer. Most of you have probably programmed a PLC — I never have. But I went and dug into why they exist, and it's a better story than I expected."
+
+That's not an apology, and don't deliver it like one. You're not claiming to know this better than the room — you're reporting back on something you found interesting. That's the honest version of your authority for the next ten minutes, and it's a stronger position than pretending expertise you don't have. If someone in the audience knows a detail better than the slide, that's a good outcome, not a threat — let them add it and move on.
+
+Paint the picture physically. A relay panel the size of the back wall of this room. Hundreds of relays. A schematic that only two people in the building can read.
 
 The key idea to plant: logic and wiring were THE SAME PHYSICAL OBJECT. You could not change one without the other. Say that phrase — you'll call back to it three times.
 
@@ -336,6 +340,12 @@ The PLC was not invented to add features. It was invented to SEPARATE two things
 Say it plainly: "The PLC was the first act of decoupling in our industry. That's the whole reason it exists. Hold that thought, because in about ten minutes I'm going to argue that we stopped doing it."
 
 Detail worth one sentence: GM bought roughly a million dollars of them, which is what turned an 84th side project into an industry.
+
+STAY INSIDE THE BULLETS. Everything on this slide is a well-sourced fact at the level a non-engineer can say with a straight face — a spec list and a company history, not programming mechanics. Say what's written and stop. Don't try to ad-lib how ladder logic actually works, why solid-state beat relays electrically, or anything else below that line — you don't need to defend engineering you don't do, and reaching for it is the only way this slide goes wrong.
+
+If someone asks something more technical than the slide: "That's a great one for the room — anyone want to add color?" Handing it to an actual controls engineer in the audience makes you look more credible, not less. It's the same move as the disclosure on slide 2.
+
+POCKET FACT, only if asked "who actually invented it": the engineer most associated with it is Dick Morley, at Bedford Associates. You don't need his name on the slide — just don't get caught not knowing it if someone name-checks him.
 
 TIMING CHECKPOINT: off this slide by 0:09.`);
   foot(s);
