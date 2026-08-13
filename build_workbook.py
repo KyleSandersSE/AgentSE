@@ -38,11 +38,18 @@ BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 
 def write_table(ws, df, start_row=1, name_col=None, blocked_mask=None,
-                money_cols=(), pct_cols=(), widths=None):
+                money_cols=(), pct_cols=(), widths=None, borders=None):
     """Write a dataframe as a formatted table.
 
     name_col + blocked_mask drive the red highlight on the agency-name cell.
+
+    Per-cell borders are skipped on large sheets - styling 80k cells bloats the
+    file and makes it slow to open and recalculate. Banded fills carry the row
+    structure instead.
     """
+    if borders is None:
+        borders = len(df) <= 1200
+    band = PatternFill("solid", fgColor="F4F7FB")
     for j, col in enumerate(df.columns, start=1):
         c = ws.cell(row=start_row, column=j, value=str(col))
         c.fill = HDR_FILL
@@ -60,7 +67,10 @@ def write_table(ws, df, start_row=1, name_col=None, blocked_mask=None,
                 v = None
             c = ws.cell(row=i, column=j, value=v)
             c.font = BODY
-            c.border = BORDER
+            if borders:
+                c.border = BORDER
+            elif i % 2 == 0:
+                c.fill = band
             if col in money_cols:
                 c.number_format = '$#,##0;($#,##0);-'
             elif col in pct_cols:
