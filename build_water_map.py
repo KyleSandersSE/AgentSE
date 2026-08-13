@@ -44,6 +44,11 @@ ACCOUNT_LISTS = {
     "rural": os.path.join(HERE, "data", "rural_water_targets.csv"),
 }
 
+# CRWA rural water contacts with no confident Citylitics match - written by
+# match_rural_targets.py. These become their own pins rather than riding on
+# an existing agency's opportunity data, since they have none.
+CRWA_ONLY_CSV = os.path.join(HERE, "data", "crwa_only_targets.csv")
+
 ZIP_SOURCES = [
     os.path.join(HERE, "data", "zips_primary.csv"),
     os.path.join(HERE, "data", "zips_secondary.csv"),
@@ -249,6 +254,35 @@ def load_exclusion_list(path):
     return keys, detail
 
 
+def load_rural_matches(path):
+    """CRWA contacts matched to an existing Citylitics agency, keyed exactly
+    on (owner, state) same as load_exclusion_list - match_rural_targets.py
+    already did the entity- and county-aware cross-reference.
+
+    Returns a dict of (owner, state) -> CRWA contact/campaign fields.
+    """
+    if not path or not os.path.exists(path):
+        return {}
+    df = pd.read_csv(path, dtype=str)
+    if "owner" not in df.columns or "state" not in df.columns:
+        return {}
+    out = {}
+    for _, r in df.iterrows():
+        if pd.isna(r["owner"]):
+            continue
+        out[(str(r["owner"]).strip(), str(r["state"]).strip())] = r.to_dict()
+    return out
+
+
+def load_crwa_only(path):
+    """CRWA contacts with no confident Citylitics match - these become their
+    own pins, geocoded from their own mailing address rather than borrowed
+    from an unrelated agency."""
+    if not path or not os.path.exists(path):
+        return pd.DataFrame()
+    return pd.read_csv(path, dtype=str)
+
+
 def load_account_list(path):
     """Return a set of normalized agency names from an optional CSV list."""
     if not path or not os.path.exists(path):
@@ -329,9 +363,21 @@ def main():
           if blocked_keys else
           f"  blocked: not supplied - place at "
           f"data/{os.path.basename(ACCOUNT_LISTS['blocked'])}")
+
+    rural_matches = load_rural_matches(ACCOUNT_LISTS["rural"])
+    print(f"  rural: {len(rural_matches):,} agencies double-tagged from CRWA "
+          f"(exact owner+state match)" if rural_matches else
+          f"  rural: not supplied - place at "
+          f"data/{os.path.basename(ACCOUNT_LISTS['rural'])}")
+
+    crwa_only = load_crwa_only(CRWA_ONLY_CSV)
+    print(f"  crwa-only: {len(crwa_only):,} standalone rural pins "
+          f"(no Citylitics data)" if len(crwa_only) else
+          f"  crwa-only: not supplied - place at "
+          f"data/{os.path.basename(CRWA_ONLY_CSV)}")
+
     for key, path in ACCOUNT_LISTS.items():
-        if key == "blocked":
-            lists[key] = blocked_keys
+        if key in ("blocked", "rural"):
             continue
         names, col = load_account_list(path)
         lists[key] = names
@@ -501,18 +547,21 @@ def main():
         score = round(s_high + s_med + s_val + s_pri + s_mod + s_rural, 1)
 
         # ----- targetability -----
+        # Blocked always wins - a named account stays off-limits even if it's
+        # also a CRWA rural contact.
         nn = norm_name(owner)
         block_confidence = None
-        if (owner, state) in lists.get("blocked", set()):
+        crwa = rural_matches.get((owner, state))
+        if (owner, state) in blocked_keys:
             target = "Blocked"
             bd = blocked_detail.get((owner, state), {})
             target_reason = (f"Named account: {bd['named_account']}"
                              if bd.get("named_account")
                              else "On named-account exclusion list")
             block_confidence = bd.get("confidence", "confident")
-        elif nn in lists.get("rural", set()):
+        elif crwa:
             target = "Rural Target"
-            target_reason = "On rural water target list"
+            target_reason = f"CRWA rural water contact: {crwa.get('crwa_org')}"
         elif nn in lists.get("existing", set()):
             target = "Existing Account"
             target_reason = "Has existing account/projects"
@@ -547,10 +596,15 @@ def main():
         else:
             primary_industry = "Unspecified"
 
-        # best contact across the agency's rows
+        # best contact across the agency's rows.
+        # pd.notna(), not truthiness - odf went through a DataFrame build
+        # that silently turns a missing (None) cell into float('nan') the
+        # moment the same column also holds real strings elsewhere, and
+        # nan is truthy in Python, so a plain `if r["c1_email"]:` accepts a
+        # missing email and bakes the literal text "nan" into the contact.
         contact = None
         for _, r in g.iterrows():
-            if r["c1_email"]:
+            if pd.notna(r["c1_email"]):
                 contact = {"name": r["c1_name"], "title": r["c1_title"],
                            "email": r["c1_email"], "phone": r["c1_phone"],
                            "li": r["c1_li"]}
@@ -586,8 +640,80 @@ def main():
             "score": score, "target": target, "target_reason": target_reason,
             "block_confidence": block_confidence,
             "primary_industry": primary_industry,
+            "has_citylitics_data": True,
+            "crwa_group": crwa.get("crwa_group") if crwa else None,
+            "crwa_status": crwa.get("crwa_status") if crwa else None,
+            "crwa_notes": crwa.get("crwa_notes") if crwa else None,
+            "crwa_contact": crwa.get("crwa_contact") if crwa else None,
+            "crwa_email": crwa.get("crwa_email") if crwa else None,
+            "crwa_phone": crwa.get("crwa_phone") if crwa else None,
             "contact": contact, "opps": opp_list,
         })
+
+    # ---------------- CRWA-only pins ----------------
+    # Rural contacts with no confident Citylitics match get their own pin,
+    # geocoded from their own mailing address, carrying no opportunity data.
+    crwa_added = 0
+    crwa_unmapped = 0
+    crwa_skipped_addr = 0
+    for _, r in crwa_only.iterrows():
+        if str(r.get("state")).strip() not in TERRITORY:
+            # A handful of CRWA rows carry a corporate billing address
+            # (a business-license processor, a management company's PO Box)
+            # rather than the water system's own site - e.g. three
+            # California mobile-home-park water systems recorded under a
+            # New York licensing office. Geocoding that address would put
+            # the pin in the wrong state entirely, so these are left
+            # unmapped rather than placed somewhere actively wrong; they
+            # still appear in the CRWA-only CSV and match report.
+            crwa_skipped_addr += 1
+            continue
+        zip5 = str(r.get("zip") or "").strip().zfill(5) if pd.notna(r.get("zip")) else None
+        hit = zip_idx.get(zip5) if zip5 else None
+        clat, clon, cgeo = (hit["lat"], hit["lon"], "zip") if hit else (None, None, None)
+        if clat is None and zip5:
+            hit3 = zip3_idx.get(zip5[:3])
+            if hit3:
+                clat, clon, cgeo = hit3[0], hit3[1], "zip3"
+        if clat is None:
+            crwa_unmapped += 1
+            continue
+
+        crwa_added += 1
+        owner = str(r["crwa_org"]).strip()
+        agencies.append({
+            "key": f"{owner}|{r['state']}|crwa",
+            "owner": owner, "state": r["state"],
+            "county": hit.get("county") if hit else None,
+            "city": r.get("city") or (hit.get("city") if hit else None),
+            "address": r.get("crwa_address"), "zip": zip5,
+            "lat": clat, "lon": clon, "geo": cgeo,
+            "population": None, "size": "Unknown",
+            "n_opps": 0, "n_high": 0, "n_med": 0,
+            "n_priority": 0, "n_modern": 0,
+            "value_total": 0.0, "value_high": 0.0,
+            "score": 0.0, "target": "Rural Target",
+            "target_reason": "CRWA rural water contact - no active "
+                             "Citylitics opportunities tracked",
+            "block_confidence": None,
+            "primary_industry": "Water (CRWA contact)",
+            "has_citylitics_data": False,
+            "crwa_group": r.get("crwa_group"),
+            "crwa_status": r.get("crwa_status"),
+            "crwa_notes": r.get("crwa_notes"),
+            "crwa_contact": r.get("crwa_contact"),
+            "crwa_email": r.get("crwa_email"),
+            "crwa_phone": r.get("crwa_phone"),
+            "contact": ({"name": r.get("crwa_contact"), "title": None,
+                        "email": r.get("crwa_email"),
+                        "phone": r.get("crwa_phone"), "li": None}
+                       if pd.notna(r.get("crwa_contact")) else None),
+            "opps": [],
+        })
+    if len(crwa_only):
+        print(f"  CRWA-only pins: {crwa_added:,} placed, "
+              f"{crwa_unmapped:,} could not be geocoded, "
+              f"{crwa_skipped_addr:,} outside territory (kept in CSV, not mapped)")
 
     adf = pd.DataFrame(agencies).sort_values("score", ascending=False)
     print(f"  {len(adf):,} agencies | geocoded "
@@ -605,7 +731,11 @@ def main():
     payload = {
         "generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"),
         "source_rows": int(len(odf)),
-        "lists_supplied": {k: len(v) for k, v in lists.items()},
+        "lists_supplied": {
+            **{k: len(v) for k, v in lists.items()},
+            "blocked": len(blocked_keys),
+            "rural": len(rural_matches) + len(crwa_only),
+        },
         "agencies": json.loads(mapped.to_json(orient="records")),
         "unmapped": json.loads(
             adf[adf["lat"].isna()].drop(columns=["opps"]).to_json(orient="records")),
@@ -663,27 +793,35 @@ def kml_color(target, score):
 def write_kml(mapped, path):
     """Google My Maps import.
 
-    Two layers only: "Water - Blocked" and "Water - Open Targets". Google My
-    Maps flattens KML folders into a single flat layer list (it has no nested
-    sub-layers) and caps a map at 10 layers total, so splitting Open into
-    priority/strong/watch bands the way earlier drafts did would burn 4 of
-    those 10 slots on one vertical alone - no room left for other verticals
-    (food & beverage, manufacturing, ...) if those get imported into the same
-    map later.
+    Three layers: "Water - Blocked", "Water - Rural Targets", and
+    "Water - Open Targets". Google My Maps flattens KML folders into a single
+    flat layer list (it has no nested sub-layers) and caps a map at 10 layers
+    total, so splitting Open into priority/strong/watch bands the way earlier
+    drafts did would burn 4 of those 10 slots on one vertical alone - no room
+    left for other verticals (food & beverage, manufacturing, ...) if those
+    get imported into the same map later.
 
-    The finer bands aren't lost: once imported, My Maps can "Group places by"
-    the EAE Score field (a numeric column), producing the same score bands as
-    togglable groups *inside* one layer - which also fixes the actual
-    colouring problem, since My Maps does not reliably tint the custom KML
-    icon styles below on import. The "Water -" prefix is deliberate so a
-    later import (e.g. "Food & Bev -") reads as a sibling vertical in the
-    same flat layer list rather than a naming collision.
+    Rural Target gets its own layer despite that budget concern because it's
+    a distinct workflow, not just a filter: cold-calling area by area wants a
+    one-click toggle to see only rural contacts, independent of whatever else
+    is shown. The finer EAE-score bands aren't lost either - once imported,
+    My Maps can "Group places by" the EAE Score field (numeric) inside the
+    Open layer, producing the same bands as togglable groups without a
+    separate layer for each - which also fixes the actual colouring problem,
+    since My Maps does not reliably tint the custom KML icon styles below on
+    import. The "Water -" prefix is deliberate so a later import (e.g.
+    "Food & Bev -") reads as a sibling vertical in the same flat layer list
+    rather than a naming collision.
     """
     def esc(v):
         return html.escape(str(v)) if v is not None else ""
 
     def bucket_of(a):
-        return "Water - Blocked" if a["target"] == "Blocked" else "Water - Open Targets"
+        if a["target"] == "Blocked":
+            return "Water - Blocked"
+        if a["target"] == "Rural Target":
+            return "Water - Rural Targets"
+        return "Water - Open Targets"
 
     buckets = defaultdict(list)
     for _, a in mapped.iterrows():
@@ -693,11 +831,13 @@ def write_kml(mapped, path):
              '<kml xmlns="http://www.opengis.net/kml/2.2"><Document>',
              '<name>Water Districts - EAE Targeting (CA/WA/OR/NV/AZ/HI)</name>',
              '<description><![CDATA[EcoStruxure Automation Expert territory '
-             'targeting. After import, open each layer\'s style panel and '
-             '"Group places by" EAE Score, Primary Industry, or Size Tier to '
-             'color-code and get a legend you can toggle. Pin popups and the '
-             'data table both carry a direct link to the opportunity in '
-             'Citylitics.]]></description>']
+             'targeting, plus CRWA rural water contacts (double-tagged where '
+             'they match an existing agency, pinned on their own where they '
+             'do not). After import, open each layer\'s style panel and '
+             '"Group places by" EAE Score, Primary Industry, County, or Size '
+             'Tier to color-code and get a legend you can toggle. Pin popups '
+             'and the data table both carry a direct link to the opportunity '
+             'in Citylitics.]]></description>']
 
     styles = {}
     for _, a in mapped.iterrows():
@@ -710,7 +850,18 @@ def write_kml(mapped, path):
                 f'http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png'
                 f'</href></Icon></IconStyle></Style>')
 
+    def safe(v):
+        """None-or-value, NaN-safe. pd.DataFrame(list_of_dicts) silently
+        turns a Python None into float('nan') for any column that also holds
+        real strings elsewhere (confirmed: crwa_group et al, which are None
+        for Citylitics-only agencies and a string for CRWA-matched ones) -
+        NaN is truthy and stringifies to the literal text "nan", so every
+        optional field pulled off a DataFrame row needs this, not just a
+        `is None` check."""
+        return None if (v is None or (isinstance(v, float) and pd.isna(v))) else v
+
     def data(name, value):
+        value = safe(value)
         return (f'<Data name="{esc(name)}"><value>{esc(value)}</value></Data>'
                 if value not in (None, "") else "")
 
@@ -721,29 +872,69 @@ def write_kml(mapped, path):
         for a in rows:
             items = []
             for o in a["opps"][:SHOWN_OPPS]:
+                # o came off odf via g.iterrows() - same DataFrame-coercion
+                # trap as the contact fields above (a missing value or url on
+                # one row, real values elsewhere, silently becomes float
+                # nan). Both a bare truthy check AND a bare f"{...:,.0f}"
+                # format render that as the literal text "nan" - worse for
+                # url, since "nan" is itself truthy and would produce a dead
+                # href="nan" link that looks legitimate.
+                ovalue = safe(o.get("value"))
+                ourl = safe(o.get("url"))
                 label = "; ".join(o["ind"]) or "Unspecified"
-                amount = f" - ${o['value']:,.0f}" if o.get("value") else ""
-                link = (f' — <a href="{esc(o["url"])}" target="_blank">'
-                        f'Open in Citylitics ↗</a>' if o.get("url") else "")
+                amount = f" - ${ovalue:,.0f}" if ovalue else ""
+                link = (f' — <a href="{esc(ourl)}" target="_blank">'
+                        f'Open in Citylitics ↗</a>' if ourl else "")
                 items.append(f"<li><b>{esc(o['fit'])} fit</b> - "
                              f"{esc(label)}{amount}{link}</li>")
             if len(a["opps"]) > SHOWN_OPPS:
                 items.append(f"<li><i>+{len(a['opps']) - SHOWN_OPPS} more — "
                              f"see the CSV or workbook for the full list</i></li>")
             lines = "".join(items)
-            c = a["contact"] or {}
+            # Any of a contact's individual fields (title, phone, ...) can be
+            # NaN even when email is present - clean every value once here
+            # so every c.get(...) below is automatically safe.
+            c = {k: safe(v) for k, v in (a["contact"] or {}).items()}
             pop = int(a["population"]) if pd.notna(a["population"]) else None
+            has_data = a.get("has_citylitics_data", True)
+            crwa_group = safe(a.get("crwa_group"))
+            crwa_status = safe(a.get("crwa_status"))
+            crwa_notes = safe(a.get("crwa_notes"))
+
+            if has_data:
+                body = (
+                    f"Opportunities: {a['n_opps']} "
+                    f"({a['n_high']} high-fit, {a['n_priority']} priority)<br/>"
+                    f"Total value: ${a['value_total']:,.0f}<br/>"
+                    + (f"<br/><b>Contact:</b> {esc(c.get('name'))}, {esc(c.get('title'))}"
+                       f"<br/>{esc(c.get('email'))} {esc(c.get('phone'))}<br/>" if c else "")
+                    + f"<br/><b>Top opportunities:</b><ul>{lines}</ul>"
+                )
+                if crwa_group:
+                    body += (f"<br/><b>Also a CRWA rural water contact</b> "
+                            f"(group {esc(crwa_group)}, {esc(crwa_status)})<br/>")
+            else:
+                # CRWA contact with no Citylitics project data - no
+                # opportunities section, just who to call.
+                body = (
+                    "<i>No active Citylitics opportunities tracked for this "
+                    "contact.</i><br/>"
+                    + (f"<br/><b>CRWA Contact:</b> {esc(c.get('name'))}"
+                       f"<br/>{esc(c.get('email'))} {esc(c.get('phone'))}<br/>"
+                       if c else "")
+                    + (f"Campaign group: {esc(crwa_group)} &nbsp;|&nbsp; "
+                       f"Status: {esc(crwa_status)}<br/>" if crwa_group else "")
+                    + (f"Notes: {esc(crwa_notes)}<br/>" if crwa_notes else "")
+                )
+
             desc = (
                 f"<b>{esc(a['owner'])}</b> ({esc(a['state'])})<br/>"
-                f"EAE score: <b>{a['score']}</b> &nbsp;|&nbsp; Status: <b>{esc(a['target'])}</b><br/>"
+                + (f"EAE score: <b>{a['score']}</b> &nbsp;|&nbsp; "
+                   if has_data else "")
+                + f"Status: <b>{esc(a['target'])}</b><br/>"
                 + (f"Population: {pop:,}<br/>" if pop else "")
-                + f"County: {esc(a['county'])}<br/>"
-                + f"Opportunities: {a['n_opps']} "
-                  f"({a['n_high']} high-fit, {a['n_priority']} priority)<br/>"
-                + f"Total value: ${a['value_total']:,.0f}<br/>"
-                + (f"<br/><b>Contact:</b> {esc(c.get('name'))}, {esc(c.get('title'))}"
-                   f"<br/>{esc(c.get('email'))} {esc(c.get('phone'))}<br/>" if c else "")
-                + f"<br/><b>Top opportunities:</b><ul>{lines}</ul>"
+                + (f"County: {esc(safe(a['county']))}<br/>" if safe(a["county"]) else "")
+                + body
             )
 
             # ExtendedData becomes the sortable data table in Google My Maps,
@@ -756,7 +947,8 @@ def write_kml(mapped, path):
                 for ind in o["ind"]:
                     if ind not in top_inds:
                         top_inds.append(ind)
-            top_link = next((o["url"] for o in a["opps"] if o.get("url")), None)
+            top_link = next((safe(o.get("url")) for o in a["opps"]
+                            if safe(o.get("url"))), None)
             ed = "".join([
                 data("Status", a["target"]),
                 data("EAE Score", a["score"]),
@@ -780,6 +972,10 @@ def write_kml(mapped, path):
                 data("Why Blocked", a["target_reason"]
                      if a["target"] == "Blocked" else None),
                 data("Block Confidence", a.get("block_confidence")),
+                data("Has Citylitics Data", "Yes" if has_data else "No"),
+                data("CRWA Group", a.get("crwa_group")),
+                data("CRWA Campaign Status", a.get("crwa_status")),
+                data("CRWA Notes", a.get("crwa_notes")),
             ])
 
             parts.append(

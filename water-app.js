@@ -245,7 +245,12 @@ function openDetail(key) {
         </div>` : ""}
 
         ${a.address ? `<div class="d-h">Address</div>
-          <div class="d-sub">${esc(a.address)}${a.zip ? `, ${esc(a.zip)}` : ""}</div>` : ""}
+          <div class="d-sub">${esc(a.address)}${
+            // CRWA-sourced addresses are full mailing strings that already
+            // end in the ZIP; Citylitics addresses are street-only and need
+            // it appended. Skip the append when it's already there.
+            a.zip && !String(a.address).includes(String(a.zip)) ? `, ${esc(a.zip)}` : ""
+          }</div>` : ""}
 
         <div class="d-h">Opportunities (${a.opps.length})</div>
         ${opps}
@@ -433,9 +438,9 @@ function drawListNote() {
         el.textContent = `Account lists loaded · built ${WATER_DATA.generated}`;
         return;
     }
-    el.textContent = "Account lists not yet loaded (" + missing.join(", ") +
-        "), so every agency shows as Open / Unverified. Drop the CSVs into data/ " +
-        "and re-run build_water_map.py to classify them.";
+    el.textContent = missing.join(", ") + " not yet loaded - those agencies " +
+        "default to Open / Unverified. Drop the CSV(s) into data/ and " +
+        "re-run build_water_map.py to classify them.";
 }
 
 /* ---------------- boot ---------------- */

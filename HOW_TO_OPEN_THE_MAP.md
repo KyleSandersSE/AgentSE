@@ -21,17 +21,51 @@ repo.
 2. Click **+ Create a new map**.
 3. Click **Import** (under the "Untitled layer" heading in the left panel).
 4. Drag in `WaterDistricts_EAE.kml`, or browse to it.
-5. Wait — 830 pins takes a few seconds.
+5. Wait — 1,666 pins takes a few seconds.
 
-You'll get two layers:
+You'll get three layers:
 
 - **Water - Blocked** (115 pins) — named accounts, do not contact
-- **Water - Open Targets** (715 pins) — everything you can pursue
+- **Water - Rural Targets** (933 pins) — your CRWA rural water list, both
+  agencies with active Citylitics opportunities and ones with none
+- **Water - Open Targets** (618 pins) — everything else you can pursue
 
-Only two, on purpose — see "Room for other verticals" below. Click any pin
-for the agency's opportunity count, total value, EAE score, primary
-industry, primary contact, and its top projects **with a working Citylitics
-link on each one**.
+Rural gets its own layer specifically for area-by-area cold calling — one
+click hides everything else. Click any pin for the agency's opportunity
+count, total value, EAE score, primary industry, primary contact, and its
+top projects **with a working Citylitics link on each one**.
+
+### The CRWA rural water list
+
+Your `Final_CRWA_Contact_List.xlsm` Master Tracker (952 contacts) is folded
+in two ways:
+
+- **112 matched an existing Citylitics agency** — double-tagged. That pin now
+  shows both its Citylitics opportunities *and* a "Also a CRWA rural water
+  contact" note with your campaign group and status.
+- **836 had no confident match** — these get their own pin, geocoded from
+  their own mailing address, with no opportunity data (there isn't any) but
+  full CRWA contact and campaign info: group letter, campaign status,
+  responded/meeting-booked flags, and notes.
+
+Matching reused the same entity-aware logic built for the named-account
+cross-reference (place + governance type + service domain all have to
+agree), plus one thing that check never had: your CRWA list carries real
+mailing addresses, so every candidate match is cross-checked against county.
+That caught real collisions the name alone would have missed — **Union
+Sanitary District** (Alameda County) is not **Union Public Utility
+District** (Calaveras County, 130 miles away) despite both being called
+"Union ... District." Four such cases were kept as their own standalone
+pins instead of merged into an unrelated agency. Full detail in
+`RuralTargets_MatchReport.csv`.
+
+**4 CRWA contacts aren't on the map** — three California mobile-home-park
+water systems and one Montana entity were recorded under corporate billing
+addresses (a business-license processor in New York, a management
+company's PO Box) rather than the water system's actual site. Geocoding
+those would put pins in the wrong state, so they're kept in
+`data/crwa_only_targets.csv` and the match report but not placed. Worth a
+manual look if you want them on the map — the file has the org names.
 
 ### Turning on color — do this first
 
@@ -90,18 +124,16 @@ need no account and can open it in the Google Maps mobile app.
 
 ### Room for other verticals (bringing in your industrial/F&B data)
 
-The map is deliberately down to 2 layers instead of 4 so there's headroom.
-My Maps caps a map at **10 layers total**, and layers don't nest — a KML
+The map uses 3 of My Maps' **10-layer cap**, and layers don't nest — a KML
 `<Folder>` becomes a flat entry in the same list, not a sub-group. So the way
 to organize by vertical is naming, not hierarchy:
 
-- This file's layers are named **"Water - Blocked"** and
-  **"Water - Open Targets"**.
+- This file's layers are named **"Water - Blocked"**, **"Water - Rural
+  Targets"**, and **"Water - Open Targets"**.
 - Give any other vertical's KML the same pattern — e.g.
   **"F&B - Blocked"** / **"F&B - Open Targets"** — and import it into this
   same My Map (**Add layer** → **Import**, same steps as above). The list
-  will read as grouped by vertical even though My Maps itself keeps it flat,
-  and you'll have used 4 of 10 layers with two verticals loaded.
+  will read as grouped by vertical even though My Maps itself keeps it flat.
 - If your Food & Beverage / industrial dataset is a CSV with addresses or
   lat/lon, My Maps can import that directly — no KML conversion needed,
   same **Add layer → Import** flow. If it needs the same scoring and
@@ -112,11 +144,14 @@ to organize by vertical is naming, not hierarchy:
 ### Limits worth knowing
 
 - My Maps allows **10 layers, 2,000 pins per layer, and 5 MB per file**. This
-  file is 2.1 MB across 2 layers — 8 layers of headroom for other verticals.
-- **38 agencies are not on the map.** They have neither a ZIP nor a county in
-  the Citylitics export, so there is nowhere honest to put them. They are all
-  in the CSV and workbook exports, and listed in the interactive map's
-  "Not on map" panel.
+  file is 3.3 MB across 3 layers — 7 layers of headroom for other verticals,
+  though less byte headroom than before now that CRWA contact data is baked
+  in.
+- **42 agencies are not on the map** — 38 Citylitics agencies with neither a
+  ZIP nor a county in the export, plus the 4 CRWA contacts recorded under an
+  out-of-state corporate address (see above). All 42 are still in the CSV
+  and workbook exports; the Citylitics 38 are also listed in the interactive
+  map's "Not on map" panel.
 
 ---
 
