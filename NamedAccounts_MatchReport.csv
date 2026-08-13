@@ -1,0 +1,717 @@
+named_account,outcome,looks_like_water,looks_like_municipal
+3M COMPANY - CORONA,no water match,False,False
+"3M COMPANY NORTHRIDGE, CA",no water match,False,False
+A-C ELECTRIC,no water match,False,False
+A-C ELECTRIC CO,no water match,False,True
+ABQ. BERNALILLO CO WATER AUTHORITY,no water match,True,True
+ADMIRAL BEVERAGE CORP,no water match,False,False
+AERA ENERGY,no water match,False,False
+AEU INTEGRATION,no water match,False,False
+AGILENT TECHNOLOGIES,no water match,False,False
+AGILENT TECHNOLOGIES-DELAWARE,no water match,False,False
+AGRO FARMA,no water match,False,False
+ALAMEDA COUNTY FLOOD CONTROL AND WA,no water match,False,True
+ALAMEDA COUNTY WATER DISTRICT,matched,True,True
+ALBUQUERQUE BERNALILLO COUNTY WATER,no water match,True,True
+ALMEX USA INC,no water match,False,False
+AMALGAMATED SUGAR,no water match,False,False
+AMALGAMATED SUGAR -MINI-CASSIA,no water match,False,False
+AMALGAMATED SUGAR CO,no water match,False,True
+AMWEST CONTROLS,no water match,False,False
+AMY'S KITCHEN,no water match,False,False
+APACHE WATER AND POWER,no water match,True,False
+APCO INC SLC,no water match,False,False
+APCO. INC.,no water match,False,False
+APEX MANUFACTURING SOLUTIONS,no water match,False,False
+ARDENT MILLS,no water match,False,False
+"ARDENT MILLS, LLC",no water match,False,False
+ARIZONA DEPT OF WATER RESOURCES,no water match,True,False
+ASARCO INC,no water match,False,False
+ASARCO LLC,no water match,False,False
+ASH GROVE CEMENT,no water match,False,False
+ASH GROVE CEMENT CO,no water match,False,True
+ASPECT ENGINEERING GROUP,no water match,False,False
+ATI SPECIALTY ALLOYS AND COMPONENTS,no water match,False,False
+"ATTUNE FOODS, LLC",no water match,False,False
+AURORA ORGANIC DAIRY,no water match,False,False
+AUTOLIV,no water match,False,False
+AUTOLIV ASP,no water match,False,False
+"AUTOLIV ASP, INC.",no water match,False,False
+AUTOLIV MACHINE BUILD,no water match,False,False
+AUTOLIV PANEL SHOP,no water match,False,False
+AUTOLIV PROMONTORY,no water match,False,False
+AUTOLIV-MODULE,no water match,False,False
+AUTOMATED CONTROLS,no water match,False,False
+AUTOMATION SERVICES,no water match,False,False
+Advanced Electrical Technologies,no water match,False,False
+B BRAUN MEDICAL INC,no water match,False,False
+"B BRAUN/MCGAW, INC",no water match,False,False
+BALL CORPORATION,no water match,False,False
+BANKS INTEGRATION,no water match,False,False
+BARRICK CORTEZ GOLMINE,no water match,False,False
+BARRICK CORTEZ MINE,no water match,False,False
+BARRICK GOLD,no water match,False,False
+BARRICK GOLD CORP,no water match,False,False
+BARRICK GOLD STRIKE,no water match,False,False
+BARRICK GOLDEN SUNLIGHT MINE,no water match,False,False
+BARRICK GOLDSTRIKE MINES,no water match,False,False
+BARRICK TURQUOISE RIDGE,no water match,False,False
+BAYER,no water match,False,False
+BEAVENS SYSTEMS,no water match,False,False
+BEECO,no water match,False,False
+BENNU GLASS,no water match,False,False
+"BERG  NNSA ABQ COMPLEX (0000572772) - ALBUQUERQUE, NM",no water match,False,False
+BF GOODRICH AEROSPACE,no water match,False,False
+BIGELOW TEA,no water match,False,False
+BIMBO BAKERIES - SAN LUIS,no water match,False,False
+BIMBO BAKERIES USA,no water match,False,False
+BIMBO BAKERY,no water match,False,False
+BOARD OF WATER WORKS OF PUEBLO,no water match,True,True
+"BOCKMON & WOMBLE ELECTRIC CO, INC",no water match,False,True
+BOEING,no water match,False,False
+BOEING - BELLEVUE,no water match,False,False
+BOEING -- RENTON,no water match,False,False
+BOEING CO,no water match,False,True
+BOEING CO - ANYWHERE,no water match,False,True
+BOEING CO.,no water match,False,True
+BOEING CO. - AUBURN,no water match,False,True
+BOEING COMPANY,no water match,False,False
+BOZEMAN CITY SOLID WASTE DIV,no water match,False,True
+BP EXPLORATION,no water match,False,False
+BP EXPLORATION (ALASKA) INC,no water match,False,False
+BP EXPLORATION ALASKA,no water match,False,False
+BP EXPLORATION ALASKA - GPB AUTOMAT,no water match,False,False
+BRISTOL MYERS SQUIBB,no water match,False,False
+BROWNS HILL ENGINEERING & CNTRLS,no water match,False,False
+BROWNS HILL ENGINEERING AND CONTROL,no water match,False,False
+BUREAU OF RECLAMATION,no water match,True,False
+BUTTE SILVERBOW,no water match,False,False
+Black Label Services,no water match,False,False
+"CADENCE ELECTRICAL SUPPLY, INC.",no water match,False,False
+CADENCE POWER,no water match,False,False
+CALEXICO WATER TREATMENT PLANT,no water match,True,False
+CALIFORNIA DEPARTMENT OF WATER,no water match,True,False
+CALIFORNIA DEPARTMENT OF WATER RES,no water match,True,False
+CALIFORNIA INSTITUTE OF TECH,no water match,False,False
+CALIFORNIA INSTITUTE OF TECHNOLOGY,no water match,False,False
+CALIFORNIA STEEL COMPANY,no water match,False,False
+"CALIFORNIA STEEL INDUSTRIES, INC.",no water match,False,False
+CALIFORNIA STEEL SERVICES,no water match,False,False
+CALLEGUAS MUNICIPAL WATER DIST.,matched,True,True
+CALLEGUAS MUNICIPAL WATER DISTRICT,no water match,True,True
+CALPORTLAND CEMENT USA - COLTON CA,no water match,False,False
+CALPORTLAND CEMENT USA - MOJAVE CA,no water match,False,False
+CAMAS SEWAGE TREATMENT PLANT,no water match,False,False
+CAMPBELL SOUP SUPPLY COMPANY,no water match,False,False
+CANNON,no water match,False,False
+CARDINAL GLASS,no water match,False,False
+CARESTREAM,no water match,False,False
+CARESTREAM HEALTH,no water match,False,False
+"CARESTREAM HEALTH, INC.",no water match,False,False
+CARGILL,no water match,False,False
+CASCADE STEEL ROLLING MILLS,no water match,False,False
+CEMEX,no water match,False,False
+CEMEX INC.,no water match,False,False
+CEMEX USA,no water match,False,False
+CENTRAL ARIZONA PROJECT,no water match,False,False
+CENTRAL COAST WATER AUTHORITY,matched,True,True
+CENTRAL CONTRA COSTA SANITARY DIST,matched,True,True
+CENTRAL UTAH WATER CNSRVNCY DIST,no water match,True,True
+CENTRAL UTAH WATER CONSERVANCY DIST,no water match,True,True
+CENTRAL VALLEY WATER,no water match,True,False
+CENTRAL VALLEY WATER RECLAMATION,no water match,True,False
+CERTAINTEED / BPB,no water match,False,False
+CHAMPION TECHNOLOGY,no water match,False,False
+CHEVRON,no water match,False,False
+CHEVRON ENVIROMENTAL MGMT CO,no water match,False,True
+CHEVRON ENVIRONMENTAL MAN/ GOLDER,no water match,False,False
+CHEVRON MINE,no water match,False,False
+CHEVRON MINING,no water match,False,False
+CHEVRON NRTH AMERICA EXPLOR & PROD,no water match,False,False
+CHEVRON TEXACO,no water match,False,False
+CHOBANI,no water match,False,False
+CIRCLE FOODS USA - SAN DIEGO CA,no water match,False,False
+CITY & COUNTY OF DENVER,no water match,False,True
+CITY & COUNTY OF SAN FRANCISCO,no water match,False,True
+CITY OF ANTIOCH,matched,False,True
+CITY OF ARVADA RALSTON WATER,no water match,True,True
+CITY OF AVONDALE,matched,False,True
+CITY OF BAKERSFIELD,no water match,False,True
+CITY OF BELLEVUE PURCHASING,no water match,False,True
+CITY OF BEND,matched,False,True
+CITY OF BEND ADM OFFICES,no water match,False,True
+CITY OF BENICIA,matched,False,True
+CITY OF BOISE,no water match,False,True
+CITY OF BRENTWOOD,matched,False,True
+CITY OF BRENTWOOD USA - BRENTWOOD C,no water match,False,True
+CITY OF BUCKEYE PUBLIC WORKS,matched,False,True
+CITY OF BUTTE-SILVER BOW,no water match,False,True
+CITY OF CALEXICO,matched,False,True
+CITY OF CASPER,no water match,False,True
+CITY OF CERRITOS,matched,False,True
+CITY OF CHANDLER,matched,False,True
+CITY OF CHANDLER - WATER DEPT.,no water match,True,True
+CITY OF CORVALLIS,no water match,False,True
+CITY OF DOUGLAS,matched,False,True
+CITY OF FLAGSTAFF,matched,False,True
+CITY OF FORT COLLINS,no water match,False,True
+CITY OF FORT COLLINS UTILITIES,no water match,False,True
+CITY OF FRESNO,matched,False,True
+CITY OF FRESNO - WASTEWATER MGMT,no water match,True,True
+CITY OF FT. COLLINS WWTP,no water match,True,True
+CITY OF GILBERT,no water match,False,True
+CITY OF GLENDALE - PUBLIC WORKS,no water match,False,True
+CITY OF GOODYEAR,matched,False,True
+CITY OF HENDERSON,matched,False,True
+CITY OF HUNTINGTON BEACH,matched,False,True
+CITY OF L.A. DEPT. OF AIRPORT,no water match,False,True
+CITY OF LAS VEGAS,matched,False,True
+CITY OF LAS VEGAS (ELE),no water match,False,True
+CITY OF LONG BEACH WATER DIST,no water match,True,True
+CITY OF LOS ANGELES,matched,False,True
+CITY OF LOS ANGELES-HARBOR,no water match,False,True
+CITY OF LOS ANGELES/ WATER & POWER,no water match,True,True
+CITY OF MALIBU,matched,False,True
+CITY OF MANTECA,matched,False,True
+CITY OF MANTECA USA - MANTECA CA WE,no water match,False,True
+CITY OF MERIDIAN,no water match,False,True
+CITY OF MESA,matched,False,True
+CITY OF MESA FACILITIES MAINTENANCE,no water match,False,True
+CITY OF MODESTO,matched,False,True
+CITY OF MODESTO WATER QUALITY CNTRL,no water match,True,True
+CITY OF NAMPA,no water match,False,True
+CITY OF OCEANSIDE WATER TREATMENT,no water match,True,True
+CITY OF ORANGE,matched,False,True
+CITY OF ORANGE WATER PLANT,no water match,True,True
+CITY OF PALO ALTO,matched,False,True
+CITY OF PALTO ALTO,no water match,False,True
+CITY OF PEORIA,matched,False,True
+CITY OF PEORIA - AZ,no water match,False,True
+CITY OF PHOENIX,matched,False,True
+CITY OF PHOENIX-WATER SERVICES,no water match,True,True
+CITY OF PORTLAND,matched,False,True
+CITY OF PORTLAND BUREAU-WATER,no water match,True,True
+CITY OF PORTLAND WATER BUREAU,no water match,True,True
+CITY OF PUEBLO BOARD OF WATER WORKS,no water match,True,True
+CITY OF PUYALLUP,matched,False,True
+CITY OF REDMOND WASTE WATER,no water match,True,True
+CITY OF REEDLEY,no water match,False,True
+CITY OF RENO,matched,False,True
+CITY OF RIO RANCHO,no water match,False,True
+CITY OF RIVERSIDE,matched,False,True
+CITY OF RIVERSIDE WATER OPS,no water match,True,True
+CITY OF ROSEVILLE,matched,False,True
+CITY OF SACRAMENTO,matched,False,True
+CITY OF SACRAMENTO (NA),no water match,False,True
+CITY OF SAN BERNARDINO WATER DEPT.,no water match,True,True
+CITY OF SAN DIEGO,matched,False,True
+CITY OF SAN DIEGO PANEL SHOP,no water match,False,True
+CITY OF SAN DIEGO WATER/WASTEWATER,no water match,True,True
+CITY OF SAN FRANCISCO,no water match,False,True
+CITY OF SANTA ANA,matched,False,True
+CITY OF SANTA BARBARA,matched,False,True
+CITY OF SANTA BARBARA PURCHASING,no water match,False,True
+CITY OF SANTA CRUZ,matched,False,True
+CITY OF SANTA CRUZ WASTEWATER,no water match,True,True
+CITY OF SANTA CRUZ WATER TREATMENT,no water match,True,True
+CITY OF SANTA FE,no water match,False,True
+CITY OF SANTA FE USA - SANTA FE NM,no water match,False,True
+CITY OF SANTA FE WATER DISTRICT,matched,True,True
+CITY OF SANTA FE WWT,no water match,False,True
+CITY OF SANTA ROSA,no water match,False,True
+CITY OF SCOTTSDALE,matched,False,True
+CITY OF SCOTTSDALE WATER,no water match,True,True
+CITY OF SOUTH SAN FRANCISCO,matched,False,True
+CITY OF STAYTON OREGON,no water match,False,True
+CITY OF SURPRISE,matched,False,True
+CITY OF TEMPE,matched,False,True
+CITY OF THORNTON,no water match,False,True
+CITY OF TRACY,matched,False,True
+CITY OF TWIN FALLS WATER DEPT,no water match,True,True
+CITY OF WEST SACRAMENTO,no water match,False,True
+CITY OF WESTMINSTER,no water match,False,True
+CITY OF WESTMINSTER CO USA   WESTMI,no water match,False,True
+CITY OF WESTMINSTER PARKS & REC,no water match,False,True
+CLARK COUNTY PUD,no water match,False,True
+CLARK COUNTY WATER RECLAMATION,matched,True,True
+CLARK COUNTY-NEVADA,no water match,False,True
+CLARK PUBLIC UTILITIES,no water match,False,False
+CLIMAX MOLYBDENUM COMPANY,no water match,False,False
+COACHELLA VALLEY DISTRICT,no water match,False,True
+COACHELLA VALLEY WATER DISTRICT,matched,True,True
+COALINGA SECURE TREATMENT FACILITY,no water match,False,False
+COEUR ROCHESTER GOLD MINE INC.,no water match,False,False
+COLLINS PRODUCTS,no water match,False,False
+COLUMBIA GRAIN EXPORT TERMINAL,no water match,False,False
+COLUMBIA RIVER CARBONATES,no water match,False,False
+CONTRA COSTA WATER DISTRICT,matched,True,True
+CORNERSTONE DETENTION PRODUCTS INC,no water match,False,False
+COUNTY SANITATION,no water match,True,True
+COUNTY SANITATION DISTRICT,no water match,True,True
+COUNTY SANITATION DISTRICTS OF LA C,no water match,True,True
+CROWN CORK & SEAL CO,no water match,False,True
+City of Goodyear,no water match,False,True
+City of Patterson,matched,False,True
+City of Sacramento,no water match,False,True
+City of Scottsdale,no water match,False,True
+DAIRY FARMERS OF AMERICA,no water match,False,False
+DAWN FOODS,no water match,False,False
+DELAVAL INC,no water match,False,False
+DELTA DIABLO SANITATION,no water match,True,False
+DELTA DIABLO SANITATION DIST,matched,True,True
+DENISON MINES,no water match,False,False
+DENVER WATER,no water match,True,False
+DENVER WATER BOARD,no water match,True,True
+DEPARTMENT OF WATER & POWER,no water match,True,False
+DEPARTMENT OF WATER RESOURCE,no water match,True,False
+DEPARTMENT OF WATER RESOURCES,no water match,True,False
+DEPT OF WATER & POWER,no water match,True,False
+DEPT OF WATER AND POWER,no water match,True,False
+DEPT OF WATER RESOURCES,no water match,True,False
+DESERT WATER AGENCY,no water match,True,True
+DIABLO WATER DISTRICT,matched,True,True
+"DMC, INC.",no water match,False,False
+DO NOT USE - USE 7602485300,no water match,False,False
+DO NOT USE; USE 0000152019,no water match,False,False
+DON'T USE - 3M USE 9517373441,no water match,False,False
+DRAX LONGVIEW MILL,no water match,False,False
+EAST BAY MUNICIPAL UTILITY,no water match,False,False
+EAST BAY MUNICIPAL UTILITY DIS,no water match,False,False
+EAST BAY MUNICIPAL UTILITY DISTRICT,matched,False,True
+EAST VALLEY WATER DISTRICT,matched,True,True
+EASTERN MUNICIPAL WATER DISTRICT,matched,True,True
+EASTERN MUNICIPAL WATER DISTRICT (E,no water match,True,True
+EL PASO WATER,no water match,True,False
+EL PASO WATER UTILITIES,no water match,True,False
+ELECTRI-TECH,no water match,False,False
+ENCINA WASTEWATER AUTHORITY,matched,True,True
+ENERGY FUELS,no water match,False,False
+"ENERGY LOS ALAMOS OFFICE, UNITED ST",no water match,False,False
+ENGLOBAL,no water match,False,False
+ENTERPRISE AUTOMATION,no water match,False,False
+EP MINERALS,no water match,False,False
+EP WATER DISTRICT,no water match,True,True
+EPCOR WATER USA INC (EPCOR) - HEADQ,no water match,True,False
+EVOQUA WATER TECHNOLOGIES LLC,no water match,True,False
+EXCELSIOR MINING CORPORATION,no water match,False,False
+FL SMIDTH,no water match,False,False
+FL SMIDTH / RAHCO,no water match,False,False
+FL SMIDTH/RAHCO,no water match,False,False
+FLORENCE COPPER,no water match,False,False
+FLORENCE COPPER INC.,no water match,False,False
+FLSMIDTH INC,no water match,False,False
+FORT LUPTON WASTEWATER TREATMENT,no water match,True,False
+FREEPORT MC MORAN COPPER & GOLD,no water match,False,False
+FREEPORT MCMORAN BAGDAD INC,no water match,False,False
+FREEPORT MCMORAN BAGDAD INC.,no water match,False,False
+FREEPORT MCMORAN COPPER & GOLD,no water match,False,False
+"FREEPORT MCMORAN, INC.",no water match,False,False
+"FREEPORT MCMORAN, INC. - COPPER & G",no water match,False,False
+FREEPORT MCMORAN/AJO,no water match,False,False
+FREEPORT MCMORAN/SAFFORD,no water match,False,False
+FREEPORT MCMORAN/SIERRITA,no water match,False,False
+FREEPORT MCMORAN/TYRONE,no water match,False,False
+FREEPORT-MCMORAN BAGDAD INC,no water match,False,False
+FREEPORT-MCMORAN CLAYPOOL,no water match,False,False
+FREEPORT-MCMORAN CLIMAX,no water match,False,False
+FREEPORT-MCMORAN COPPER & GOLD,no water match,False,False
+FREEPORT-MCMORAN MORENCI INC,no water match,False,False
+FREPORT MCMORAN,no water match,False,False
+FRERES LUMBER CO,no water match,False,True
+FRIESEN FOODS,no water match,False,False
+GARDEN GROVE CITY ADM,no water match,False,True
+GEM STATE DAIRY SUPPLY,no water match,False,False
+GENENTECH,no water match,False,False
+GENENTECH INC,no water match,False,False
+"GENENTECH, INC",no water match,False,False
+GENEVA ROCK PRODUCTS INC,no water match,False,False
+GENON,no water match,False,False
+GEORGE T HALL,no water match,False,False
+GEORGE T HALL COMPANY,no water match,False,False
+"GEORGE T. HALL CO., INC.",no water match,False,True
+GEORGIA PACIFIC,no water match,False,False
+GEORGIA PACIFIC CORP,no water match,False,False
+"GEORGIA-PACIFIC - ALBANY , OR - ALB",no water match,False,False
+"GEORGIA-PACIFIC - CANBY , OR - CANB",no water match,False,False
+"GEORGIA-PACIFIC - CLATSKANIE , OR -",no water match,False,False
+"GEORGIA-PACIFIC - COOS BAY , OR - C",no water match,False,False
+"GEORGIA-PACIFIC - EUGENE , OR - EUG",no water match,False,False
+"GEORGIA-PACIFIC - HALSEY , OR - FJ-",no water match,False,False
+"GEORGIA-PACIFIC - PHILOMATH , OR -",no water match,False,False
+"GEORGIA-PACIFIC - PORTLAND , OR - C",no water match,False,False
+"GEORGIA-PACIFIC - TOLEDO , OR - TOL",no water match,False,False
+"GEORGIA-PACIFIC - WHITE CITY , OR -",no water match,False,True
+GEORGIA-PACIFIC CORPORATION - CLATS,no water match,False,False
+GLACIER NORTHWEST,no water match,False,False
+GLENDALE CITY OF,matched,False,True
+GLENDALE WATER & POWER,no water match,True,False
+GLENDALE WATER AND POWER,no water match,True,False
+GLENMOUNT GLOBAL SOLUTIONS,no water match,False,False
+GO TEK AUTOMATION,no water match,False,False
+GO-TEK AUTOMATION,no water match,False,False
+GOLDEN STATE WATER,matched,True,False
+GOLDEN STATE WATER CO,no water match,True,True
+GOLDEN STATE WATER COMPANY,no water match,True,False
+GOLDEN SUNLIGHT MINE,no water match,False,False
+GOLETA WATER DISTRICT,matched,True,True
+GOODRICH,no water match,False,False
+H2E INC,no water match,False,False
+HATCH,no water match,False,False
+HDR ENGINEERING,no water match,False,False
+HEARTHSIDE FOOD SOLUTIONS,no water match,False,False
+HEAT & CONTROL INC,no water match,False,False
+HECLA MINING CO,no water match,False,True
+HELIX WATER DISTRICT,matched,True,True
+"HIGH DESERT MILK, INC",no water match,False,False
+HILCORP ALASKA,no water match,False,False
+HOLLANDIA DAIRY,no water match,False,False
+HOOVER DAM DEPARTMENT OF RECLAMATIO,no water match,False,False
+HUFFMAN ENGINEERING,no water match,False,False
+HYDRO INDUSTRIAL,no water match,False,False
+HYPERION PLANT,no water match,False,False
+IBM - BOULDER,no water match,False,False
+IDAHO LABORATORIES CORP,no water match,False,False
+IDAHO NATIONAL LABORATORY,no water match,False,False
+IDAHO POWER,no water match,False,False
+IDAHO POWER USA - OXBOW OR,no water match,False,False
+IEUA,no water match,False,False
+IMPERIAL IRRIGATION DIST,no water match,True,True
+IMPERIAL IRRIGATION DISTRICT,no water match,True,True
+"INDUSTRIAL SYSTEMS, INC",no water match,False,False
+INLAND EMPIRE UTILITIES AGENCY,matched,False,True
+INTERMOUNTAIN POWER SERVICE CORP,no water match,False,False
+INTERSTATES CONSTRUCTION,no water match,False,False
+INTUITECH,no water match,False,False
+IRVINE RANCH WATER DIST,matched,True,True
+IRVINE RANCH WATER DIST/ ELEC,no water match,True,True
+Interstates - Fort Collins,no water match,False,False
+J G Boswell Co.,no water match,False,True
+J R SIMPLOT CO,no water match,False,True
+J.M. SMUCKER LLC,no water match,False,False
+J.R. SIMPLOT,no water match,False,False
+J.R. SIMPLOT COMPANY,no water match,False,False
+JAMES HARDIE  BUILDING PRODUCTS,no water match,False,False
+JBT FOODTECH,no water match,False,False
+JCI-GWS AGILENT WEST,no water match,False,False
+JELD-WEN MILLWORK MANUFACTURING,no water match,False,False
+JELD-WEN PAYROLL,no water match,False,False
+JELDWEN BEND DIVISION,no water match,False,False
+JERVOIS MINING,no water match,False,False
+JERVOIS:ID COBALT OPERATION EPCM,no water match,True,True
+JG Boswell,no water match,False,False
+JORDAN VALLEY WATER,no water match,True,False
+JR SIMPLOT,no water match,False,False
+JR SIMPLOT COMPANY,no water match,False,False
+JR SIMPLOT CORPORATE,no water match,False,False
+Jordan Valley Water,no water match,True,False
+KAISER ALUM,no water match,False,False
+KALAMA CHEMICAL INC,no water match,False,False
+KELLOGG COMPANY,no water match,False,False
+KENNECOTT CORP,no water match,False,False
+KENNECOTT UTAH COOPER LLC,no water match,False,False
+KENNECOTT UTAH COPPER,no water match,False,False
+KENNECOTT UTAH COPPER LLC,no water match,False,False
+KOCH MEMBRANE SYSTEMS,no water match,False,False
+"KRAFT HEINZ SAN DIEGO, CA",no water match,False,False
+LA COUNTY DEPT. OF PUBLIC WORKS,no water match,False,True
+LA COUNTY SANITATION DISTRICT,no water match,True,True
+LA DEPARTMENT OF WATER AND POWER,no water match,True,False
+LA DEPT OF WATER & POWER,no water match,True,False
+LA INTERNATIONAL AIRPORT,no water match,False,False
+LADWD WATER ELECTRIC CONTRUCTION,no water match,True,False
+LADWP,no water match,False,False
+LADWP WATER ELECTRIC ENGINEER SUP,no water match,True,False
+LADWP WATER ELECTRICAL REPAIR SHOP,no water match,True,False
+LADWP WATER SYSTEMS ELECTRONIC SHOP,no water match,True,False
+LAFARGE,no water match,False,False
+LAFARGE CEMENT,no water match,False,False
+LAFARGE CORPORATION,no water match,False,False
+LAFARGE NORTH AMERICA,no water match,False,False
+LAMB WESTON INC,no water match,False,False
+LAS VEGAS VALLEY WATER DIST,matched,True,True
+LAS VEGAS VALLEY WATER DISTRICT,no water match,True,True
+LAS VIRGENES MUNICIPAL WATER DIST,matched,True,True
+LAS VIRGENES WATER DISTRICT,no water match,True,True
+LAWRENCE LIVERMORE NATIONAL LAB,no water match,False,False
+LAWRENCE LIVERMORE NATIONAL LABORAT,no water match,False,False
+LAWRENCE LIVERMORE NATIONAL LABS,no water match,False,False
+LBWD - USE 5625702429,no water match,False,False
+LEHIGH CEMENT CO LLC,no water match,False,True
+LEPRINO FOODS,no water match,False,False
+LEPRINO FOODS - MAIN PLANT,no water match,False,False
+LEPRINO FOODS CO,no water match,False,True
+LINDE ELECTRONICS & SPECIALTY GASES,no water match,False,False
+LITHIUM NEVADA CORPORATION,no water match,False,False
+"LOGICAL SYSTEMS, INC.",no water match,False,False
+LONG BEACH WATER DEPARTMENT,no water match,True,False
+LOS ALAMOS NATIONAL LABORATORY,no water match,False,False
+LOS ALAMOS NATIONAL LABS,no water match,False,False
+LOS ANGELES COUNTY SANITATION DISTR,no water match,True,True
+LOS ANGELES INTERNATIONAL AIRPORT,no water match,False,False
+LUCKY FRIDAY MINE,no water match,False,False
+Lonza,no water match,False,False
+M3 ENGINEERING & TECHNOLOGY,no water match,False,False
+M3 ENGINEERING AND TECHNOLOGY,no water match,False,False
+MANTECA WATER DIV,no water match,True,False
+MARIN MUNCIPAL WATER DISTRICT,no water match,True,True
+MARIN MUNICIPAL WATER DISTRICT,matched,True,True
+MARTIN MARIETTA,no water match,False,False
+MARTIN/SPANISH SPRINGS QUARRY,no water match,False,False
+MESA CONSOLIDATED WATER,no water match,True,False
+METRO WASTE WATER,no water match,True,False
+METRO WASTEWATER RECLAMATI,no water match,True,False
+METROPOLITAN WATER DISTRICT,no water match,True,True
+"MICROCHIP TECHNOLOGY, INC.",no water match,False,False
+MICRON SYSTEMS INTEGRATION,no water match,False,False
+MICRON TECHNOLOGY,no water match,False,False
+MICRON TECHNOLOGY INC,no water match,False,False
+MILLERCOORS - IRWINDALE,no water match,False,False
+MILLERCOORS - IRWINDALE SDI,no water match,False,False
+"MILLERCOORS IRWINDALE, CA",no water match,False,False
+MISSION SPRINGS WATER DISTRICT,matched,True,True
+MISSOULA WWTP,no water match,True,False
+MONSANTO,no water match,False,False
+MONSANTO CHEMICAL CO,no water match,False,True
+MONTEREY ON WATER,no water match,True,False
+MOSAIC POTASH,no water match,False,False
+Montana Resources,no water match,False,False
+Morton Salt,no water match,False,False
+NAPA SANITATION DISTRICT,matched,True,True
+NAVAJO TRIBAL UTILITY AUTHORITY,matched,False,True
+NESTLE POWER FOODS,no water match,False,False
+NESTLES FOOD,no water match,False,False
+NEVADA CEMENT COMPANY,no water match,False,False
+NEVADA COPPER,no water match,False,False
+NEVADA GOLD MINES,no water match,False,False
+NEVADA GOLD MINES LLC,no water match,False,False
+NEVADA IRRIGATION DISTRICT,matched,True,True
+NEWMONT ELKO WAREHOUSE,no water match,False,False
+NEWMONT GOLD CO,no water match,False,True
+NEWMONT MINING,no water match,False,False
+NEWMONT MINING CORP,no water match,False,False
+NIAGARA BOTTLING,no water match,False,False
+"NIAGARA BOTTLING - LOS LUNAS, NM",no water match,False,False
+NIAGARA BOTTLING COMPANY,no water match,False,False
+NIAGARA BOTTLING LLC,no water match,False,False
+NORTH DAVIS SEWER DIST,no water match,True,True
+NORTHERN COLORADO WATER CONSERVANCY,no water match,True,False
+NORTHERN DIGITAL,no water match,False,False
+NUCOR BUILDING SYSTEMS,no water match,False,False
+OLAM WEST COAST,no water match,False,False
+OMYA (CALIF) INC.,no water match,False,False
+OMYA ARIZONA,no water match,False,False
+ONE WORLD BEEF,no water match,False,False
+ORANGE COUNTY SANITATION,matched,True,True
+ORANGE COUNTY WATER DISTRICT,matched,True,True
+OVIVO,no water match,False,False
+OVIVO USA,no water match,False,False
+OWENS-ILLINOIS GLASS CONTAINER,no water match,False,False
+OXBOW FISH HATCHERY,no water match,False,False
+OXNARD (CITY OF),no water match,False,True
+OXNARD CITY PURCHASING,no water match,False,True
+PACIFICORP,no water match,False,False
+PADRE DAM MUNICIPAL WATER,no water match,True,False
+PADRE DAM MUNICIPAL WATER DISTRICT,no water match,True,True
+PCC STRUCTURALS,no water match,False,False
+PEET'S COFFEE & TEA - HQ,no water match,False,False
+PIC-BARRICK WESTERN 102,no water match,False,False
+PILGRIM'S PRIDE CORPORATION,no water match,False,False
+PIMA COUNTY WASTE WATER DEPT.,no water match,True,True
+PIMA CTY WASTE WATER TREATMENT FAC,no water match,True,True
+PIMA UTILITIES,no water match,False,False
+PINTO VALLY MINE,no water match,False,False
+PLAINS EXPLORATION,no water match,False,False
+PLANTEL NURSERY,no water match,False,False
+PORT OF SEATTLE,no water match,False,False
+PORT OF SEATTLE COMMISSIONERS,no water match,False,False
+PORTLAND GENERAL ELECTRIC,no water match,False,False
+PORTLAND GENERAL ELECTRIC CO,no water match,False,True
+PORTLAND WATER BUREAU,no water match,True,False
+POST CONSUMER BRANDS INC,no water match,False,False
+POST HOLDINGS,no water match,False,False
+POWER BAR,no water match,False,False
+PRIME CONTROLS,no water match,False,False
+PRIMEX,no water match,False,False
+PRISM PROFESSIONAL SERVICES,no water match,False,False
+PUEBLO WEST METROPOLITAN DISTRICT,no water match,False,True
+QUANTUM INTEGRATED SOLUTIONS,no water match,False,False
+QUEEN CREEK,no water match,False,False
+QWEST BUCKEYE,no water match,False,False
+RALSTON FOODS CO.,no water match,False,True
+RANCHO CALIFORNIA WATER DIST,matched,True,True
+RANCHO CALIFORNIA WATER DISTRICT,no water match,True,True
+REC ADVANCED SILICON MATERIALS LLC,no water match,False,False
+REC SILICON,no water match,False,False
+RED BULL,no water match,False,False
+RED BULL LAGERHAUS,no water match,False,False
+RELIABLE CONTROLS,no water match,False,False
+RENO STEAD WASTE WATER TREATMENT PL,no water match,True,False
+RESER'S FINE FOOD,no water match,False,False
+RESER'S FINE FOODS,no water match,False,False
+RESERS FINE FOODS,no water match,False,False
+RESOLUTION COPPER WEST PLANT,no water match,False,False
+REVERE CONTROL SYSTEMS INC,no water match,False,False
+RIO TINTO,no water match,False,False
+ROBERTSONS READY MIX,no water match,False,False
+ROCKVIEW FARMS,no water match,False,False
+ROCKVIEW FARMS INC.,no water match,False,False
+ROSCOE MOSS MANUFACTURING CO.,no water match,False,True
+ROSE ACRE FARMS - LONE CACTUS EGG F,no water match,False,False
+ROSEBURG FOREST PRODUCTS,no water match,False,False
+ROSEMONT COPPER(HUDBAY MINERALS),no water match,False,False
+ROVISYS USA - THOUSAND OAKS CA,no water match,False,False
+SACRAMENTO MUNICIPAL UTILITY,no water match,False,False
+SACRAMENTO MUNICIPAL UTILITY DIST,no water match,False,True
+SACRAMENTO MUNICIPAL UTILITY DISTRI,no water match,False,False
+SAINT GOBAIN,no water match,False,False
+SALT LAKE CITY CORPORATION,no water match,False,True
+SALT RIVER PROJECT,no water match,False,False
+SAN BERNARDINO MUNICIPAL WATER DEPT,matched,True,False
+SAN DIEGO COUNTY WATER AUTH.,matched,True,True
+SAN DIEGO COUNTY WATER AUTHORITY,no water match,True,True
+SAN ELIJO JOINT POWER,no water match,False,False
+SAN FRANCISCO CITY & COUNTY,no water match,False,True
+SAN FRANCISCO WATER DEPT,no water match,True,False
+SAN GABRIEL VALLEY MUNICIPAL WATER,no water match,True,False
+SAN JOSE WATER,no water match,True,False
+SAN JOSE WATER CO,no water match,True,True
+SANDIA NATIONAL LABORATORIES,no water match,False,False
+SANDIA NATIONAL LABS,no water match,False,False
+SANITATION DISTRICTS OF LA,no water match,True,False
+SANITATION DISTRICTS-LA COUNTY,no water match,True,True
+SANTA CLARA VALLEY WATER DISTRICT,matched,True,True
+SANTAN VISTAWATER TREATMENT PLANT,no water match,False,False
+SCE VIA TRIMAX,no water match,False,False
+SCHNITZER STEEL INDUSTRIES INC,no water match,False,False
+SCHREIBER FOODS,no water match,False,False
+"SCHREIBER FOODS, INC.",no water match,False,False
+SEATTLE CITY LIGHT,no water match,False,True
+SEATTLE CITY LIGHT DEPT,no water match,False,True
+SEATTLE PUBLIC UTILITIES,no water match,False,False
+SELMET INC.,no water match,False,False
+SHAMROCK FOODS CO,no water match,False,True
+SHAMROCK FOODS CO.,no water match,False,True
+SHEARER'S SNACK FOODS,no water match,False,False
+SIMPLOT,no water match,False,False
+SIMPLOT FOOD,no water match,False,False
+SIMPLOT PHOSPHATES,no water match,False,False
+SIMPLOT PHOSPHATES LLC,no water match,False,False
+SIMPLOT USA - POCATELLO ID,no water match,True,True
+SIMPLOT USA - SODA SPRINGS ID,no water match,True,True
+SKM,no water match,False,False
+SKM (AQUA ENGINEERING),no water match,False,False
+SKM (SLC CORP PROJECT),no water match,False,False
+SKM ENGINEERING,no water match,False,False
+SNC LAVALAN,no water match,False,False
+SNC LAVALIN,no water match,False,False
+SOFFA ELECTRIC,no water match,False,False
+SOLAR GRADE SILICON,no water match,False,False
+SOLDIER CANYON FILTER PLANT,no water match,False,False
+SOLDIER CANYON WATER TREATMENT,no water match,True,False
+SOUTH 32 HERMOSA MINE,no water match,False,False
+SOUTH COAST WATER,no water match,True,False
+SOUTH COAST WATER DISTRICT,matched,True,True
+SOUTH DAVIS SEWER DISTRICT,no water match,True,True
+SOUTH ORANGE COUNTY WASTE AUTHORITY,no water match,False,True
+SOUTH ORANGE COUNTY WASTEWATER AUTH,matched,True,True
+SOUTHEASTERN COLORADO WATER CONSERV,no water match,True,False
+SOUTHERN CALIFORNIA EDISON,no water match,False,False
+SOUTHERN CALIFORNIA EDISON CO.,no water match,False,True
+SOUTHERN CALIFORNIA WATER COMPANY,no water match,True,False
+SOUTHERN NEVADA WATER AUTHORITY,matched,True,True
+SPECIALTY MINERALS INC,no water match,False,False
+STARBUCKS,no water match,False,False
+STATCO DSI PROCESS SYSTEMS,no water match,False,False
+STATES INDUSTRIES INC.,no water match,False,False
+STREMICKS HERITAGE FOODS,no water match,False,False
+SUEZ NORTH AMERICA USA,no water match,False,False
+SUNPOWER,no water match,False,False
+SUNPOWER CO.,no water match,False,True
+SUNPOWER CORP,no water match,False,False
+SUNPOWER CORPORATION,no water match,False,False
+SUPERTEK X AUTOMATION,no water match,False,False
+SWEETWATER AUTHORITY,matched,False,True
+SWEETWATER AUTHORITY HEADQUARTERS,no water match,False,True
+SWIFT & COMPANY-GREELEY BEEF,no water match,False,False
+SYSTEMS ENGINEERING GROUP,no water match,False,False
+Sacramento Regional County Sanitation District,no water match,True,True
+Stellar Technology & Automation,no water match,False,False
+TAKEDA PHARMACEUTICALS INC.,no water match,False,False
+TAURUS CONTROL,no water match,False,False
+TAURUS POWER & CONTROLS INC,no water match,False,False
+TCI INC,no water match,False,False
+TECHNICAL SYSTEM INC,no water match,False,False
+TECHNICAL SYSTEMS INC,no water match,False,False
+TECHNICAL SYSTEMS INC(SCVWD PROJ),no water match,False,False
+TECK COMINCO,no water match,False,False
+TEKNOR APEX,no water match,False,False
+TELSTAR,no water match,False,False
+TELSTAR INSTRUMENTS,no water match,False,False
+TELSTAR INSTRUMENTS INC,no water match,False,False
+TEMCO,no water match,False,False
+TESCO CONTROLS INC,no water match,False,False
+TESCO INC,no water match,False,False
+"TESLA MOTORS, INC - FACTORY",no water match,False,False
+TETRA TECH,no water match,False,False
+THATCHER COMPANY,no water match,False,False
+TI SQUARED TECHNOLOGIES,no water match,False,False
+TILLAMOOK COUNTY CREAM. ASSOC,no water match,False,True
+TIMBER LINE ELECTRIC AND CONTROLS,no water match,False,False
+TIMBER PRODUCTS,no water match,False,False
+TLD - TREX LUMBER DECKING,no water match,False,False
+"TM PROCESS & CONTROLS, INC",no water match,False,False
+TOK,no water match,False,False
+TOKYO OHKA KOGYO AMERICA INC,no water match,False,False
+TOWN OF CAVE CREEK,matched,False,True
+TOWN OF GILBERT,matched,False,True
+TOWN OF QUEEN CREEK,matched,False,True
+TRABUCO CANYON WATER DISTRICT USA -,no water match,True,True
+TREE TOP/ SABROSO CO,no water match,False,True
+TREX,no water match,False,False
+TRIMAX SYSTEM INC,no water match,False,False
+TRUCKEE DONNER PUBLIC UTILITY,no water match,False,False
+TRUCKEE DONNER PUBLIC UTILITY DISTR,matched,False,True
+TRUCKEE MEADOWS WATER AUTHORITY,matched,True,True
+TRUCKEE MEADOWS WATER AUTORITY,no water match,True,False
+TRUCKEE-DONNER PUD,no water match,False,True
+"TRUE NORTH SOLUTIONS, LP",no water match,False,False
+TUALATIN VALLEY WATER DISTRICT / WI,no water match,True,True
+"TUSTIN, CITY OF",no water match,False,True
+Town of Castle Rock,no water match,False,True
+U. S. DEPT. OF INTERIOR,no water match,False,False
+U.S. BORAX,no water match,False,False
+US GYPSUM,no water match,False,False
+US GYPSUM CO,no water match,False,True
+US MAGNESIUM,no water match,False,False
+US NAVY,no water match,False,False
+UTAH DEPARTMENT OF WATER RESOURCES,no water match,True,False
+UTAH VALLEY WATER TREATMENT PLT,no water match,True,False
+UTC AEROSPACE SYSTEMS,no water match,False,False
+UW WEST BASIN,no water match,False,False
+VALLEJO SANITATION & FLOOD CONTROL,no water match,True,False
+VEOLIA WATER NA - WILSONVILLE,no water match,True,False
+VERUS ASSOCIATED,no water match,False,False
+VERUS ASSOCIATES INC,no water match,False,False
+Vertech Industrial Systems,no water match,False,False
+"W.M. Lyles Co. (Aka AIC, Advanced Integration and Controls)",no water match,False,True
+WAFERTECH,no water match,False,False
+WATER REPLENISHMENT DIST OF SO CAL,no water match,True,True
+WATER REPLENISHMENT DISTRICT OF SOU,no water match,True,True
+WEBER METALS INC,no water match,False,False
+WEST BASIN,no water match,False,False
+WEST BASIN MUNICIPAL WATER DISTRICT,matched,True,True
+WESTECH ENGINEERING INC,no water match,False,False
+WESTERN MILLING,no water match,False,False
+WESTERN MUNICIPAL WATER DIST,matched,True,True
+WESTERN SUGAR COOPERATIVE,no water match,False,False
+WESTROCK,no water match,False,False
+WEYERHAEUSER CO,no water match,False,True
+WL PORTLAND SYSTEMS INC.,no water match,False,False
+WOLVERINE FUELS,no water match,False,False
+WUNDERLICH MALEC,no water match,False,False
+WUNDERLICH MALEC ENGINEERING,no water match,False,False
+WUNDERLICH-MALEC,no water match,False,False
+WUNDERLICH-MALEC ENGINEERING,no water match,False,False
+"WUNDERLICH-MALEC SYSTEMS, INC.",no water match,False,False
+YORBA LINDA WATER DISTRICT,matched,True,True
+ZONE 7 WATER AGENCY,matched,True,True

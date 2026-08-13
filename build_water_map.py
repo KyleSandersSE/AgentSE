@@ -219,6 +219,22 @@ def build_county_index(zip_idx, zips_df):
     return {k: (v[0] / v[2], v[1] / v[2]) for k, v in acc.items() if v[2]}
 
 
+def load_exclusion_list(path):
+    """Blocked accounts, keyed exactly on (owner, state).
+
+    match_named_accounts.py already did the careful cross-reference and wrote
+    exact Citylitics owner names here. Re-normalizing would undo that work -
+    the loose key collapses all six Orange County agencies onto "orange".
+    """
+    if not path or not os.path.exists(path):
+        return set()
+    df = pd.read_csv(path, dtype=str)
+    if "owner" not in df.columns or "state" not in df.columns:
+        return set()
+    return {(str(o).strip(), str(s).strip())
+            for o, s in zip(df["owner"], df["state"]) if pd.notna(o)}
+
+
 def load_account_list(path):
     """Return a set of normalized agency names from an optional CSV list."""
     if not path or not os.path.exists(path):
@@ -294,7 +310,15 @@ def main():
 
     print("Loading account lists ...")
     lists = {}
+    blocked_keys = load_exclusion_list(ACCOUNT_LISTS["blocked"])
+    print(f"  blocked: {len(blocked_keys):,} agencies (exact owner+state match)"
+          if blocked_keys else
+          f"  blocked: not supplied - place at "
+          f"data/{os.path.basename(ACCOUNT_LISTS['blocked'])}")
     for key, path in ACCOUNT_LISTS.items():
+        if key == "blocked":
+            lists[key] = blocked_keys
+            continue
         names, col = load_account_list(path)
         lists[key] = names
         if names:
@@ -464,7 +488,7 @@ def main():
 
         # ----- targetability -----
         nn = norm_name(owner)
-        if nn in lists.get("blocked", set()):
+        if (owner, state) in lists.get("blocked", set()):
             target = "Blocked"
             target_reason = "On named-account exclusion list"
         elif nn in lists.get("rural", set()):

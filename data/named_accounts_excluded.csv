@@ -1,0 +1,89 @@
+owner,state,county,named_account,match_reason,name_overlap,score,n_opps,value_total
+Inland Empire Utilities Agency,CA,San Bernardino,INLAND EMPIRE UTILITIES AGENCY,place + governance match (100% overlap),1.0,100.0,119,1395655000.0
+City of Las Vegas,NV,Clark,CITY OF LAS VEGAS,place + governance match (100% overlap),1.0,90.0,37,273581958.0
+City of Glendale,AZ,Maricopa,GLENDALE CITY OF,place + governance match (100% overlap),1.0,90.0,28,266861000.0
+Napa Sanitation District,CA,Napa,NAPA SANITATION DISTRICT,place + governance match (100% overlap),1.0,90.0,28,68021600.0
+Delta Diablo District,CA,Contra Costa,DELTA DIABLO SANITATION DIST,place + governance match (75% overlap),0.75,88.0,33,69968647.0
+Eastern Municipal Water District,CA,Riverside,EASTERN MUNICIPAL WATER DISTRICT,place + governance match (100% overlap),1.0,88.0,22,326366455.0
+City of Phoenix,AZ,Maricopa,CITY OF PHOENIX,place + governance match (100% overlap),1.0,86.0,29,633376025.0
+Central Contra Costa Sanitary District,CA,Contra Costa,CENTRAL CONTRA COSTA SANITARY DIST,place + governance match (100% overlap),1.0,86.0,8,199638000.0
+City of San Diego,CA,San Diego,CITY OF SAN DIEGO,place + governance match (100% overlap),1.0,84.0,9,236265691.0
+City of Scottsdale,AZ,Maricopa,CITY OF SCOTTSDALE,place + governance match (100% overlap),1.0,84.0,22,461333199.0
+Truckee Meadows Water Authority,NV,Unspecified,TRUCKEE MEADOWS WATER AUTHORITY,place + governance match (100% overlap),1.0,84.0,24,301015000.0
+Santa Clara Valley Water District,CA,Los Angeles,SANTA CLARA VALLEY WATER DISTRICT,place + governance match (100% overlap),1.0,84.0,30,672565193.0
+Zone 7 Water Agency,CA,Alameda,ZONE 7 WATER AGENCY,place + governance match (100% overlap),1.0,84.0,14,57000900.0
+City of Surprise,AZ,Maricopa,CITY OF SURPRISE,place + governance match (100% overlap),1.0,84.0,9,33821950.0
+City of Reno,NV,Washoe,CITY OF RENO,place + governance match (100% overlap),1.0,82.0,7,155521073.0
+City of Tempe,AZ,Maricopa,CITY OF TEMPE,place + governance match (100% overlap),1.0,82.0,10,397938317.0
+City of Buckeye,AZ,Maricopa,CITY OF BUCKEYE PUBLIC WORKS,place + governance match (67% overlap),0.67,82.0,9,48098000.0
+South Orange County Wastewater Authority,CA,Orange,SOUTH ORANGE COUNTY WASTEWATER AUTH,place + governance match (100% overlap),1.0,82.0,27,17867822.0
+City of Avondale,AZ,Maricopa,CITY OF AVONDALE,place + governance match (100% overlap),1.0,82.0,6,119200000.0
+Alameda County Water District,CA,Alameda,ALAMEDA COUNTY WATER DISTRICT,place + governance match (100% overlap),1.0,82.0,21,59786765.0
+City of Sacramento,CA,Sacramento,CITY OF SACRAMENTO,place + governance match (100% overlap),1.0,81.0,7,83756262.0
+City of Chandler,AZ,Maricopa,CITY OF CHANDLER,place + governance match (100% overlap),1.0,80.0,15,1487227047.0
+Irvine Ranch Water District,CA,Orange,IRVINE RANCH WATER DIST,place + governance match (100% overlap),1.0,80.0,17,328167750.0
+Town of Gilbert,AZ,Maricopa,TOWN OF GILBERT,place + governance match (100% overlap),1.0,80.0,12,570319000.0
+City of Santa Cruz,CA,Santa Cruz,CITY OF SANTA CRUZ,place + governance match (100% overlap),1.0,80.0,6,160800284.0
+Coachella Valley Water District,CA,Riverside,COACHELLA VALLEY WATER DISTRICT,place + governance match (100% overlap),1.0,80.0,14,50062761.0
+City of Peoria,AZ,Maricopa,CITY OF PEORIA,place + governance match (100% overlap),1.0,80.0,8,31452320.0
+Clark County Water Reclamation District,NV,Unspecified,CLARK COUNTY WATER RECLAMATION,place + governance match (80% overlap),0.8,79.0,6,177826025.0
+Las Vegas Valley Water District,NV,Clark,LAS VEGAS VALLEY WATER DIST,place + governance match (100% overlap),1.0,78.0,8,135099500.0
+City of Benicia,CA,Solano,CITY OF BENICIA,place + governance match (100% overlap),1.0,78.0,4,13506000.0
+City of Goodyear,AZ,Maricopa,CITY OF GOODYEAR,place + governance match (100% overlap),1.0,77.0,9,152738879.0
+Santa Fe Irrigation District,CA,San Diego,CITY OF SANTA FE WATER DISTRICT,place + governance match (50% overlap),0.5,77.0,10,27384400.0
+East Bay Municipal Utility District,CA,Alameda,EAST BAY MUNICIPAL UTILITY DISTRICT,place + governance match (100% overlap),1.0,77.0,10,6811500000.0
+Contra Costa Water District,CA,Contra Costa,CONTRA COSTA WATER DISTRICT,place + governance match (100% overlap),1.0,76.0,5,209070000.0
+City of Manteca,CA,San Joaquin,CITY OF MANTECA,place + governance match (100% overlap),1.0,76.0,6,14182000.0
+City of Huntington Beach,CA,Orange,CITY OF HUNTINGTON BEACH,place + governance match (100% overlap),1.0,73.0,6,40084257.0
+City of Calexico,CA,Imperial,CITY OF CALEXICO,place + governance match (100% overlap),1.0,72.8,9,2101000.0
+Las Virgenes Municipal Water District,CA,Los Angeles,LAS VIRGENES MUNICIPAL WATER DIST,place + governance match (100% overlap),1.0,71.0,5,379773031.0
+Western Municipal Water District,CA,Riverside,WESTERN MUNICIPAL WATER DIST,place + governance match (100% overlap),1.0,71.0,5,18050000.0
+City of Roseville,CA,Placer,CITY OF ROSEVILLE,place + governance match (100% overlap),1.0,68.8,8,9916750.0
+City of Brentwood,CA,Contra Costa,CITY OF BRENTWOOD,place + governance match (100% overlap),1.0,68.0,5,115320000.0
+Southern Nevada Water Authority,NV,Clark,SOUTHERN NEVADA WATER AUTHORITY,place + governance match (100% overlap),1.0,68.0,6,146396000.0
+Orange County Sanitation District,CA,Orange,ORANGE COUNTY SANITATION,place + governance match (75% overlap),0.75,68.0,9,17774000.0
+City of Antioch,CA,Contra Costa,CITY OF ANTIOCH,place + governance match (100% overlap),1.0,67.9,6,4037341.0
+City of Bend,OR,Deschutes,CITY OF BEND,place + governance match (100% overlap),1.0,67.0,5,33220000.0
+Yorba Linda Water District,CA,Orange,YORBA LINDA WATER DISTRICT,place + governance match (100% overlap),1.0,65.0,7,24000931.0
+San Bernardino Municipal Water Department,CA,San Bernardino,SAN BERNARDINO MUNICIPAL WATER DEPT,place + water domain match (100% overlap),1.0,64.7,7,335000.0
+City of Henderson,NV,Clark,CITY OF HENDERSON,place + governance match (100% overlap),1.0,64.1,5,8643700.0
+Orange County Water District,CA,Orange,ORANGE COUNTY WATER DISTRICT,place + governance match (100% overlap),1.0,62.0,5,550360000.0
+Helix Water District,CA,San Diego,HELIX WATER DISTRICT,place + governance match (100% overlap),1.0,60.6,9,5796000.0
+City of Orange,CA,Orange,CITY OF ORANGE,place + governance match (100% overlap),1.0,57.8,6,4875000.0
+Rancho California Water District,CA,Unspecified,RANCHO CALIFORNIA WATER DIST,place + governance match (100% overlap),1.0,57.2,5,8115000.0
+Central Coast Water Authority,CA,Santa Barbara,CENTRAL COAST WATER AUTHORITY,place + governance match (100% overlap),1.0,54.9,5,1450000.0
+City of Santa Barbara,CA,Santa Barbara,CITY OF SANTA BARBARA,place + governance match (100% overlap),1.0,52.7,5,10395000.0
+Nevada Irrigation District,CA,Nevada,NEVADA IRRIGATION DISTRICT,place + governance match (100% overlap),1.0,52.1,8,140038000.0
+Goleta Water District,CA,Santa Barbara,GOLETA WATER DISTRICT,place + governance match (100% overlap),1.0,49.6,4,5319851.0
+City of Puyallup,WA,Pierce,CITY OF PUYALLUP,place + governance match (100% overlap),1.0,47.3,3,650000.0
+City of Riverside,CA,Riverside,CITY OF RIVERSIDE,place + governance match (100% overlap),1.0,47.2,4,7100000.0
+City of Fresno,CA,Fresno,CITY OF FRESNO,place + governance match (100% overlap),1.0,47.0,3,27093300.0
+Calleguas Municipal Water District,CA,Ventura,CALLEGUAS MUNICIPAL WATER DIST.,place + governance match (100% overlap),1.0,45.5,4,3242000.0
+Town of Cave Creek,AZ,Maricopa,TOWN OF CAVE CREEK,place + governance match (100% overlap),1.0,45.1,4,1065000.0
+City of Santa Ana,CA,Orange,CITY OF SANTA ANA,place + governance match (100% overlap),1.0,44.0,2,22000000.0
+Truckee-Donner Public Utility District,CA,Nevada,TRUCKEE DONNER PUBLIC UTILITY DISTR,place + governance match (100% overlap),1.0,43.3,3,4669219.0
+City of Modesto,CA,Stanislaus,CITY OF MODESTO,place + governance match (100% overlap),1.0,41.0,2,90000000.0
+Town of Queen Creek,AZ,Maricopa,TOWN OF QUEEN CREEK,place + governance match (100% overlap),1.0,41.0,2,172000000.0
+City of Mesa,AZ,Maricopa,CITY OF MESA,place + governance match (100% overlap),1.0,39.7,4,362046.0
+City of Portland,OR,Multnomah,CITY OF PORTLAND,place + governance match (100% overlap),1.0,35.4,3,2702818.0
+South Coast Water District,CA,Orange,SOUTH COAST WATER DISTRICT,place + governance match (100% overlap),1.0,34.2,5,600000.0
+City of Cerritos,CA,Los Angeles,CITY OF CERRITOS,place + governance match (100% overlap),1.0,34.2,3,625000.0
+City of Tracy,CA,San Joaquin,CITY OF TRACY,place + governance match (100% overlap),1.0,33.7,3,1849000.0
+City of Palo Alto,CA,Santa Clara,CITY OF PALO ALTO,place + governance match (100% overlap),1.0,33.0,5,28902094.0
+City of Douglas,AZ,Cochise,CITY OF DOUGLAS,place + governance match (100% overlap),1.0,31.8,3,419756.0
+Marin Municipal Water District,CA,Madera,MARIN MUNICIPAL WATER DISTRICT,place + governance match (100% overlap),1.0,29.4,3,1200000.0
+Orange Co Sanitation District,CA,Unspecified,ORANGE COUNTY SANITATION,place + governance match (75% overlap),0.75,29.0,1,89100000.0
+City of Los Angeles,CA,Los Angeles,CITY OF LOS ANGELES,place + governance match (100% overlap),1.0,29.0,1,329000000.0
+City of Flagstaff,AZ,Coconino,CITY OF FLAGSTAFF,place + governance match (100% overlap),1.0,25.0,2,4222403.0
+City of Malibu,CA,Los Angeles,CITY OF MALIBU,place + governance match (100% overlap),1.0,23.6,1,2300000.0
+Mission Springs Water District,CA,Riverside,MISSION SPRINGS WATER DISTRICT,place + governance match (100% overlap),1.0,23.0,2,977040.0
+City of South San Francisco,CA,San Mateo,CITY OF SOUTH SAN FRANCISCO,place + governance match (100% overlap),1.0,21.7,2,3350000.0
+City of Patterson,CA,Stanislaus,City of Patterson,place + governance match (100% overlap),1.0,19.1,1,30000.0
+East Valley Water District,CA,San Bernardino,EAST VALLEY WATER DISTRICT,place + governance match (100% overlap),1.0,19.0,1,0.0
+Sweetwater Authority,CA,San Diego,SWEETWATER AUTHORITY,place + governance match (100% overlap),1.0,15.2,2,610900.0
+Diablo Water District,CA,Contra Costa,DIABLO WATER DISTRICT,place + governance match (100% overlap),1.0,15.0,2,0.0
+West Basin Municipal Water District,CA,Los Angeles,WEST BASIN MUNICIPAL WATER DISTRICT,place + governance match (100% overlap),1.0,9.0,1,0.0
+Navajo Tribal Utility Authority,AZ,Unspecified,NAVAJO TRIBAL UTILITY AUTHORITY,place + governance match (100% overlap),1.0,9.0,1,0.0
+San Diego County Water Authority,CA,San Diego,SAN DIEGO COUNTY WATER AUTH.,place + governance match (100% overlap),1.0,6.1,1,50000.0
+Golden State Water Company,CA,Los Angeles,GOLDEN STATE WATER,place + water domain match (100% overlap),1.0,3.0,1,0.0
+Encina Wastewater Authority,CA,San Diego,ENCINA WASTEWATER AUTHORITY,place + governance match (100% overlap),1.0,2.0,1,0.0
