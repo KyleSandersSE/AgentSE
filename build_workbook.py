@@ -82,6 +82,22 @@ def write_table(ws, df, start_row=1, name_col=None, blocked_mask=None,
         ws.column_dimensions[get_column_letter(j)].width = w
 
 
+AGENCY_SOURCE_COLS = [
+    "owner", "state", "county", "city", "target", "score", "size",
+    "population", "n_opps", "n_high", "n_priority", "n_modern",
+    "value_total", "value_high", "contact_name", "contact_title",
+    "contact_email", "contact_phone", "address", "zip", "lat", "lon",
+    "target_reason",
+]
+AGENCY_HEADERS = [
+    "Agency", "State", "County", "City", "Status", "EAE Score",
+    "Size Tier", "Population", "Opportunities", "High-Fit",
+    "Priority", "Upgrade/Replace", "Total Value",
+    "High-Fit Value", "Contact", "Title", "Email", "Phone",
+    "Address", "ZIP", "Lat", "Lon", "Status Reason",
+]
+
+
 def main():
     agencies = pd.read_csv(os.path.join(HERE, "WaterDistricts_EAE_Targets.csv"))
     opps = pd.read_csv(os.path.join(HERE, "WaterDistricts_EAE_Opportunities.csv"))
@@ -130,17 +146,26 @@ def main():
         r += 1
 
     # Formulas so the counts follow any edits made to the Agencies tab.
+    # Column letters are derived from the Agencies sheet layout below - the
+    # sheet renames and reorders the CSV columns, so hardcoding letters here
+    # silently points the formulas at the wrong data.
     n = len(agencies)
+    last = n + 1
+
+    def rng(header):
+        i = AGENCY_HEADERS.index(header) + 1
+        return f"Agencies!{get_column_letter(i)}2:{get_column_letter(i)}{last}"
+
     live = [
-        ("Agencies total", f'=COUNTA(Agencies!B2:B{n + 1})'),
-        ("Blocked — cannot target", '=COUNTIF(Agencies!U2:U%d,"Blocked")' % (n + 1)),
-        ("Open — targetable", '=COUNTIF(Agencies!U2:U%d,"Open")' % (n + 1)),
+        ("Agencies total", f'=COUNTA({rng("Agency")})'),
+        ("Blocked — cannot target", f'=COUNTIF({rng("Status")},"Blocked")'),
+        ("Open — targetable", f'=COUNTIF({rng("Status")},"Open")'),
         ("Open pipeline value",
-         '=SUMIF(Agencies!U2:U%d,"Open",Agencies!R2:R%d)' % (n + 1, n + 1)),
+         f'=SUMIF({rng("Status")},"Open",{rng("Total Value")})'),
         ("Open high-fit projects",
-         '=SUMIF(Agencies!U2:U%d,"Open",Agencies!N2:N%d)' % (n + 1, n + 1)),
+         f'=SUMIF({rng("Status")},"Open",{rng("High-Fit")})'),
         ("Open agencies scoring 70+",
-         '=COUNTIFS(Agencies!U2:U%d,"Open",Agencies!T2:T%d,">=70")' % (n + 1, n + 1)),
+         f'=COUNTIFS({rng("Status")},"Open",{rng("EAE Score")},">=70")'),
     ]
     for label, formula in live:
         ws.cell(row=r, column=1, value=label).font = BODY
@@ -174,18 +199,9 @@ def main():
     ws.column_dimensions["B"].width = 62
 
     # ---------------- Agencies ----------------
-    a_cols = ["owner", "state", "county", "city", "target", "score", "size",
-              "population", "n_opps", "n_high", "n_priority", "n_modern",
-              "value_total", "value_high", "contact_name", "contact_title",
-              "contact_email", "contact_phone", "address", "zip", "lat", "lon",
-              "target_reason"]
-    adf = agencies.sort_values(["target", "score"],
-                               ascending=[True, False])[a_cols].copy()
-    adf.columns = ["Agency", "State", "County", "City", "Status", "EAE Score",
-                   "Size Tier", "Population", "Opportunities", "High-Fit",
-                   "Priority", "Upgrade/Replace", "Total Value",
-                   "High-Fit Value", "Contact", "Title", "Email", "Phone",
-                   "Address", "ZIP", "Lat", "Lon", "Status Reason"]
+    adf = agencies.sort_values(
+        ["target", "score"], ascending=[True, False])[AGENCY_SOURCE_COLS].copy()
+    adf.columns = AGENCY_HEADERS
     ws2 = wb.create_sheet("Agencies")
     write_table(ws2, adf, name_col="Agency",
                 blocked_mask=(adf["Status"] == "Blocked"),
