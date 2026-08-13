@@ -128,10 +128,10 @@ def main():
         ("TABS", ""),
         ("Agencies", "One row per agency, ranked by EAE score. Start here."),
         ("Opportunities", "All 3,959 projects. Agency name is red if blocked."),
-        ("Blocked Accounts", "The 88 blocked agencies and the named account "
-                             "each matched."),
-        ("Needs Review", "Close matches I would not auto-block. Put block or "
-                         "allow in the decision column."),
+        ("Blocked Accounts", "Every blocked agency and the named account it "
+                             "matched, with match confidence."),
+        ("Assumed Blocked", "Blocked on name similarity rather than a certain "
+                            "match. Release any of these if you know better."),
         ("", ""),
         ("LIVE COUNTS", ""),
     ]
@@ -159,6 +159,7 @@ def main():
     live = [
         ("Agencies total", f'=COUNTA({rng("Agency")})'),
         ("Blocked — cannot target", f'=COUNTIF({rng("Status")},"Blocked")'),
+        ("  of which assumed on name similarity", len(review)),
         ("Open — targetable", f'=COUNTIF({rng("Status")},"Open")'),
         ("Open pipeline value",
          f'=SUMIF({rng("Status")},"Open",{rng("Total Value")})'),
@@ -180,8 +181,11 @@ def main():
                                                           bold=True)
     r += 1
     for note in [
+        "Agencies whose name is merely similar to a named account are blocked "
+        "too, on the assumption that most large accounts are already taken. "
+        "Those are listed on Assumed Blocked and can be released individually.",
         "The named-account list has no state column, so same-named agencies "
-        "in different states were resolved by size — see Needs Review.",
+        "in different states were resolved by size.",
         "Map pins are ZIP-centroid accurate (about 1–3 miles), not rooftop.",
         "Population is each agency's self-reported figure and is sometimes "
         "understated.",
@@ -229,37 +233,41 @@ def main():
                         "Email": 30, "Citylitics Link": 30})
 
     # ---------------- Blocked Accounts ----------------
-    bdf = blocked[["owner", "state", "county", "named_account", "match_reason",
-                   "name_overlap", "n_opps", "value_total", "score"]].copy()
+    bdf = blocked[["owner", "state", "county", "named_account",
+                   "match_confidence", "match_reason", "name_overlap",
+                   "n_opps", "value_total", "score"]].copy()
     bdf.columns = ["Agency (blocked)", "State", "County",
-                   "Matched Named Account", "Why It Matched", "Name Overlap",
-                   "Opportunities", "Total Value", "EAE Score"]
+                   "Matched Named Account", "Confidence", "Why It Matched",
+                   "Name Overlap", "Opportunities", "Total Value", "EAE Score"]
     ws4 = wb.create_sheet("Blocked Accounts")
     write_table(ws4, bdf, name_col="Agency (blocked)",
                 blocked_mask=pd.Series([True] * len(bdf)),
                 money_cols={"Total Value"}, pct_cols={"Name Overlap"},
                 widths={"Agency (blocked)": 42, "Matched Named Account": 38,
-                        "Why It Matched": 40})
+                        "Why It Matched": 40, "Confidence": 26})
 
     # ---------------- Needs Review ----------------
     rdf = review[["owner", "state", "county", "possible_named_account",
                   "why_not_auto_blocked", "n_opps", "value_total", "score",
                   "decision (block/allow)"]].copy()
-    rdf.columns = ["Agency", "State", "County", "Possible Named Account",
-                   "Why Not Auto-Blocked", "Opportunities", "Total Value",
-                   "EAE Score", "YOUR DECISION (block/allow)"]
-    ws5 = wb.create_sheet("Needs Review")
-    write_table(ws5, rdf, money_cols={"Total Value"},
-                widths={"Agency": 42, "Possible Named Account": 46,
-                        "Why Not Auto-Blocked": 44,
-                        "YOUR DECISION (block/allow)": 26})
+    rdf.columns = ["Agency", "State", "County", "Matched Named Account",
+                   "Why It Was Uncertain", "Opportunities", "Total Value",
+                   "EAE Score", "RELEASE? (leave blank to keep blocked)"]
+    ws5 = wb.create_sheet("Assumed Blocked")
+    write_table(ws5, rdf, name_col="Agency",
+                blocked_mask=pd.Series([True] * len(rdf)),
+                money_cols={"Total Value"},
+                widths={"Agency": 42, "Matched Named Account": 46,
+                        "Why It Was Uncertain": 44,
+                        "RELEASE? (leave blank to keep blocked)": 30})
     # Mark the decision column as the one to fill in.
     dcol = len(rdf.columns)
     for i in range(2, len(rdf) + 2):
         ws5.cell(row=i, column=dcol).fill = AMBER_FILL
     ws5.cell(row=1, column=dcol).comment = Comment(
-        "Type block or allow here, then send the file back so the map and "
-        "exclusion list can be regenerated.", "EAE targeting")
+        "These are blocked on name similarity, not a certain match. Type "
+        "release next to any you know is actually open, then send the file "
+        "back to regenerate the map and exclusion list.", "EAE targeting")
 
     wb.save(OUT)
     print(f"wrote {os.path.basename(OUT)}")

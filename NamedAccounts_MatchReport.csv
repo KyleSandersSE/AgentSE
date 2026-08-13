@@ -113,7 +113,7 @@ CASCADE STEEL ROLLING MILLS,no water match,False,False
 CEMEX,no water match,False,False
 CEMEX INC.,no water match,False,False
 CEMEX USA,no water match,False,False
-CENTRAL ARIZONA PROJECT,no water match,False,False
+CENTRAL ARIZONA PROJECT,matched,False,False
 CENTRAL COAST WATER AUTHORITY,matched,True,True
 CENTRAL CONTRA COSTA SANITARY DIST,matched,True,True
 CENTRAL UTAH WATER CNSRVNCY DIST,no water match,True,True
@@ -518,11 +518,11 @@ PIC-BARRICK WESTERN 102,no water match,False,False
 PILGRIM'S PRIDE CORPORATION,no water match,False,False
 PIMA COUNTY WASTE WATER DEPT.,no water match,True,True
 PIMA CTY WASTE WATER TREATMENT FAC,no water match,True,True
-PIMA UTILITIES,no water match,False,False
+PIMA UTILITIES,matched,False,False
 PINTO VALLY MINE,no water match,False,False
 PLAINS EXPLORATION,no water match,False,False
 PLANTEL NURSERY,no water match,False,False
-PORT OF SEATTLE,no water match,False,False
+PORT OF SEATTLE,matched,False,False
 PORT OF SEATTLE COMMISSIONERS,no water match,False,False
 PORTLAND GENERAL ELECTRIC,no water match,False,False
 PORTLAND GENERAL ELECTRIC CO,no water match,False,True
@@ -565,7 +565,7 @@ SACRAMENTO MUNICIPAL UTILITY DIST,no water match,False,True
 SACRAMENTO MUNICIPAL UTILITY DISTRI,no water match,False,False
 SAINT GOBAIN,no water match,False,False
 SALT LAKE CITY CORPORATION,no water match,False,True
-SALT RIVER PROJECT,no water match,False,False
+SALT RIVER PROJECT,matched,False,False
 SAN BERNARDINO MUNICIPAL WATER DEPT,matched,True,False
 SAN DIEGO COUNTY WATER AUTH.,matched,True,True
 SAN DIEGO COUNTY WATER AUTHORITY,no water match,True,True
@@ -617,7 +617,7 @@ SOUTH ORANGE COUNTY WASTEWATER AUTH,matched,True,True
 SOUTHEASTERN COLORADO WATER CONSERV,no water match,True,False
 SOUTHERN CALIFORNIA EDISON,no water match,False,False
 SOUTHERN CALIFORNIA EDISON CO.,no water match,False,True
-SOUTHERN CALIFORNIA WATER COMPANY,no water match,True,False
+SOUTHERN CALIFORNIA WATER COMPANY,matched,True,False
 SOUTHERN NEVADA WATER AUTHORITY,matched,True,True
 SPECIALTY MINERALS INC,no water match,False,False
 STARBUCKS,no water match,False,False

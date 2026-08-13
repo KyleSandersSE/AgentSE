@@ -9,9 +9,12 @@ five unrelated agencies. This matcher keeps the entity type as part of the
 identity and only auto-blocks when the place name AND the governance type
 agree.
 
+Close-but-uncertain matches are blocked too (see BLOCK_SIMILAR_NAMES), tagged
+`similar name (assumed blocked)` so any one of them can be released later.
+
 Outputs:
-    data/named_accounts_excluded.csv    - confident blocks (feeds the map build)
-    NamedAccounts_Review.csv            - near-misses needing a human call
+    data/named_accounts_excluded.csv    - blocked agencies (feeds the map build)
+    NamedAccounts_Review.csv            - the uncertain subset, with reasons
     NamedAccounts_MatchReport.csv       - every named account and its outcome
 """
 
@@ -26,6 +29,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 NAMED_CSV = os.environ.get(
     "NAMED_ACCOUNTS_CSV", os.path.join(HERE, "data", "eu_named_accounts.csv"))
 AGENCY_CSV = os.path.join(HERE, "WaterDistricts_EAE_Targets.csv")
+
+# Policy: a close name match is treated as blocked without waiting for a
+# ruling. Nearly every large agency in this territory is already a named
+# account, so the cost of wrongly pursuing one outweighs the cost of setting
+# a genuinely open agency aside. Set False to hold these for manual review
+# instead; either way they stay tagged so a single case can be reversed.
+BLOCK_SIMILAR_NAMES = True
 
 # Expand abbreviations before anything else - the named-account export is
 # truncated to a fixed width, so "DIST", "AUTH", "MUN" are everywhere.
@@ -290,6 +300,60 @@ def main():
         if demoted:
             rdf = pd.concat([rdf, pd.DataFrame(demoted)], ignore_index=True)
 
+    # Promote the near-misses to blocked, keeping why each one was uncertain
+    # so any single call can be reversed later.
+    if BLOCK_SIMILAR_NAMES and len(rdf):
+        promoted = pd.DataFrame({
+            "owner": rdf["owner"],
+            "state": rdf["state"],
+            "county": rdf["county"],
+            "named_account": rdf["possible_named_account"],
+            "match_reason": "name similarity — " + rdf["why_not_auto_blocked"],
+            "name_overlap": rdf["best_name_overlap"],
+            "score": rdf["score"],
+            "n_opps": rdf["n_opps"],
+            "value_total": rdf["value_total"],
+        })
+        bdf = pd.concat([bdf, promoted], ignore_index=True)
+
+    # Citylitics sometimes records a joint project under a compound owner -
+    # "City of Ridgefield and Clark Regional Wastewater District". If a blocked
+    # agency's full name sits inside one, that entry is blocked too.
+    if len(bdf):
+        already = set(zip(bdf["owner"], bdf["state"]))
+        blocked_names = {str(o).lower().strip() for o in bdf["owner"]}
+        inherited = []
+        for _, ag in agencies.iterrows():
+            if (ag["owner"], ag["state"]) in already:
+                continue
+            low = str(ag["owner"]).lower()
+            # Split on joining words only. A bare substring test is wrong:
+            # "City of Orange Cove" contains "city of orange" but is a
+            # different city 250 miles away, and "East Orange County Water
+            # District" is not "Orange County Water District".
+            parts = [p.strip() for p in
+                     re.split(r"\s+and\s+|\s*&\s*|\s*/\s*|\s*;\s*", low)
+                     if p.strip()]
+            hit = next((p for p in parts
+                        if len(parts) > 1 and p in blocked_names), None)
+            if hit:
+                inherited.append({
+                    "owner": ag["owner"], "state": ag["state"],
+                    "county": ag["county"], "named_account": hit,
+                    "match_reason": ("compound name contains a blocked "
+                                     "agency"),
+                    "name_overlap": 1.0, "score": ag["score"],
+                    "n_opps": ag["n_opps"], "value_total": ag["value_total"],
+                })
+        if inherited:
+            bdf = pd.concat([bdf, pd.DataFrame(inherited)], ignore_index=True)
+            print(f"  + {len(inherited)} compound name(s) inherited a block")
+
+    bdf["match_confidence"] = [
+        "similar name (assumed blocked)" if str(r).startswith("name similarity")
+        else "compound name" if str(r).startswith("compound name")
+        else "confident" for r in bdf["match_reason"]]
+
     bdf = bdf.sort_values("score", ascending=False)
     rdf = rdf.sort_values("score", ascending=False)
 
@@ -309,8 +373,13 @@ def main():
     rdf.to_csv(os.path.join(HERE, "NamedAccounts_Review.csv"), index=False)
     rep.to_csv(os.path.join(HERE, "NamedAccounts_MatchReport.csv"), index=False)
 
-    print(f"\n  auto-blocked : {len(bdf):,} agencies")
-    print(f"  needs review : {len(rdf):,} agencies")
+    conf = int((bdf["match_confidence"] == "confident").sum())
+    sim = len(bdf) - conf
+    print(f"\n  blocked total   : {len(bdf):,} agencies")
+    print(f"    confident     : {conf:,}")
+    print(f"    similar name  : {sim:,} (assumed blocked; reversible)")
+    print(f"  held for review : "
+          f"{0 if BLOCK_SIMILAR_NAMES else len(rdf):,} agencies")
     muni = rep["looks_like_municipal"] | rep["looks_like_water"]
     print(f"  named accounts that look municipal/water : {int(muni.sum()):,}")
     print(f"  named accounts with no water-dataset match : "
