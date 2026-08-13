@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Districts - EAE Targeting Map</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="vendor/leaflet.css" />
+
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="vendor/MarkerCluster.css" />
+    <link rel="stylesheet" href="vendor/MarkerCluster.Default.css" />
+
+    <link rel="stylesheet" href="water-styles.css">
+</head>
+<body>
+<div class="app">
+
+    <header class="hdr">
+        <div class="hdr-title">
+            <h1>💧 Water Districts — EAE Targeting</h1>
+            <span class="hdr-sub">EcoStruxure Automation Expert · CA / WA / OR / NV / AZ / HI</span>
+        </div>
+        <div class="hdr-stats">
+            <div class="stat"><span class="stat-val" id="sAgencies">0</span><span class="stat-lbl">Agencies</span></div>
+            <div class="stat"><span class="stat-val" id="sOpps">0</span><span class="stat-lbl">Opportunities</span></div>
+            <div class="stat hi"><span class="stat-val" id="sHigh">0</span><span class="stat-lbl">High-fit projects</span></div>
+            <div class="stat"><span class="stat-val" id="sValue">$0</span><span class="stat-lbl">Pipeline value</span></div>
+            <div class="stat ok"><span class="stat-val" id="sTargetable">0</span><span class="stat-lbl">Targetable</span></div>
+        </div>
+    </header>
+
+    <div class="body">
+        <aside class="side" id="side">
+
+            <div class="sec">
+                <div class="search">
+                    <input type="text" id="q" placeholder="Search agency, county, contact…">
+                    <button id="qClear" title="Clear">✕</button>
+                </div>
+            </div>
+
+            <div class="sec">
+                <h2>Targeting status</h2>
+                <div id="targetFilters" class="chips"></div>
+            </div>
+
+            <div class="sec">
+                <h2>Filters</h2>
+
+                <label class="fl">State</label>
+                <div id="stateFilters" class="chips"></div>
+
+                <label class="fl">Agency size (population served)</label>
+                <select id="fSize">
+                    <option value="all">All sizes</option>
+                    <option value="rural">Rural + Small (&lt;50k) — core focus</option>
+                    <option value="Rural (&lt;10k)">Rural (&lt;10k)</option>
+                    <option value="Small (10-50k)">Small (10–50k)</option>
+                    <option value="Mid (50-250k)">Mid (50–250k)</option>
+                    <option value="Large (250k+)">Large (250k+)</option>
+                    <option value="Unknown">Unknown</option>
+                </select>
+
+                <label class="fl">Minimum EAE score: <b id="lScore">0</b></label>
+                <input type="range" id="fScore" min="0" max="100" step="5" value="0">
+
+                <label class="fl">Minimum pipeline value: <b id="lValue">$0</b></label>
+                <input type="range" id="fValue" min="0" max="50000000" step="500000" value="0">
+
+                <label class="fl">Minimum high-fit projects: <b id="lHigh">0</b></label>
+                <input type="range" id="fHigh" min="0" max="20" step="1" value="0">
+
+                <label class="chk">
+                    <input type="checkbox" id="fPriority">
+                    <span>Only agencies with Priority-ranked insights</span>
+                </label>
+                <label class="chk">
+                    <input type="checkbox" id="fModern">
+                    <span>Only upgrade / replacement / rehab projects</span>
+                </label>
+
+                <button id="reset" class="btn-ghost">Reset all filters</button>
+            </div>
+
+            <div class="sec">
+                <h2>Legend</h2>
+                <div class="lg"><i class="dot open-hot"></i> Open — strong fit (score ≥ 50)</div>
+                <div class="lg"><i class="dot open"></i> Open — lower fit</div>
+                <div class="lg"><i class="dot rural"></i> Rural water target list</div>
+                <div class="lg"><i class="dot existing"></i> Existing account / projects</div>
+                <div class="lg"><i class="dot blocked"></i> Blocked — named account</div>
+                <p class="note" id="listNote"></p>
+            </div>
+
+            <div class="sec">
+                <div class="sec-head">
+                    <h2>Ranked targets</h2>
+                    <button id="exportBtn" class="btn-mini">Export CSV</button>
+                </div>
+                <div id="rank" class="rank"></div>
+            </div>
+
+            <div class="sec" id="unmappedSec">
+                <h2>Not on map <span class="badge" id="unmappedCount">0</span></h2>
+                <p class="note">These agencies have no ZIP or county in the Citylitics
+                    export, so they cannot be placed. They are still in the CSV exports.</p>
+                <div id="unmapped" class="unmapped"></div>
+            </div>
+        </aside>
+
+        <div class="resizer" id="resizer"></div>
+
+        <div class="map-wrap">
+            <div id="map"></div>
+            <div class="map-badge" id="mapBadge">0 agencies shown</div>
+        </div>
+
+        <aside class="detail" id="detail">
+            <button class="detail-close" id="detailClose">✕</button>
+            <div id="detailBody"></div>
+        </aside>
+    </div>
+</div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/leaflet.markercluster.js"></script>
+<script src="water-data.js"></script>
+<script src="water-app.js"></script>
+</body>
+</html>

@@ -1,31 +1,25 @@
+
+# *.csv
+# Excel files (keep only CSV)
 # IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
+# Large data files (optional - comment out if you want to include them)
+# Node modules (if ever used)
 # OS files
-.DS_Store
-Thumbs.db
-desktop.ini
-
+# Python cache
 # Temporary files
-*.tmp
 *.bak
 *.log
-
-# Excel files (keep only CSV)
-*.xlsx
-*.xls
-
-# Large data files (optional - comment out if you want to include them)
-# *.csv
-
-# Node modules (if ever used)
-node_modules/
-
-# Python cache
-__pycache__/
 *.pyc
-
+*.swo
+*.swp
+*.tmp
+*.xls
+*.xlsx
+*~
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+__pycache__/
+desktop.ini
+node_modules/
