@@ -25,23 +25,48 @@ repo.
 
 You'll get four layers you can toggle independently:
 
-- **Blocked** (99 pins) — named accounts, do not contact
-- **Open — priority (score 70+)**
-- **Open — strong (score 50–69)**
-- **Open — watch (score <50)**
+- **Blocked** (115 pins) — named accounts, do not contact
+- **Open — priority (score 70+)** — 120 pins, start here
+- **Open — strong (score 50–69)** — 105 pins
+- **Open — watch (score <50)** — 490 pins
 
 Click any pin for the agency's opportunity count, total value, EAE score,
 primary contact, and its top projects.
 
+### Working the data inside My Maps
+
+Every pin carries 18 data fields, so My Maps gives you a real table, not just
+placemarks:
+
+- **Open the table:** click the ⋮ menu next to a layer → **Open data table**.
+  Sort by EAE Score, Total Value USD, or High-Fit Projects to rank a layer.
+- **Color by a column:** click **Style** under a layer → *Group places by* →
+  pick **EAE Score** or **Size Tier**. This re-colors pins on any field you
+  choose.
+- **Filter:** the data table's column headers filter, so you can narrow a layer
+  to one county or size tier without touching the source file.
+
+Fields on every pin: Status · EAE Score · Opportunities · High-Fit Projects ·
+Priority Insights · Upgrade or Replace · Total Value USD · High-Fit Value USD ·
+Population · Size Tier · County · State · Contact · Contact Title · Email ·
+Phone · Project Types · Why Blocked.
+
+> My Maps re-colors imported pins by layer and ignores the file's own colors.
+> That is expected — the layer a pin sits in carries its status, and you can
+> re-style by any data column above.
+
 **To share:** click **Share** → set to "Anyone with the link" → copy. Recipients
 need no account and can open it in the Google Maps mobile app.
 
-### Two limits worth knowing
+### Limits worth knowing
 
-- My Maps allows **10 layers and 2,000 pins per layer**. We're well inside
-  both, but if you later split by state you'll approach the layer cap.
-- My Maps **re-colors imported pins by layer**, so the styling is simpler than
-  the interactive version. Layer membership carries the meaning.
+- My Maps allows **10 layers, 2,000 pins per layer, and 5 MB per file**. This
+  file is 1.5 MB across 4 layers, so there is room — but if you later split by
+  state you will approach the layer cap.
+- **38 agencies are not on the map.** They have neither a ZIP nor a county in
+  the Citylitics export, so there is nowhere honest to put them. They are all
+  in the CSV and workbook exports, and listed in the interactive map's
+  "Not on map" panel.
 
 ---
 

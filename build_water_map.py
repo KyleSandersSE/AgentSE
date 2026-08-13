@@ -660,6 +660,10 @@ def write_kml(mapped, path):
                 f'http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png'
                 f'</href></Icon></IconStyle></Style>')
 
+    def data(name, value):
+        return (f'<Data name="{esc(name)}"><value>{esc(value)}</value></Data>'
+                if value not in (None, "") else "")
+
     for bucket, rows in sorted(buckets.items()):
         parts.append(f"<Folder><name>{esc(bucket)} ({len(rows)})</name>")
         for a in rows:
@@ -671,11 +675,11 @@ def write_kml(mapped, path):
                              f"{esc(label)}{amount}</li>")
             lines = "".join(items)
             c = a["contact"] or {}
+            pop = int(a["population"]) if pd.notna(a["population"]) else None
             desc = (
                 f"<b>{esc(a['owner'])}</b> ({esc(a['state'])})<br/>"
                 f"EAE score: <b>{a['score']}</b> &nbsp;|&nbsp; Status: <b>{esc(a['target'])}</b><br/>"
-                + (f"Population: {int(a['population']):,}<br/>"
-                   if pd.notna(a["population"]) else "")
+                + (f"Population: {pop:,}<br/>" if pop else "")
                 + f"County: {esc(a['county'])}<br/>"
                 + f"Opportunities: {a['n_opps']} "
                   f"({a['n_high']} high-fit, {a['n_priority']} priority)<br/>"
@@ -684,10 +688,42 @@ def write_kml(mapped, path):
                    f"<br/>{esc(c.get('email'))} {esc(c.get('phone'))}<br/>" if c else "")
                 + f"<br/><b>Top opportunities:</b><ul>{lines}</ul>"
             )
+
+            # ExtendedData becomes the sortable data table in Google My Maps,
+            # and numeric fields can drive its "style by data column" colouring
+            # - so scores and counts are written bare, without formatting.
+            top_inds = []
+            for o in a["opps"]:
+                for ind in o["ind"]:
+                    if ind not in top_inds:
+                        top_inds.append(ind)
+            ed = "".join([
+                data("Status", a["target"]),
+                data("EAE Score", a["score"]),
+                data("Opportunities", a["n_opps"]),
+                data("High-Fit Projects", a["n_high"]),
+                data("Priority Insights", a["n_priority"]),
+                data("Upgrade or Replace", a["n_modern"]),
+                data("Total Value USD", int(a["value_total"] or 0)),
+                data("High-Fit Value USD", int(a["value_high"] or 0)),
+                data("Population", pop),
+                data("Size Tier", a["size"]),
+                data("County", a["county"]),
+                data("State", a["state"]),
+                data("Contact", c.get("name")),
+                data("Contact Title", c.get("title")),
+                data("Email", c.get("email")),
+                data("Phone", c.get("phone")),
+                data("Project Types", "; ".join(top_inds[:5])),
+                data("Why Blocked", a["target_reason"]
+                     if a["target"] == "Blocked" else None),
+            ])
+
             parts.append(
                 f"<Placemark><name>{esc(a['owner'])}</name>"
                 f"<styleUrl>#{styles[kml_color(a['target'], a['score'])]}</styleUrl>"
                 f"<description><![CDATA[{desc}]]></description>"
+                f"<ExtendedData>{ed}</ExtendedData>"
                 f"<Point><coordinates>{a['lon']},{a['lat']},0</coordinates></Point>"
                 f"</Placemark>")
         parts.append("</Folder>")
