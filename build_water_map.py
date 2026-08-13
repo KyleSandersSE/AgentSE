@@ -24,7 +24,7 @@ import os
 import re
 import sys
 import unicodedata
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 import numpy as np
 import pandas as pd
@@ -220,19 +220,33 @@ def build_county_index(zip_idx, zips_df):
 
 
 def load_exclusion_list(path):
-    """Blocked accounts, keyed exactly on (owner, state).
+    """Blocked accounts, keyed exactly on (owner, state), with the match
+    detail match_named_accounts.py worked out for each one.
 
     match_named_accounts.py already did the careful cross-reference and wrote
     exact Citylitics owner names here. Re-normalizing would undo that work -
     the loose key collapses all six Orange County agencies onto "orange".
+
+    Returns (key set, detail dict) - detail carries named_account and
+    match_confidence so the map can show *why* an agency is blocked, not
+    just that it is.
     """
     if not path or not os.path.exists(path):
-        return set()
+        return set(), {}
     df = pd.read_csv(path, dtype=str)
     if "owner" not in df.columns or "state" not in df.columns:
-        return set()
-    return {(str(o).strip(), str(s).strip())
-            for o, s in zip(df["owner"], df["state"]) if pd.notna(o)}
+        return set(), {}
+    keys, detail = set(), {}
+    for _, r in df.iterrows():
+        if pd.isna(r["owner"]):
+            continue
+        k = (str(r["owner"]).strip(), str(r["state"]).strip())
+        keys.add(k)
+        detail[k] = {
+            "named_account": r.get("named_account"),
+            "confidence": r.get("match_confidence") or "confident",
+        }
+    return keys, detail
 
 
 def load_account_list(path):
@@ -310,7 +324,7 @@ def main():
 
     print("Loading account lists ...")
     lists = {}
-    blocked_keys = load_exclusion_list(ACCOUNT_LISTS["blocked"])
+    blocked_keys, blocked_detail = load_exclusion_list(ACCOUNT_LISTS["blocked"])
     print(f"  blocked: {len(blocked_keys):,} agencies (exact owner+state match)"
           if blocked_keys else
           f"  blocked: not supplied - place at "
@@ -488,9 +502,14 @@ def main():
 
         # ----- targetability -----
         nn = norm_name(owner)
+        block_confidence = None
         if (owner, state) in lists.get("blocked", set()):
             target = "Blocked"
-            target_reason = "On named-account exclusion list"
+            bd = blocked_detail.get((owner, state), {})
+            target_reason = (f"Named account: {bd['named_account']}"
+                             if bd.get("named_account")
+                             else "On named-account exclusion list")
+            block_confidence = bd.get("confidence", "confident")
         elif nn in lists.get("rural", set()):
             target = "Rural Target"
             target_reason = "On rural water target list"
@@ -511,6 +530,22 @@ def main():
             size = "Mid (50-250k)"
         else:
             size = "Large (250k+)"
+
+        # Dominant Citylitics industry across the agency's opportunities - lets
+        # the map be grouped or filtered by Wastewater / Drinking Water /
+        # Stormwater / Software rather than only by targeting status.
+        ind_counts = Counter()
+        for lst in g["industries"]:
+            for ind in lst:
+                if ind and ind != "Unspecified":
+                    ind_counts[ind] += 1
+        if ind_counts:
+            top_n, top_c = ind_counts.most_common(1)[0]
+            leaders = [k for k, c in ind_counts.items() if c == top_c]
+            primary_industry = (top_n if len(leaders) == 1
+                                else "Mixed (" + " / ".join(sorted(leaders)[:3]) + ")")
+        else:
+            primary_industry = "Unspecified"
 
         # best contact across the agency's rows
         contact = None
@@ -549,6 +584,8 @@ def main():
             "value_total": float(val_total) if val_total else 0.0,
             "value_high": float(val_high) if val_high else 0.0,
             "score": score, "target": target, "target_reason": target_reason,
+            "block_confidence": block_confidence,
+            "primary_industry": primary_industry,
             "contact": contact, "opps": opp_list,
         })
 
@@ -624,22 +661,29 @@ def kml_color(target, score):
 
 
 def write_kml(mapped, path):
-    """Google My Maps import. One folder per targetability bucket, and My Maps
-    caps a layer at 2,000 features - buckets keep us well under that."""
+    """Google My Maps import.
+
+    Two layers only: "Water - Blocked" and "Water - Open Targets". Google My
+    Maps flattens KML folders into a single flat layer list (it has no nested
+    sub-layers) and caps a map at 10 layers total, so splitting Open into
+    priority/strong/watch bands the way earlier drafts did would burn 4 of
+    those 10 slots on one vertical alone - no room left for other verticals
+    (food & beverage, manufacturing, ...) if those get imported into the same
+    map later.
+
+    The finer bands aren't lost: once imported, My Maps can "Group places by"
+    the EAE Score field (a numeric column), producing the same score bands as
+    togglable groups *inside* one layer - which also fixes the actual
+    colouring problem, since My Maps does not reliably tint the custom KML
+    icon styles below on import. The "Water -" prefix is deliberate so a
+    later import (e.g. "Food & Bev -") reads as a sibling vertical in the
+    same flat layer list rather than a naming collision.
+    """
     def esc(v):
         return html.escape(str(v)) if v is not None else ""
 
-    # One folder per bucket becomes one layer in Google My Maps. The Open
-    # bucket is split by score so the layer list stays actionable - My Maps
-    # caps at 10 layers and 2,000 features per layer.
     def bucket_of(a):
-        if a["target"] != "Open":
-            return a["target"]
-        if a["score"] >= 70:
-            return "Open - priority (score 70+)"
-        if a["score"] >= 50:
-            return "Open - strong (score 50-69)"
-        return "Open - watch (score <50)"
+        return "Water - Blocked" if a["target"] == "Blocked" else "Water - Open Targets"
 
     buckets = defaultdict(list)
     for _, a in mapped.iterrows():
@@ -647,7 +691,13 @@ def write_kml(mapped, path):
 
     parts = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<kml xmlns="http://www.opengis.net/kml/2.2"><Document>',
-             '<name>Water Districts - EAE Targeting (CA/WA/OR/NV/AZ/HI)</name>']
+             '<name>Water Districts - EAE Targeting (CA/WA/OR/NV/AZ/HI)</name>',
+             '<description><![CDATA[EcoStruxure Automation Expert territory '
+             'targeting. After import, open each layer\'s style panel and '
+             '"Group places by" EAE Score, Primary Industry, or Size Tier to '
+             'color-code and get a legend you can toggle. Pin popups and the '
+             'data table both carry a direct link to the opportunity in '
+             'Citylitics.]]></description>']
 
     styles = {}
     for _, a in mapped.iterrows():
@@ -664,15 +714,22 @@ def write_kml(mapped, path):
         return (f'<Data name="{esc(name)}"><value>{esc(value)}</value></Data>'
                 if value not in (None, "") else "")
 
+    SHOWN_OPPS = 8
+
     for bucket, rows in sorted(buckets.items()):
         parts.append(f"<Folder><name>{esc(bucket)} ({len(rows)})</name>")
         for a in rows:
             items = []
-            for o in a["opps"][:6]:
+            for o in a["opps"][:SHOWN_OPPS]:
                 label = "; ".join(o["ind"]) or "Unspecified"
                 amount = f" - ${o['value']:,.0f}" if o.get("value") else ""
+                link = (f' — <a href="{esc(o["url"])}" target="_blank">'
+                        f'Open in Citylitics ↗</a>' if o.get("url") else "")
                 items.append(f"<li><b>{esc(o['fit'])} fit</b> - "
-                             f"{esc(label)}{amount}</li>")
+                             f"{esc(label)}{amount}{link}</li>")
+            if len(a["opps"]) > SHOWN_OPPS:
+                items.append(f"<li><i>+{len(a['opps']) - SHOWN_OPPS} more — "
+                             f"see the CSV or workbook for the full list</i></li>")
             lines = "".join(items)
             c = a["contact"] or {}
             pop = int(a["population"]) if pd.notna(a["population"]) else None
@@ -692,14 +749,18 @@ def write_kml(mapped, path):
             # ExtendedData becomes the sortable data table in Google My Maps,
             # and numeric fields can drive its "style by data column" colouring
             # - so scores and counts are written bare, without formatting.
+            # Plain http(s) values (the Citylitics link) render as clickable
+            # in the data table too.
             top_inds = []
             for o in a["opps"]:
                 for ind in o["ind"]:
                     if ind not in top_inds:
                         top_inds.append(ind)
+            top_link = next((o["url"] for o in a["opps"] if o.get("url")), None)
             ed = "".join([
                 data("Status", a["target"]),
                 data("EAE Score", a["score"]),
+                data("Primary Industry", a.get("primary_industry")),
                 data("Opportunities", a["n_opps"]),
                 data("High-Fit Projects", a["n_high"]),
                 data("Priority Insights", a["n_priority"]),
@@ -715,8 +776,10 @@ def write_kml(mapped, path):
                 data("Email", c.get("email")),
                 data("Phone", c.get("phone")),
                 data("Project Types", "; ".join(top_inds[:5])),
+                data("Top Citylitics Link", top_link),
                 data("Why Blocked", a["target_reason"]
                      if a["target"] == "Blocked" else None),
+                data("Block Confidence", a.get("block_confidence")),
             ])
 
             parts.append(
@@ -731,7 +794,8 @@ def write_kml(mapped, path):
     parts.append("</Document></kml>")
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(parts))
-    print(f"  wrote {os.path.basename(path)} ({len(mapped):,} placemarks)")
+    print(f"  wrote {os.path.basename(path)} ({len(mapped):,} placemarks, "
+          f"{len(buckets)} layers)")
 
 
 if __name__ == "__main__":

@@ -23,46 +23,96 @@ repo.
 4. Drag in `WaterDistricts_EAE.kml`, or browse to it.
 5. Wait — 830 pins takes a few seconds.
 
-You'll get four layers you can toggle independently:
+You'll get two layers:
 
-- **Blocked** (115 pins) — named accounts, do not contact
-- **Open — priority (score 70+)** — 120 pins, start here
-- **Open — strong (score 50–69)** — 105 pins
-- **Open — watch (score <50)** — 490 pins
+- **Water - Blocked** (115 pins) — named accounts, do not contact
+- **Water - Open Targets** (715 pins) — everything you can pursue
 
-Click any pin for the agency's opportunity count, total value, EAE score,
-primary contact, and its top projects.
+Only two, on purpose — see "Room for other verticals" below. Click any pin
+for the agency's opportunity count, total value, EAE score, primary
+industry, primary contact, and its top projects **with a working Citylitics
+link on each one**.
 
-### Working the data inside My Maps
+### Turning on color — do this first
 
-Every pin carries 18 data fields, so My Maps gives you a real table, not just
-placemarks:
+My Maps imports every pin the same flat black by default; it does not
+reliably apply a KML file's own icon colors. Color comes from a feature
+inside My Maps itself, and it's one click per layer:
 
-- **Open the table:** click the ⋮ menu next to a layer → **Open data table**.
-  Sort by EAE Score, Total Value USD, or High-Fit Projects to rank a layer.
-- **Color by a column:** click **Style** under a layer → *Group places by* →
-  pick **EAE Score** or **Size Tier**. This re-colors pins on any field you
-  choose.
-- **Filter:** the data table's column headers filter, so you can narrow a layer
-  to one county or size tier without touching the source file.
+1. Click the **Water - Open Targets** layer.
+2. Click **Individual styles** (directly under the layer name) to open the
+   style panel.
+3. Under **Group places by**, choose a field — good starting points:
+   - **EAE Score** — numeric, so My Maps offers a color ramp with adjustable
+     buckets (try 4–5 buckets). This recreates the old priority/strong/watch
+     bands, but as togglable groups *inside* the layer instead of separate
+     layers, so you can hide the bottom band with one click.
+   - **Primary Industry** — Wastewater / Drinking Water / Software /
+     Stormwater / Mixed. Useful if you want to see where the SCADA-heavy
+     "Software" opportunities cluster.
+   - **Size Tier** — Rural / Small / Mid / Large, matching your rural-water
+     focus.
+4. Repeat for **Water - Blocked** — try **Block Confidence**, which splits
+   *confident* matches from *similar name (assumed blocked)* ones, so you can
+   see at a glance which blocks are certain and which are your judgment call
+   to revisit later.
 
-Fields on every pin: Status · EAE Score · Opportunities · High-Fit Projects ·
+Each grouping gets its own legend with checkboxes right there in the layer
+panel — that's the same toggle convenience the old 4-layer split gave you,
+without spending 4 of your 10 available layers on one vertical.
+
+### Getting to the Citylitics opportunity
+
+Two ways, both now built in:
+
+- **Click a pin.** The popup lists up to 8 opportunities, each ending in
+  **"Open in Citylitics ↗"** — a real link that opens the source record in a
+  new tab.
+- **Open the data table** (⋮ next to a layer → **Open data table**). The
+  **Top Citylitics Link** column holds the link to that agency's
+  highest-value opportunity, and My Maps auto-linkifies it — click straight
+  through from the table without opening the pin first.
+
+If an agency has more than 8 opportunities, the popup says how many more and
+points you to the CSV or workbook for the rest — packing all 3,959 into pin
+popups isn't practical, but every one is a link.
+
+### The full data table
+
+Every pin carries these fields, sortable and filterable from the data table:
+Status · EAE Score · Primary Industry · Opportunities · High-Fit Projects ·
 Priority Insights · Upgrade or Replace · Total Value USD · High-Fit Value USD ·
 Population · Size Tier · County · State · Contact · Contact Title · Email ·
-Phone · Project Types · Why Blocked.
-
-> My Maps re-colors imported pins by layer and ignores the file's own colors.
-> That is expected — the layer a pin sits in carries its status, and you can
-> re-style by any data column above.
+Phone · Project Types · Top Citylitics Link · Why Blocked · Block Confidence.
 
 **To share:** click **Share** → set to "Anyone with the link" → copy. Recipients
 need no account and can open it in the Google Maps mobile app.
 
+### Room for other verticals (bringing in your industrial/F&B data)
+
+The map is deliberately down to 2 layers instead of 4 so there's headroom.
+My Maps caps a map at **10 layers total**, and layers don't nest — a KML
+`<Folder>` becomes a flat entry in the same list, not a sub-group. So the way
+to organize by vertical is naming, not hierarchy:
+
+- This file's layers are named **"Water - Blocked"** and
+  **"Water - Open Targets"**.
+- Give any other vertical's KML the same pattern — e.g.
+  **"F&B - Blocked"** / **"F&B - Open Targets"** — and import it into this
+  same My Map (**Add layer** → **Import**, same steps as above). The list
+  will read as grouped by vertical even though My Maps itself keeps it flat,
+  and you'll have used 4 of 10 layers with two verticals loaded.
+- If your Food & Beverage / industrial dataset is a CSV with addresses or
+  lat/lon, My Maps can import that directly — no KML conversion needed,
+  same **Add layer → Import** flow. If it needs the same scoring and
+  ExtendedData treatment this file got, send it over and I'll build a
+  matching KML with the same field set so both verticals filter and style
+  the same way.
+
 ### Limits worth knowing
 
 - My Maps allows **10 layers, 2,000 pins per layer, and 5 MB per file**. This
-  file is 1.5 MB across 4 layers, so there is room — but if you later split by
-  state you will approach the layer cap.
+  file is 2.1 MB across 2 layers — 8 layers of headroom for other verticals.
 - **38 agencies are not on the map.** They have neither a ZIP nor a county in
   the Citylitics export, so there is nowhere honest to put them. They are all
   in the CSV and workbook exports, and listed in the interactive map's
