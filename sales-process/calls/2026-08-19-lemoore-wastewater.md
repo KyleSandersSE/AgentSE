@@ -3,7 +3,7 @@
 **Contacts:** Zeke (lift station coordinator, met at Tri-State) · Chief Plant Operator · Anthony (Sr. Wastewater Operator) · Division Supervisor (joined late, holds a departmental budget)
 **Not present:** Juan Diego — Asst. Public Works Director, technical decision-maker · Estefan — Public Works Director
 **Track:** End User
-**Transcript:** recorded, ASR poor. NOTE: the "decision maker" segment was pasted as a duplicate of the main block — not yet reviewed.
+**Transcript:** recorded, ASR poor (names badly mangled). Closing segment reviewed separately — Juan appeared briefly at the end.
 
 ---
 
@@ -32,10 +32,10 @@
 | B6 Qualification | **9** | Org chart, fiscal cycle, budget state, incumbent position, technical authority — all of it |
 | B7 Objection handling | 8 | Preempted the Telstar-displacement landmine before it detonated |
 | B8 Value articulation | 7 | Up from 5. The 2 AM laptop scenario is the best value frame he has produced. Undercut by a sustainability-brand detour |
-| B9 Next step | 7 | Verbal commitment to broker the Diego meeting, but undated and no deliverable attached |
+| B9 Next step | 7.5 | **October** obtained as a target month and the meeting scoped. Undercut by handing the calendar to the customer |
 | B10 Orchestration | N/A | Solo |
 
-**Execution average: 8.0 / 10** (AStech 4.2 → California Dairies 6.9 → **Lemoore 8.0**)
+**Execution average: 8.1 / 10** (AStech 4.2 → California Dairies 6.9 → **Lemoore 8.0**)
 
 ### Discovery vs. Conversion split
 
@@ -43,7 +43,7 @@
 |---|---|---|
 | AStech | 4.25 | 4.3 |
 | California Dairies | 8.0 | 5.8 |
-| **Lemoore** | **8.75** | **7.33** |
+| **Lemoore** | **8.75** | **7.5** |
 
 Conversion moved +1.5 in one call. That was the coaching target and it landed.
 
@@ -51,7 +51,7 @@ Conversion moved +1.5 in one call. That was the coaching target and it landed.
 
 ## Part C — Outcome
 
-**Grade: B−** — A budget-holder verbally committed to broker the meeting with Juan Diego. Undated, no deliverable, and dependent on a person Kyle has been unable to reach for a year.
+**Grade: B** — October target month agreed, meeting scoped (high school station + new upgrades + roadmap), and 60–90 seconds face-to-face with Juan producing a verbal "sure." Held back from B+ because the calendar invite was left with the customer.
 
 ---
 
@@ -111,3 +111,72 @@ That is not competing with Telstar's current scope. It is the next project, and 
 - [ ] **Confirm** SSO reporting history with the State Water Board — a documented overflow record is the strongest funding lever available for a wastewater agency.
 - [ ] **Trigger** Next fiscal budget talks, "toward the end of the early year." Pin the exact date and put it in the CRM. Everything before that is positioning.
 - [ ] **Monthly** Kyle is in the valley once a month. Standing touch is already established — use it to land the Diego meeting, not to check in.
+
+
+---
+
+# Closing segment — additional findings
+
+## The pump standardization story — biggest miss of the call
+
+Jeremy walked through it unprompted:
+
+- Flygt pumps installed ~2004–2007 reached end of life
+- Replacements went **obsolete**; Flygt "weren't responding fast enough"
+- Under time pressure (station needs 3 of 4 pumps during high flow) they bought **Homa** off the shelf because it matched the curve
+- The pump fit — but the **guide rails and base elbows were Flygt-proprietary**, so it needed an adapter
+- Fleet is now one Flygt, one Homa, one Flygt, one Crane
+- Telstar's recommendation: **standardize on Homa so the base elbow accepts any pump.** "It's not gonna be proprietary to just Flygt."
+
+That is the EAE thesis, told back to him in hardware form, by the customer, complete with the lesson already learned and the decision already made — *on pumps*.
+
+**The line that was available and not used:**
+
+> "You just told me why you're standardizing on Homa — so the base elbow fits whatever pump you can actually get. That's exactly what we do with controls. Right now your PLC is a Flygt guide rail: one vendor, one programmer, one phone number. We make it a Homa base elbow."
+
+A customer-supplied analogy, already emotionally validated, requiring no explanation. **This is the single highest-value thing missed across all three calls.**
+
+## MicroLogix — verify immediately
+
+Hardware named: VFDs likely **Schneider Altivar** (Telstar's spec), PLC believed to be **Allen-Bradley MicroLogix**.
+
+If that is correct, Telstar is installing *new* PLCs on a Rockwell platform that has already been announced end-of-life. **Verify before the October meeting.** If it holds, it is the most legitimate and least aggressive argument available: the city is spending capital today on a controller with a published sunset, at 12 of 42 sites, with 30 more to come.
+
+The Altivar detail also matters in the other direction — Schneider drives are already going in, which makes the Altivar dPAC (drive-as-controller) play materially easier at the remaining 30 stations.
+
+## "Whatever Telstar suggests" — the real authority finding
+
+> **Kyle:** "Did you have any preference, or was it just because Telstar suggested it?"
+> **Jeremy:** "Pretty much. Whatever Telstar kind of suggests."
+
+**Telstar specifies the hardware.** Not Diego, not Estefan. That reframes the whole account: the technical decision-maker for brand selection is the incumbent integrator. Winning through Diego alone is unlikely — the path runs through Telstar or it does not run.
+
+This answer was received and not followed up on. It is arguably more strategically important than anything else in the transcript.
+
+## The customer pitched the product back
+
+> "So we can train on how to reset the PLCs — like if we have an issue at high school, instead of having to wait on them. We can learn how to reset it ourselves."
+
+Unprompted restatement of the value proposition as their own idea. That is a buying signal, and the enablement/training angle is clearly the emotional center of this deal — more than energy, more than architecture.
+
+## Handled well
+
+- **Honest under a hard question.** "Is there any way we can reprogram it so that's not in there?" → *"Depends. We'd have to go see the system... I just don't want to make you any promises that aren't true."* Same honesty that earned credibility at AStech.
+- **The wedge, articulated in the moment.** *"You just invested for 12 of your 42. If the eventual vision is citywide, and you're already having this problem where you have to call Telstar — this is the right time."* Clear, well-timed, non-aggressive.
+- **Meeting scoped well.** Longer session, walk the high school station, review what was installed, build a roadmap. Customer agreed: "we'll do everything at once."
+- **Got a date.** Asked for timeline, got October.
+- **Juan, finally, in person.** After a year of unreturned calls: *"If you're open to having another conversation about the citywide initiatives"* → *"Sure."* Thin, but it is a face and a yes.
+
+## The process error
+
+> "If you want to shoot me an email... you got my contact. You can set up and get something on the calendar."
+
+The next step was handed to the customer. A municipal supervisor mid-installation on a citywide upgrade will not send that email. **Own the invite.** This single habit costs more deals than any product gap.
+
+## Revised actions
+
+- [ ] **T+24h** Send the calendar invite for **early October**. Do not wait for Jeremy's email. Propose two dates, attach the agenda already agreed (high school station, review of installed upgrades, roadmap).
+- [ ] **T+48h** **Verify the MicroLogix EOL status** against Rockwell's published lifecycle. If confirmed, it anchors the October conversation.
+- [ ] **T+48h** Telstar call (Connor/Corey). Now urgent — they specify the hardware. Frame around the 30 unmonitored stations, which is net-new work for them, not displacement.
+- [ ] **Rehearse the pump analogy.** Flygt guide rail → Homa base elbow → controls. Lead the October meeting with it.
+- [ ] **October meeting** Bring a priced Phase 1 for 2–3 unmonitored lift stations, and confirm whether the high school station can be overlaid without disturbing Telstar's work.
