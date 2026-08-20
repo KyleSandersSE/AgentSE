@@ -1,0 +1,642 @@
+<title>Columbia Basin Run</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --ground:#F1F2EE;
+    --panel:#FBFBF9;
+    --panel-2:#E7E9E2;
+    --ink:#191B18;
+    --ink-2:#4A4E46;
+    --ink-3:#787D72;
+    --rule:#D2D5CB;
+    --rule-soft:#E2E4DC;
+    --accent:#8A6A11;
+    --accent-wash:#F0E7CC;
+    --ring1:#8A6A11;
+    --ring2:#4F6344;
+    --ring3:#7E8377;
+    --warm:#8C3B18;
+    --shadow:0 1px 2px rgba(25,27,24,.05), 0 10px 26px -20px rgba(25,27,24,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#141613;
+      --panel:#1C1F1A;
+      --panel-2:#252923;
+      --ink:#EDEEE7;
+      --ink-2:#B3B8AA;
+      --ink-3:#868B7C;
+      --rule:#343930;
+      --rule-soft:#272B24;
+      --accent:#D2AE4E;
+      --accent-wash:#332C16;
+      --ring1:#D2AE4E;
+      --ring2:#8FA97F;
+      --ring3:#8A8F82;
+      --warm:#E08A5F;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px -20px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#141613;
+    --panel:#1C1F1A;
+    --panel-2:#252923;
+    --ink:#EDEEE7;
+    --ink-2:#B3B8AA;
+    --ink-3:#868B7C;
+    --rule:#343930;
+    --rule-soft:#272B24;
+    --accent:#D2AE4E;
+    --accent-wash:#332C16;
+    --ring1:#D2AE4E;
+    --ring2:#8FA97F;
+    --ring3:#8A8F82;
+    --warm:#E08A5F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 26px -20px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size:17px;
+    line-height:1.6;
+    margin:0;
+    padding:0 20px 96px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+  .prose{max-width:66ch;}
+
+  h1,h2,h3,.eyebrow,.label,th,.btn{
+    font-family:Archivo, "Helvetica Neue", Arial, sans-serif;
+  }
+  h1,h2,h3{text-wrap:balance;margin:0;}
+
+  .eyebrow{
+    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin:0;
+  }
+  .label{
+    font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);
+  }
+
+  /* ---- masthead ---- */
+  header.mast{
+    border-bottom:2px solid var(--ink);
+    padding:56px 0 22px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  header.mast h1{
+    font-size:clamp(38px,7vw,68px);
+    font-weight:700;line-height:.98;letter-spacing:-.025em;
+  }
+  header.mast .sub{
+    font-size:19px;color:var(--ink-2);max-width:60ch;margin:0;
+  }
+  .mast-meta{
+    display:flex;flex-wrap:wrap;gap:10px 28px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px;color:var(--ink-3);
+    padding-top:4px;
+  }
+  .mast-meta b{color:var(--ink-2);font-weight:500;}
+
+  /* ---- sections ---- */
+  section{padding-top:52px;}
+  section > h2{
+    font-size:26px;font-weight:700;letter-spacing:-.015em;
+    padding-bottom:10px;border-bottom:1px solid var(--rule);
+    margin-bottom:22px;
+  }
+  p{margin:0 0 16px;}
+  p:last-child{margin-bottom:0;}
+
+  /* ---- callout ---- */
+  .note{
+    background:var(--panel);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--warm);
+    border-radius:2px;
+    padding:20px 24px;
+    box-shadow:var(--shadow);
+  }
+  .note h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+  .note p{font-size:15.5px;color:var(--ink-2);}
+  .note .label{display:block;margin-bottom:10px;color:var(--warm);}
+
+  /* ---- industry grid ---- */
+  .segs{
+    display:grid;gap:14px;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    margin-top:22px;
+  }
+  .seg{
+    background:var(--panel);border:1px solid var(--rule);border-radius:2px;
+    padding:18px 20px;display:flex;flex-direction:column;gap:6px;
+  }
+  .seg .n{
+    font-family:"IBM Plex Mono",monospace;font-size:28px;font-weight:600;
+    color:var(--accent);line-height:1;font-variant-numeric:tabular-nums;
+  }
+  .seg .nm{font-family:Archivo,sans-serif;font-weight:600;font-size:15px;}
+  .seg .d{font-size:14px;color:var(--ink-3);line-height:1.45;}
+
+  /* ---- ring headers ---- */
+  .ring{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    margin:44px 0 16px;padding-bottom:8px;
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .ring .dot{
+    width:11px;height:11px;border-radius:50%;flex:none;align-self:center;
+  }
+  .ring h3{font-size:19px;font-weight:700;}
+  .ring .dist{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);
+    margin-left:auto;
+  }
+  .r1 .dot{background:var(--ring1);}
+  .r2 .dot{background:var(--ring2);}
+  .r3 .dot{background:var(--ring3);}
+
+  /* ---- target cards ---- */
+  .cards{display:flex;flex-direction:column;gap:12px;}
+  .card{
+    background:var(--panel);border:1px solid var(--rule);border-radius:2px;
+    padding:20px 22px;box-shadow:var(--shadow);
+    display:grid;gap:14px;
+    grid-template-columns:52px 1fr 190px;
+    align-items:start;
+  }
+  @media (max-width:760px){
+    .card{grid-template-columns:44px 1fr;}
+    .card .right{grid-column:1 / -1;border-top:1px solid var(--rule-soft);padding-top:12px;}
+  }
+  .rank{
+    font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;
+    color:var(--ink-3);font-variant-numeric:tabular-nums;line-height:1.1;
+  }
+  .card h4{
+    font-family:Archivo,sans-serif;font-size:18px;font-weight:700;
+    margin:0 0 3px;letter-spacing:-.01em;line-height:1.2;
+  }
+  .where{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);
+    margin-bottom:9px;
+  }
+  .proj{font-size:15px;color:var(--ink-2);line-height:1.5;margin-bottom:9px;}
+  .angle{
+    font-size:14.5px;line-height:1.5;
+    border-left:2px solid var(--accent);padding-left:11px;color:var(--ink);
+  }
+  .angle b{font-family:Archivo,sans-serif;font-size:12px;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--accent);display:block;margin-bottom:2px;font-weight:600;}
+  .right{display:flex;flex-direction:column;gap:9px;}
+  .stat{display:flex;justify-content:space-between;gap:12px;
+    font-family:"IBM Plex Mono",monospace;font-size:12.5px;
+    font-variant-numeric:tabular-nums;color:var(--ink-2);
+    border-bottom:1px dotted var(--rule);padding-bottom:5px;}
+  .stat span:first-child{color:var(--ink-3);}
+  .pill{
+    align-self:flex-start;font-family:Archivo,sans-serif;font-size:11px;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:2px;
+  }
+  .p-warm{background:var(--accent-wash);color:var(--accent);border:1px solid var(--accent);}
+  .p-queued{background:transparent;color:var(--ring2);border:1px solid var(--ring2);}
+  .p-cold{background:transparent;color:var(--ink-3);border:1px solid var(--rule);}
+
+  /* ---- schedule table ---- */
+  .tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:2px;background:var(--panel);}
+  table{border-collapse:collapse;width:100%;min-width:640px;}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--rule-soft);vertical-align:top;}
+  th{
+    font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);background:var(--panel-2);border-bottom:1px solid var(--rule);
+  }
+  td{font-size:15px;color:var(--ink-2);}
+  td:first-child{
+    font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink);
+    white-space:nowrap;font-variant-numeric:tabular-nums;
+  }
+  td b{color:var(--ink);font-weight:600;}
+  tr:last-child td{border-bottom:none;}
+
+  ul{margin:0 0 16px;padding-left:20px;}
+  li{margin-bottom:7px;}
+  li::marker{color:var(--accent);}
+
+  footer{
+    margin-top:64px;padding-top:20px;border-top:1px solid var(--rule);
+    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);
+    display:flex;flex-wrap:wrap;gap:8px 24px;
+  }
+  a{color:var(--accent);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+</style>
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">EAE Business Development &middot; Field Brief</p>
+  <h1>Columbia Basin Run</h1>
+  <p class="sub">Washington-only industrial opportunities worth a meeting while you are at Tyson Wallula &mdash; ranked by what you can physically reach from Pasco, with the EAE angle to lead with in each room.</p>
+  <div class="mast-meta">
+    <div>Anchor trip <b>Tue 1 Sep 2026</b></div>
+    <div>Booking window <b>1&ndash;12 Sep</b></div>
+    <div>Base <b>Pasco, WA</b></div>
+    <div>Targets <b>16 accounts</b></div>
+    <div>Source <b>IIR project data + EAE BD kit</b></div>
+  </div>
+</header>
+
+<section>
+  <div class="note">
+    <span class="label">Read this before you plan the week</span>
+    <h3>The data on hand is not the full IIR western-hemisphere extract.</h3>
+    <p>What is actually in the repo and the Drive covers three industry families &mdash; Food &amp; Beverage, Life Sciences, and Agriculture. The raw IIR CSVs in the repo are <b>Midwest</b> (10,947 projects, OH/IN/IL/WI/MI&hellip;) and <b>California</b> (1,836 + 356 projects). Neither contains a single Washington row. Every Washington target below comes from the derived <i>FB Target Accounts 2026 &mdash; Western US (EAE) Tier A Hot List</i>, which was already filtered to F&amp;B / Life Sci / Ag.</p>
+    <p style="margin-bottom:0">So this brief is complete for those three families and silent on the rest. If you want Power, Chemicals, Metals, Pulp &amp; Paper, or Oil &amp; Gas in the Tri-Cities &mdash; and the Basin has all of them &mdash; pull a fresh IIR extract filtered to <b>PLANT_ST = WA</b> with no industry filter, and I will rank it the same way. Say the word and I will spec exactly which columns to request.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Industries you can go after here</h2>
+  <div class="prose">
+    <p>None of what follows is water or wastewater. The Washington opportunity in this dataset sorts into four segments, and each carries a different EAE conversation.</p>
+  </div>
+  <div class="segs">
+    <div class="seg">
+      <div class="n">11</div>
+      <div class="nm">Core Food &amp; Beverage</div>
+      <div class="d">Potato, cherry, cranberry, beef, poultry, seed, juice, fruit packing. Packaging-line automation and palletizer cells dominate &mdash; the cleanest Angle&nbsp;1 pitch you have.</div>
+    </div>
+    <div class="seg">
+      <div class="n">3</div>
+      <div class="nm">Life Sciences</div>
+      <div class="d">CDMO and biologics in Bothell and Lynnwood, plus WSU research facilities. Lead Angle&nbsp;2 &mdash; batch data, contextualization, edge historian under GMP.</div>
+    </div>
+    <div class="seg">
+      <div class="n">1</div>
+      <div class="nm">Agriculture</div>
+      <div class="d">Dairy operations in Franklin County. Full-farm replacement means no legacy PLC debt &mdash; you are writing the control architecture, not retrofitting one.</div>
+    </div>
+    <div class="seg">
+      <div class="n">1</div>
+      <div class="nm">F&amp;B Logistics / Cold Chain</div>
+      <div class="d">Cold storage and distribution automation. Thin in WA in this dataset, but the strongest fit for distributed edge control across many small nodes.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Ranked targets</h2>
+  <div class="prose">
+    <p>Ranking weighs four things: how far it is from Pasco, how many fit-4 projects the account carries, total TIV, and whether the control architecture is still open. Proximity is weighted hardest &mdash; a meeting you can actually take beats a bigger number four hours away.</p>
+  </div>
+
+  <div class="ring r1">
+    <span class="dot"></span>
+    <h3>Ring 1 &mdash; same-day from Pasco</h3>
+    <span class="dist">under 1 hour &middot; book these first</span>
+  </div>
+  <div class="cards">
+
+    <article class="card">
+      <div class="rank">01</div>
+      <div>
+        <h4>Lamb Weston Holdings</h4>
+        <div class="where">Boardman OR + Columbia Basin WA sites &middot; ~50 min &middot; Core F&amp;B</div>
+        <div class="proj">Boardman French Fries West Plant packaging line automation upgrades &mdash; the top project of twelve across five OR/WA sites. Largest account in the entire western portfolio at $161.2M TIV.</div>
+        <div class="angle"><b>Angle 1 &mdash; portability</b>One control application, five sites. Redeploy the container instead of re-engineering each line. This is the multi-site story EAE was built for, and no competitor SDA platform can match it on mixed existing hardware.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-queued">Queued &middot; Duane Riel</span>
+        <div class="stat"><span>TIV</span><span>$161.2M</span></div>
+        <div class="stat"><span>Projects</span><span>12</span></div>
+        <div class="stat"><span>Fit-4</span><span>5</span></div>
+        <div class="stat"><span>Sites</span><span>5</span></div>
+        <div class="stat"><span>Score</span><span>98</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">02</div>
+      <div>
+        <h4>Tyson Foods &mdash; Wallula</h4>
+        <div class="where">Wallula, WA &middot; ~20 min &middot; Core F&amp;B</div>
+        <div class="proj">Beef Slaughtering &amp; Packing Plant refrigeration upgrades. Ammonia refrigeration, PLC temperature controls, electrical distribution. IIR project 301163725, $2.5M TIV.</div>
+        <div class="angle"><b>Angle 1 + 2 &mdash; the timing play</b>Scope finalizes ~Oct 2026, AFE ~Jan 2027, RFQs Q1 2027. Confidence is still low, which means the architecture is open. You are already on site &mdash; get in as the advisor who shapes the spec, not the vendor who answers the RFQ.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-warm">Warm &middot; anchor</span>
+        <div class="stat"><span>TIV</span><span>$2.5M</span></div>
+        <div class="stat"><span>Scope freeze</span><span>Oct 26</span></div>
+        <div class="stat"><span>AFE</span><span>Jan 27</span></div>
+        <div class="stat"><span>Contact</span><span>John Hill</span></div>
+        <div class="stat"><span>Score</span><span>95</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">03</div>
+      <div>
+        <h4>Chukar Cherry Company</h4>
+        <div class="where">Prosser, WA &middot; ~45 min &middot; Core F&amp;B</div>
+        <div class="proj">Prosser cherries packaging line automation upgrade, plus a second project at the same site. $13M TIV across two projects &mdash; unusually large for a single-site account.</div>
+        <div class="angle"><b>Angle 1 &mdash; hardware agnosticism</b>Seasonal packer with tight capex discipline. The wedge question lands hard here: can you run this on the industrial PC already on the floor? Two projects at one site means one architecture decision covers both.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$13.0M</span></div>
+        <div class="stat"><span>Projects</span><span>2</span></div>
+        <div class="stat"><span>Fit-4</span><span>1</span></div>
+        <div class="stat"><span>Sites</span><span>1</span></div>
+        <div class="stat"><span>Score</span><span>84</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">04</div>
+      <div>
+        <h4>White Bluffs Dairy</h4>
+        <div class="where">Mesa, WA &middot; ~30 min &middot; Agriculture</div>
+        <div class="proj">Mesa dairy farm replacement, $8M TIV. A full replacement, not a retrofit &mdash; milking, cooling, and materials handling controls all specified from scratch.</div>
+        <div class="angle"><b>Angle 1 + 3 &mdash; clean sheet</b>No installed base to argue with. Pitch a single containerized runtime covering parlour, cooling, and effluent handling on commodity hardware, managed like an IT workload. Replacement projects are where you win the architecture outright.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$8.0M</span></div>
+        <div class="stat"><span>Projects</span><span>1</span></div>
+        <div class="stat"><span>Fit-4</span><span>1</span></div>
+        <div class="stat"><span>Type</span><span>Replacement</span></div>
+        <div class="stat"><span>Score</span><span>80</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">05</div>
+      <div>
+        <h4>Seneca Foods Corporation</h4>
+        <div class="where">Dayton, WA &middot; ~1 hour &middot; Core F&amp;B</div>
+        <div class="proj">Dayton seed processing plant color sorter replacement, $4M TIV across two projects. Optical sorting is compute-adjacent and data-heavy.</div>
+        <div class="angle"><b>Angle 1 &mdash; run it on what you have</b>Sorter vendors ship locked appliances. EAE lets Seneca own the control and the data coming off the sorter rather than renting both. Easy half-day pairing with the Wallula visit.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$4.0M</span></div>
+        <div class="stat"><span>Projects</span><span>2</span></div>
+        <div class="stat"><span>Fit-4</span><span>1</span></div>
+        <div class="stat"><span>Type</span><span>Replacement</span></div>
+        <div class="stat"><span>Score</span><span>72</span></div>
+      </div>
+    </article>
+
+  </div>
+  <div class="ring r2">
+    <span class="dot"></span>
+    <h3>Ring 2 &mdash; day trip from Pasco</h3>
+    <span class="dist">1&ndash;3 hours &middot; one dedicated day each</span>
+  </div>
+  <div class="cards">
+
+    <article class="card">
+      <div class="rank">06</div>
+      <div>
+        <h4>PepsiCo &middot; Frito-Lay</h4>
+        <div class="where">Multiple WA and CA sites &middot; varies &middot; Core F&amp;B</div>
+        <div class="proj">Six projects across four sites, $56M TIV. Top project is a Modesto robotic palletizer addition, but the account spans Washington &mdash; confirm the WA site list before you call.</div>
+        <div class="angle"><b>Angle 3 &mdash; IT/OT convergence</b>Enterprise accounts buy standards, not sites. Pitch one containerized control standard versioned across the network: OT keeps IEC 61131-3, IT gets a workload they already know how to manage.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-queued">Queued &middot; Kel Dean</span>
+        <div class="stat"><span>TIV</span><span>$56.0M</span></div>
+        <div class="stat"><span>Projects</span><span>6</span></div>
+        <div class="stat"><span>Sites</span><span>4</span></div>
+        <div class="stat"><span>Score</span><span>70</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">07</div>
+      <div>
+        <h4>Washington State University</h4>
+        <div class="where">Wenatchee &middot; ~2.5 hr &middot; Life Sciences</div>
+        <div class="proj">Tree Fruit and Extension Center replacement, $214M TIV across four projects &mdash; the single largest TIV of any Washington account in the dataset.</div>
+        <div class="angle"><b>Angle 2 + 3 &mdash; the reference account</b>Research facilities need instrumentation data contextualized and shared, not locked in a vendor historian. Win this and you get a public, citable EAE reference in the middle of Washington agriculture.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$214.0M</span></div>
+        <div class="stat"><span>Projects</span><span>4</span></div>
+        <div class="stat"><span>Sites</span><span>2</span></div>
+        <div class="stat"><span>Score</span><span>68</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">08</div>
+      <div>
+        <h4>Blue Bird Incorporated</h4>
+        <div class="where">Wenatchee, WA &middot; ~2.5 hr &middot; Core F&amp;B</div>
+        <div class="proj">Wenatchee fruit packing plant packaging automation upgrades, $1.5M TIV. Small on its own &mdash; but it is in the same town as WSU.</div>
+        <div class="angle"><b>Angle 1 &mdash; low-cost edge</b>Small packer, small budget, allergic to proprietary controller refresh cycles. Stack it with the WSU visit and the drive pays for itself.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$1.5M</span></div>
+        <div class="stat"><span>Projects</span><span>1</span></div>
+        <div class="stat"><span>Fit-4</span><span>1</span></div>
+        <div class="stat"><span>Score</span><span>55</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">09</div>
+      <div>
+        <h4>Lassonde Industries</h4>
+        <div class="where">WA and CA sites &middot; varies &middot; Core F&amp;B</div>
+        <div class="proj">Four projects, three of them fit-4, $10.5M TIV. Top project is an Ontario CA robotic palletizer addition; the Washington site needs identifying before outreach.</div>
+        <div class="angle"><b>Angle 1 &mdash; cell portability</b>Three fit-4 projects is a strong density signal. Note the CRM flags this parent as needing manual ZoomInfo resolution &mdash; resolve the entity before you dial.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold &middot; needs ZI fix</span>
+        <div class="stat"><span>TIV</span><span>$10.5M</span></div>
+        <div class="stat"><span>Projects</span><span>4</span></div>
+        <div class="stat"><span>Fit-4</span><span>3</span></div>
+        <div class="stat"><span>Score</span><span>54</span></div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="ring r3">
+    <span class="dot"></span>
+    <h3>Ring 3 &mdash; Puget Sound and southwest WA</h3>
+    <span class="dist">4&ndash;5 hours &middot; schedule as a separate trip</span>
+  </div>
+  <div class="cards">
+
+    <article class="card">
+      <div class="rank">10</div>
+      <div>
+        <h4>Ocean Spray Cranberries</h4>
+        <div class="where">Aberdeen, WA &middot; ~4.5 hr &middot; Core F&amp;B</div>
+        <div class="proj">Aberdeen cranberry plant robotic stacker addition. Three projects, two fit-4, $8.5M TIV. Buying committee already mapped &mdash; five contacts including a controls engineer and the plant manager.</div>
+        <div class="angle"><b>Angle 1 &mdash; stacker cell control</b>Best-prepared account on the list after Tyson. Worth a dedicated coastal trip, not a forced detour during the Wallula week.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-queued">Queued &middot; Kevin Edwards</span>
+        <div class="stat"><span>TIV</span><span>$8.5M</span></div>
+        <div class="stat"><span>Projects</span><span>3</span></div>
+        <div class="stat"><span>Fit-4</span><span>2</span></div>
+        <div class="stat"><span>Contacts</span><span>5</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">11</div>
+      <div>
+        <h4>Neil Jones Food Company</h4>
+        <div class="where">Vancouver, WA &middot; ~4 hr &middot; Core F&amp;B</div>
+        <div class="proj">Vancouver cannery case packer automation upgrade. Three projects, two fit-4, $4.2M TIV. Six contacts mapped including two process control engineers.</div>
+        <div class="angle"><b>Angle 1 &mdash; case packer controls</b>Two controls engineers on file means the technical conversation can happen immediately. Combine with a Portland swing to pick up Old Trapper and the Oregon accounts.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-queued">Queued &middot; Reuben Valdez</span>
+        <div class="stat"><span>TIV</span><span>$4.2M</span></div>
+        <div class="stat"><span>Projects</span><span>3</span></div>
+        <div class="stat"><span>Fit-4</span><span>2</span></div>
+        <div class="stat"><span>Contacts</span><span>6</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">12</div>
+      <div>
+        <h4>AGC Incorporated</h4>
+        <div class="where">Bothell, WA &middot; ~4 hr &middot; Life Sciences</div>
+        <div class="proj">Bothell APIs / bulk biologics, antibodies and proteins CDMO renovations and upgrades. $13M TIV, two projects.</div>
+        <div class="angle"><b>Angle 2 &mdash; GMP data orchestration</b>CDMOs live on batch record integrity. EAE as control runtime and data concentrator in one removes a validated middleware layer from their qualification burden.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$13.0M</span></div>
+        <div class="stat"><span>Projects</span><span>2</span></div>
+        <div class="stat"><span>Fit-4</span><span>1</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">13</div>
+      <div>
+        <h4>Old Trapper Smoked Products</h4>
+        <div class="where">Forest Grove OR + WA &middot; ~4 hr &middot; Core F&amp;B</div>
+        <div class="proj">Forest Grove beef jerky plant packaging line replacement. Two projects across OR and WA, $13M TIV.</div>
+        <div class="angle"><b>Angle 1 &mdash; line replacement</b>Replacement scope with a two-state footprint. Same portability argument as Lamb Weston at a fraction of the scale &mdash; and a much shorter decision chain.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$13.0M</span></div>
+        <div class="stat"><span>Projects</span><span>2</span></div>
+        <div class="stat"><span>Sites</span><span>2</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">14</div>
+      <div>
+        <h4>Partner Therapeutics</h4>
+        <div class="where">Lynnwood, WA &middot; ~4 hr &middot; Life Sciences</div>
+        <div class="proj">Lynnwood Northpointe site sargramostim oncology APIs production expansion. $4M TIV, two projects.</div>
+        <div class="angle"><b>Angle 2 &mdash; batch data at the edge</b>Oncology API expansion under tight regulatory scrutiny. Lead with edge historian and contextualization, not with hardware cost.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$4.0M</span></div>
+        <div class="stat"><span>Projects</span><span>2</span></div>
+        <div class="stat"><span>Fit-4</span><span>1</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">15</div>
+      <div>
+        <h4>Perdue Farms</h4>
+        <div class="where">Mount Vernon, WA &middot; ~5 hr &middot; Core F&amp;B</div>
+        <div class="proj">Mount Vernon poultry processing plant upgrades. $4.5M TIV, two projects. Furthest target on the list.</div>
+        <div class="angle"><b>Angle 1 &mdash; poultry line controls</b>Enterprise parent, regional plant. Use it to open the corporate door rather than treating the site as the deal.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$4.5M</span></div>
+        <div class="stat"><span>Projects</span><span>2</span></div>
+        <div class="stat"><span>Fit-4</span><span>1</span></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="rank">16</div>
+      <div>
+        <h4>Seremoni Fish</h4>
+        <div class="where">Tacoma, WA &middot; ~4 hr &middot; Core F&amp;B</div>
+        <div class="proj">Tacoma brownfield fish processing plant, $5M TIV. Brownfield &mdash; the control architecture has not been chosen yet.</div>
+        <div class="angle"><b>Angle 1 + 3 &mdash; spec it in early</b>Smallest TIV in Ring 3 but the highest architectural leverage. Brownfields are where you get specified rather than compared.</div>
+      </div>
+      <div class="right">
+        <span class="pill p-cold">Cold</span>
+        <div class="stat"><span>TIV</span><span>$5.0M</span></div>
+        <div class="stat"><span>Projects</span><span>1</span></div>
+        <div class="stat"><span>Type</span><span>Brownfield</span></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+<section>
+  <h2>The two-week booking plan</h2>
+  <div class="prose">
+    <p>You are on site at Tyson on Tuesday 1 September. Everything in Ring 1 is reachable around that commitment. Ring 2 needs its own day. Ring 3 should not be squeezed into this trip &mdash; book it separately or you will burn two days driving for four cold meetings.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>When</th><th>Target</th><th>What you are asking for</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>This week</td><td><b>Lamb Weston</b> &mdash; Duane Riel, Jeffrey Schneider</td><td>Boardman or Richland meeting during the week of 1 Sep. Lead with multi-site container redeploy across the five OR/WA plants, not with a single line.</td></tr>
+        <tr><td>This week</td><td><b>Tyson</b> &mdash; John Hill</td><td>Confirm a walk-through while you are on site 1 Sep. Frame it as advisory input before the October scope freeze, explicitly not a bid conversation.</td></tr>
+        <tr><td>This week</td><td><b>Chukar Cherry</b>, <b>White Bluffs Dairy</b>, <b>Seneca Foods</b></td><td>Cold calls now to fill Wed 2 Sep and Thu 3 Sep. All three are inside an hour &mdash; offer to come to them.</td></tr>
+        <tr><td>Week of 8 Sep</td><td><b>WSU Wenatchee</b> + <b>Blue Bird</b></td><td>One Wenatchee day, both meetings. Email research facilities engineering at WSU; the $214M program justifies a formal capability session.</td></tr>
+        <tr><td>Week of 8 Sep</td><td><b>PepsiCo / Frito-Lay</b> &mdash; Kel Dean</td><td>Confirm the Washington site list first, then pitch a network-wide control standard rather than a single palletizer.</td></tr>
+        <tr><td>Before you go</td><td><b>Lassonde</b></td><td>Resolve the ZoomInfo entity &mdash; the CA plant is not a distinct record. Search the parent, Lassonde Industries / Sun-Rype, and identify the WA site.</td></tr>
+        <tr><td>Separate trip</td><td><b>Ocean Spray</b>, <b>Neil Jones</b>, <b>AGC</b>, <b>Partner Therapeutics</b>, <b>Perdue</b>, <b>Seremoni</b></td><td>Puget Sound and southwest WA swing. Ocean Spray and Neil Jones already have full buying committees mapped, so start there when you schedule it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>What to say in the room</h2>
+  <div class="prose">
+    <p>Three angles, one per audience. Do not deliver all three to the same person &mdash; it reads as a feature tour instead of an answer.</p>
+    <ul>
+      <li><b>Controls engineers, plant engineering, procurement &mdash; Angle 1.</b> Hardware agnosticism. Deploy on any Linux or Windows device, no proprietary controller, no vendor-forced refresh cycle. This covers most of Ring 1.</li>
+      <li><b>IT/OT directors, digital transformation leads &mdash; Angle 2.</b> Control runtime and data concentrator in one platform. Relevant at WSU, AGC, and Partner Therapeutics.</li>
+      <li><b>CIO/CTO, IT infrastructure &mdash; Angle 3.</b> Control managed like an IT application: versioned, containerized, CI/CD capable. This is the PepsiCo and Lamb Weston enterprise conversation.</li>
+    </ul>
+    <p>The wedge question works on anyone evaluating Siemens SIMATIC AX, Rockwell, Emerson, or Beckhoff: <i>can you run this on a $400 industrial PC you already have on the plant floor?</i> EAE can. Their platforms mostly cannot.</p>
+    <p>And keep the disqualifiers straight so you do not get caught out. EAE is not a SCADA replacement, not cloud-only, not Schneider-hardware-locked, and not a rip-and-replace mandate &mdash; it coexists with existing PLCs as a modernization and data concentration layer. In refrigeration and packaging retrofits like Tyson and Chukar, that coexistence <i>is</i> the pitch.</p>
+  </div>
+</section>
+
+<footer>
+  <div>Ranked from IIR project data, WA only</div>
+  <div>EAE positioning from BD Intelligence Kit File 1</div>
+  <div>Contacts from FB Buying Committees 2026</div>
+  <div>Prepared 20 Aug 2026</div>
+</footer>
+
+</div>
