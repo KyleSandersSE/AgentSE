@@ -101,6 +101,31 @@ Dairy processor, multiple Central Valley plants. Standardized on Allen-Bradley; 
 - **Target site: Fresno** — Edgar's own pick. Smallest, worst condition, most manual work. Specific live failure: old proximity sensors on an old PLC that don't appear on the HMI, so operators can't troubleshoot without pulling a programmer.
 - **Why they took the meeting:** curiosity, no trigger. "We just stick to the usual."
 
+
+## Opportunity sizing
+
+**CRM value: $35,000 · 15% · close ~Q1 FY27** (Phase 1 energy/air visibility pilot, one site)
+
+Everything below Tier 1 is account potential, not forecast. Track it separately so it does not inflate weighted pipeline.
+
+| Tier | Scope | Range | Prob | Basis |
+|---|---|---|---|---|
+| 1. Phase 1 pilot | Air/energy visibility overlay, one site | $25–50K | 15% | iPC $1–3K + EAE licenses ~$3K + 6–10 metering points ~$8K + engineering/commissioning $15–30K. No control changes, no platform approval required |
+| 2. Fresno modernization | GE PLC + PLC-5 migration, automate manual ops | $500K–1.5M | 5% | Multi-year phased. Edgar's own pick as the site needing the most help |
+| 2b. iFIX → AVEVA | SCADA conversion at Fresno | $100–300K | 10–15% | Separate BU/sale. Customer-stated need: "has to be converted as well" |
+| 3. Multi-plant standard | EAE as controls standard, 3–6 plants | $3–10M / 5 yr | <5% | Requires Mark & Lawrence to displace an entrenched Allen-Bradley standard |
+
+**Sanity check:** customer stated "$2M for this facility, $10M for this other," one to two upgrades per plant per year. Every tier fits inside their spend envelope. The constraint is approval and attention, not budget.
+
+**Why probability stays low despite a 3.5 gate:** no trigger event (curiosity meeting); the two people with veto power have not been met; both are ex-integrators, historically the hardest audience for a platform change; deep AB standardization; 3 controls staff company-wide caps absorption capacity; the champion cannot advance a purchase.
+
+**Headline for pipeline review: $135K** — Phase 1 pilot ($35K) + iFIX→AVEVA ($100K). The AVEVA thread is the highest-probability near-term revenue: customer-stated need, Schneider already owns the product, and it requires no blessing on a new control platform.
+
+**What re-rates this, in order:**
+1. Next budget allocation date — one unasked question; every close date is a guess without it
+2. Mark & Lawrence on a call — hold at ≤15% until then
+3. Trial installed or pilot funded — the step change from curiosity account to real opportunity
+
 ## Next steps
 
 | # | Action | Owner | Due |
@@ -191,6 +216,8 @@ Push AStech's own plant as an opportunity. It muddies the relationship and reads
 |---|---|---|---|---|---|
 | **City of Lemoore** | followup | 1 | Juan Diego (via Jeremy + Telstar) | Site meeting + roadmap | **Oct** |
 | **California Dairies** | qualified/contacted | 2 | Mark & Lawrence | Intro session at Fresno | **~9/1** |
+
+**Forecast:** Lemoore unsized pending October scoping · California Dairies **$35K @ 15%** (account potential $135K–1.8M) · AStech non-revenue channel record
 | **AStech / Greg Rasmussen** | qualified/contacted | 3 | Greg (channel recruit) | Zach build-and-swap session | **~8/29** |
 
 ## This week (by 8/22)
